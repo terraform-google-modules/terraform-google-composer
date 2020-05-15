@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-output "bucket_name" {
-  description = "The name of the bucket."
-  value       = module.example.bucket_name
+variable "project_id" {
+  description = "Project ID where Cloud Composer Environment is created."
+  type        = string
 }
 
-output "project_id" {
-  description = "The ID of the project in which resources are provisioned."
-  value       = var.project_id
+variable "composer_sa" {
+  description = "Service Account to be used for creating Cloud Composer Environment."
+  type        = string
 }

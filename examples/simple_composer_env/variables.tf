@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,12 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">= 0.12"
+variable "project_id" {
+  description = "Project ID where Cloud Composer Environment is created."
+  type        = string
+}
+
+variable "composer_service_account" {
+  description = "Service Account to be used for creating Cloud Composer Environment."
+  type        = string
 }

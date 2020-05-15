@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,22 @@
  * limitations under the License.
  */
 
-variable "project_id" {
-  description = "The ID of the project in which to provision resources."
-  type        = string
+resource "google_composer_environment" "composer_env" {
+  project = var.project_id
+  name    = var.composer_env_name
+  region  = var.region
+
+  config {
+    node_count = var.node_count
+
+    node_config {
+      zone         = var.zone
+      machine_type = var.machine_type
+
+      network    = var.network_name
+      subnetwork = var.subnet_name
+
+      service_account = var.composer_service_account
+    }
+  }
 }

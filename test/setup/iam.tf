@@ -16,14 +16,17 @@
 
 locals {
   int_required_roles = [
-    "roles/owner"
+    "roles/owner",
+    "roles/compute.instanceAdmin.v1",
+    "roles/iam.serviceAccountUser",
+    "roles/composer.worker"
   ]
 }
 
 resource "google_service_account" "int_test" {
   project      = module.project.project_id
-  account_id   = "ci-account"
-  display_name = "ci-account"
+  account_id   = "ci-composer"
+  display_name = "ci-composer"
 }
 
 resource "google_project_iam_member" "int_test" {

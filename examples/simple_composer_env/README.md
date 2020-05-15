@@ -1,4 +1,4 @@
-# Simple Example
+# Simple Cloud Composer Environment Example
 
 This example illustrates how to use the `composer` module.
 
@@ -7,14 +7,14 @@ This example illustrates how to use the `composer` module.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| bucket\_name | The name of the bucket to create. | string | n/a | yes |
-| project\_id | The ID of the project in which to provision resources. | string | n/a | yes |
+| composer\_service\_account | Service Account to be used for creating Cloud Composer Environment. | string | n/a | yes |
+| project\_id | Project ID where Cloud Composer Environment is created. | string | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| bucket\_name | The name of the bucket. |
+| composer\_env\_name | The name of the Cloud Composer Environment. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,7 @@
  * limitations under the License.
  */
 
-provider "google" {
-  version = "~> 2.0"
-}
-
-module "composer" {
-  source = "../.."
-
-  project_id  = var.project_id
-  bucket_name = var.bucket_name
+output "composer_env_name" {
+  description = "The name of the Cloud Composer Environment."
+  value       = module.simple-composer-environment.composer_env_name
 }
