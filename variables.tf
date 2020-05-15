@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2020 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,9 +15,16 @@
  */
 
 variable "project_id" {
-  description = "The project ID to deploy to"
+  description = "Project ID where Cloud Composer Environment is created."
+  type        = string
 }
 
-variable "bucket_name" {
-  description = "The name of the bucket to create"
+variable "composer_env_name" {
+  description = "Name of Cloud Composer Environment"
+  type        = string
+}
+
+variable "region" {
+  description = "Region where the Cloud Composer Environment is created."
+  type        = string
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2020 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 
-resource "google_storage_bucket" "main" {
+resource "google_composer_environment" "composer_env" {
   project = var.project_id
-  name    = var.bucket_name
+  name    = var.composer_env_name
+  region  = var.region
 }

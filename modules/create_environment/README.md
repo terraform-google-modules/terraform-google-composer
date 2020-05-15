@@ -4,7 +4,7 @@ This optional module is used to create a Cloud Composer environment.
 
 ```hcl
 module "composer" {
-  source = "terraform-google-modules/composer/google//modules/simple_environment"
+  source = "terraform-google-modules/composer/google//modules/create_environment"
 
   project = "project-123"
   name    = "Composer-Prod-Env"
