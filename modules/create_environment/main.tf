@@ -26,8 +26,8 @@ resource "google_composer_environment" "composer_env" {
       zone         = var.zone
       machine_type = var.machine_type
 
-      network    = var.network_name
-      subnetwork = var.subnet_name
+      network    = google_compute_network.composer_network.name
+      subnetwork = google_compute_subnetwork.composer_subnetwork.name
 
       service_account = var.composer_service_account
     }
