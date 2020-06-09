@@ -16,6 +16,10 @@
 
 project_id = attribute('project_id')
 composer_env_name = attribute('composer_env_name')
+composer_env_id = attribute('composer_env_id')
+gke_cluster = attribute('gke_cluster')
+gcs_bucket = attribute('gcs_bucket')
+airflow_uri = attribute('airflow_uri')
 
 control "Cloud Composer Environment" do
     title "Simple Cloud Composer"
@@ -32,9 +36,13 @@ control "Cloud Composer Environment" do
             end
         end
 
-        describe "composer_environment" do
-            it "have name" do
+        describe "composer_environment_config" do
+            it "has config" do
+                config_data = data['config']
                 expect(data["name"]).to include("projects/#{attribute("project_id")}/locations/us-central1/environments/#{attribute("composer_env_name")}")
+                expect(config_data["gkeCluster"]). to include(attribute("gke_cluster"))
+                expect(config_data["dagGcsPrefix"]). to include(attribute("gcs_bucket"))
+                expect(config_data["airflowUri"]). to include(attribute("airflow_uri"))
             end
         end
     end

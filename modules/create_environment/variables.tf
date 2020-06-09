@@ -38,8 +38,8 @@ variable "zone" {
 
 variable "node_count" {
   description = "Number of worker nodes in Cloud Composer Environment."
-  type        = string
-  default     = "3"
+  type        = number
+  default     = 3
 }
 
 variable "machine_type" {
@@ -67,6 +67,6 @@ variable "ip_cidr_range" {
 }
 
 variable "composer_service_account" {
-  description = "Service Account for creating Cloud Composer."
+  description = "Service Account for running Cloud Composer."
   type        = string
 }

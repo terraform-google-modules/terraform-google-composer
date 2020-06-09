@@ -7,14 +7,20 @@ This example illustrates how to use the `composer` module.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| composer\_service\_account | Service Account to be used for creating Cloud Composer Environment. | string | n/a | yes |
+| composer\_env\_name | Name of Cloud Composer Environment. | string | n/a | yes |
+| composer\_service\_account | Service Account to be used for running Cloud Composer Environment. | string | n/a | yes |
 | project\_id | Project ID where Cloud Composer Environment is created. | string | n/a | yes |
+| region | Region where Cloud Composer Environment is created. | string | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| composer\_env\_name | The name of the Cloud Composer Environment. |
+| airflow\_uri | URI of the Apache Airflow Web UI hosted within the Cloud Composer Environment. |
+| composer\_env\_id | ID of Cloud Composer Environment. |
+| composer\_env\_name | Name of the Cloud Composer Environment. |
+| gcs\_bucket | Google Cloud Storage bucket which hosts DAGs for the Cloud Composer Environment. |
+| gke\_cluster | Google Kubernetes Engine cluster used to run the Cloud Composer Environment. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

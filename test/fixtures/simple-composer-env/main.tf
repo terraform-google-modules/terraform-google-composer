@@ -18,5 +18,11 @@ module "simple-composer" {
   source = "../../../examples/simple_composer_env"
 
   project_id               = var.project_id
+  composer_env_name        = "composer-env-${random_id.random_suffix.hex}"
+  region                   = "us-central1"
   composer_service_account = var.composer_sa
+}
+
+resource "random_id" "random_suffix" {
+  byte_length = 2
 }

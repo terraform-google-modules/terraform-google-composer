@@ -20,3 +20,15 @@ attributes:
   - name: composer_env_name
     required: true
     type: string
+  - name: composer_env_id
+    required: true
+    type: string
+  - name: gke_cluster
+    required: true
+    type: string
+  - name: gcs_bucket
+    required: true
+    type: string
+  - name: airflow_uri
+    required: true
+    type: string

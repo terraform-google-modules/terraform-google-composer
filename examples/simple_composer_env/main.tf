@@ -22,33 +22,8 @@ module "simple-composer-environment" {
   source = "../../modules/create_environment"
 
   project_id        = var.project_id
-  composer_env_name = "composer-env-${random_id.random_suffix.hex}"
-  region            = "us-central1"
-
-  node_count   = "3"
-  zone         = "us-central1-f"
-  machine_type = "n1-standard-8"
-
-  network_name = google_compute_network.composer_network.id
-  subnet_name  = google_compute_subnetwork.composer_subnetwork.id
+  composer_env_name = var.composer_env_name
+  region            = var.region
 
   composer_service_account = var.composer_service_account
-}
-
-resource "random_id" "random_suffix" {
-  byte_length = 2
-}
-
-resource "google_compute_network" "composer_network" {
-  project                 = var.project_id
-  name                    = "composer-network-01"
-  auto_create_subnetworks = false
-}
-
-resource "google_compute_subnetwork" "composer_subnetwork" {
-  project       = var.project_id
-  name          = "composer-subnet-01"
-  ip_cidr_range = "10.0.0.0/14"
-  region        = "us-central1"
-  network       = google_compute_network.composer_network.self_link
 }

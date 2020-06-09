@@ -1,6 +1,6 @@
 # terraform-google-composer
 
-This module was generated from [terraform-google-module-template](https://github.com/terraform-google-modules/terraform-google-module-template/), which by default generates a module that simply creates a GCS bucket. As the module develops, this README should be updated.
+This module makes it easy to create a Cloud Composer Environment. As the module develops, this README should be updated.
 
 The resources/services/activations/deletions that this module will create/trigger are:
 
@@ -30,6 +30,7 @@ Functional examples are included in the
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | composer\_env\_name | Name of Cloud Composer Environment | string | n/a | yes |
+| composer\_sa | Service Account to be used for running Cloud Composer Environment. | string | n/a | yes |
 | project\_id | Project ID where Cloud Composer Environment is created. | string | n/a | yes |
 | region | Region where the Cloud Composer Environment is created. | string | n/a | yes |
 
@@ -37,7 +38,11 @@ Functional examples are included in the
 
 | Name | Description |
 |------|-------------|
+| airflow\_uri | URI of the Apache Airflow Web UI hosted within the Cloud Composer Environment. |
+| composer\_env\_id | ID of Cloud Composer Environment. |
 | composer\_env\_name | The name of the Cloud Composer Environment. |
+| gcs\_bucket | Google Cloud Storage bucket which hosts DAGs for the Cloud Composer Environment. |
+| gke\_cluster | Google Kubernetes Engine cluster used to run the Cloud Composer Environment. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
@@ -57,6 +62,10 @@ The following dependencies must be available:
 A service account with the following roles must be used to provision
 the resources of this module:
 
+- Project Editor: `roles/editor`
+- Network Admin: `roles/compute.networkAdmin`
+- Instance Admin: `roles/compute.instanceAdmin.v1`
+- Sercvice Account User: `roles/iam.serviceAccountUser`
 - Composer Worker: `roles/composer.worker`
 
 The [Project Factory module][project-factory-module] and the

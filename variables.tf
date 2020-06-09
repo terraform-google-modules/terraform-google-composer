@@ -28,3 +28,8 @@ variable "region" {
   description = "Region where the Cloud Composer Environment is created."
   type        = string
 }
+
+variable "composer_sa" {
+  description = "Service Account to be used for running Cloud Composer Environment."
+  type        = string
+}

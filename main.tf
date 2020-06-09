@@ -14,8 +14,11 @@
  * limitations under the License.
  */
 
-resource "google_composer_environment" "composer_env" {
-  project = var.project_id
-  name    = var.composer_env_name
-  region  = var.region
+module "composer-environment" {
+  source = "./modules/create_environment"
+
+  project_id               = var.project_id
+  composer_env_name        = var.composer_env_name
+  region                   = var.region
+  composer_service_account = var.composer_sa
 }

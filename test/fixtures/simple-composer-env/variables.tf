@@ -20,6 +20,6 @@ variable "project_id" {
 }
 
 variable "composer_sa" {
-  description = "Service Account to be used for creating Cloud Composer Environment."
+  description = "Service Account to be used for running Cloud Composer Environment."
   type        = string
 }
