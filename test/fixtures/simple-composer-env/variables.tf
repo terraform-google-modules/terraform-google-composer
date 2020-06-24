@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2020 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,12 @@
  * limitations under the License.
  */
 
-provider "random" {
-  version = "~> 2.0"
+variable "project_id" {
+  description = "Project ID where Cloud Composer Environment is created."
+  type        = string
 }
 
-resource "random_pet" "main" {
-  length    = 1
-  prefix    = "simple-example"
-  separator = "-"
-}
-
-module "example" {
-  source = "../../../examples/simple_example"
-
-  project_id  = var.project_id
-  bucket_name = random_pet.main.id
+variable "composer_sa" {
+  description = "Service Account to be used for running Cloud Composer Environment."
+  type        = string
 }

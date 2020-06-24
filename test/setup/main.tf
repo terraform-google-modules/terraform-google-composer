@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2020 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 
 module "project" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 3.0"
+  version = "~> 8.0"
 
   name              = "ci-composer"
   random_project_id = "true"
@@ -24,9 +24,14 @@ module "project" {
   folder_id         = var.folder_id
   billing_account   = var.billing_account
 
+  skip_gcloud_download = true
+
   activate_apis = [
     "cloudresourcemanager.googleapis.com",
     "storage-api.googleapis.com",
-    "serviceusage.googleapis.com"
+    "serviceusage.googleapis.com",
+    "composer.googleapis.com",
+    "compute.googleapis.com",
+    "iam.googleapis.com",
   ]
 }

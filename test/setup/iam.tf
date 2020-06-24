@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2020 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,14 +16,18 @@
 
 locals {
   int_required_roles = [
-    "roles/owner"
+    "roles/editor",
+    "roles/compute.networkAdmin",
+    "roles/compute.instanceAdmin.v1",
+    "roles/iam.serviceAccountUser",
+    "roles/composer.worker"
   ]
 }
 
 resource "google_service_account" "int_test" {
   project      = module.project.project_id
-  account_id   = "ci-account"
-  display_name = "ci-account"
+  account_id   = "ci-composer"
+  display_name = "ci-composer"
 }
 
 resource "google_project_iam_member" "int_test" {

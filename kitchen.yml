@@ -1,4 +1,4 @@
-# Copyright 2018 Google LLC
+# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,31 +13,22 @@
 # limitations under the License.
 
 ---
-driver:
-  name: terraform
-
 provisioner:
   name: terraform
 
-verifier:
-  name: terraform
-
 platforms:
-  - name: default
+  - name: local
 
 suites:
-  - name: simple_example
+  - name: simple-composer-env
     driver:
-      root_module_directory: test/fixtures/simple_example/
+      name: terraform
+      command_timeout: 3600
+      root_module_directory: test/fixtures/simple-composer-env
     verifier:
-      color: false
+      name: terraform
       systems:
-        - name: simple_example local
+        - name: simple-composer-env
           backend: local
-          controls:
-            - gcloud
-            - gsutil
-        - name: simple_example gcp
-          backend: gcp
-          controls:
-            - gcp
+    provisioner:
+      name: terraform
