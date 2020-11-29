@@ -6,11 +6,11 @@ This example illustrates how to use the `composer` module.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| composer\_env\_name | Name of Cloud Composer Environment. | string | n/a | yes |
-| composer\_service\_account | Service Account to be used for running Cloud Composer Environment. | string | n/a | yes |
-| project\_id | Project ID where Cloud Composer Environment is created. | string | n/a | yes |
-| region | Region where Cloud Composer Environment is created. | string | n/a | yes |
+|------|-------------|------|---------|:--------:|
+| composer\_env\_name | Name of Cloud Composer Environment. | `string` | n/a | yes |
+| composer\_service\_account | Service Account to be used for running Cloud Composer Environment. | `string` | n/a | yes |
+| project\_id | Project ID where Cloud Composer Environment is created. | `string` | n/a | yes |
+| region | Region where Cloud Composer Environment is created. | `string` | n/a | yes |
 
 ## Outputs
 

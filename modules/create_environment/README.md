@@ -29,17 +29,17 @@ module "composer" {
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| composer\_env\_name | Name of Cloud Composer Environment | string | n/a | yes |
-| composer\_service\_account | Service Account for running Cloud Composer. | string | n/a | yes |
-| ip\_cidr\_range | CIDR range for the Cloud Composer Subnet. | string | `"10.0.0.0/14"` | no |
-| machine\_type | Machine type of Cloud Composer nodes. | string | `"n1-standard-8"` | no |
-| network\_name | Name of network created for Cloud Composer Environment. | string | `"composer-network-01"` | no |
-| node\_count | Number of worker nodes in Cloud Composer Environment. | number | `"3"` | no |
-| project\_id | Project ID where Cloud Composer Environment is created. | string | n/a | yes |
-| region | Region where the Cloud Composer Environment is created. | string | `"us-central1"` | no |
-| subnet\_name | Name of subnetwork created for Cloud Composer Environment. | string | `"composer-subnet-01"` | no |
-| zone | Zone where the Cloud Composer nodes are created. | string | `"us-central1-f"` | no |
+|------|-------------|------|---------|:--------:|
+| composer\_env\_name | Name of Cloud Composer Environment | `string` | n/a | yes |
+| composer\_service\_account | Service Account for running Cloud Composer. | `string` | n/a | yes |
+| ip\_cidr\_range | CIDR range for the Cloud Composer Subnet. | `string` | `"10.0.0.0/14"` | no |
+| machine\_type | Machine type of Cloud Composer nodes. | `string` | `"n1-standard-8"` | no |
+| network\_name | Name of network created for Cloud Composer Environment. | `string` | `"composer-network-01"` | no |
+| node\_count | Number of worker nodes in Cloud Composer Environment. | `number` | `3` | no |
+| project\_id | Project ID where Cloud Composer Environment is created. | `string` | n/a | yes |
+| region | Region where the Cloud Composer Environment is created. | `string` | `"us-central1"` | no |
+| subnet\_name | Name of subnetwork created for Cloud Composer Environment. | `string` | `"composer-subnet-01"` | no |
+| zone | Zone where the Cloud Composer nodes are created. | `string` | `"us-central1-f"` | no |
 
 ## Outputs
 
