@@ -29,11 +29,11 @@ Functional examples are included in the
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| composer\_env\_name | Name of Cloud Composer Environment | string | n/a | yes |
-| composer\_sa | Service Account to be used for running Cloud Composer Environment. | string | n/a | yes |
-| project\_id | Project ID where Cloud Composer Environment is created. | string | n/a | yes |
-| region | Region where the Cloud Composer Environment is created. | string | n/a | yes |
+|------|-------------|------|---------|:--------:|
+| composer\_env\_name | Name of Cloud Composer Environment | `string` | n/a | yes |
+| composer\_sa | Service Account to be used for running Cloud Composer Environment. | `string` | n/a | yes |
+| project\_id | Project ID where Cloud Composer Environment is created. | `string` | n/a | yes |
+| region | Region where the Cloud Composer Environment is created. | `string` | n/a | yes |
 
 ## Outputs
 
