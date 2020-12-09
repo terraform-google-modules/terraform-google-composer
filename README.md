@@ -66,7 +66,7 @@ the resources of this module:
 - Project Editor: `roles/editor`
 - Network Admin: `roles/compute.networkAdmin`
 - Instance Admin: `roles/compute.instanceAdmin.v1`
-- Sercvice Account User: `roles/iam.serviceAccountUser`
+- Service Account User: `roles/iam.serviceAccountUser`
 - Composer Worker: `roles/composer.worker`
 
 The [Project Factory module][project-factory-module] and the
