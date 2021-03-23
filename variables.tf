@@ -29,7 +29,12 @@ variable "region" {
   type        = string
 }
 
-variable "composer_sa" {
-  description = "Service Account to be used for running Cloud Composer Environment."
+variable "network" {
+  description = "Network where Cloud Composer is created."
+  type        = string
+}
+
+variable "subnetwork" {
+  description = "Subetwork where Cloud Composer is created."
   type        = string
 }
