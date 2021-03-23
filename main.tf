@@ -21,4 +21,5 @@ module "composer-environment" {
   composer_env_name        = var.composer_env_name
   region                   = var.region
   composer_service_account = var.composer_sa
+
 }
