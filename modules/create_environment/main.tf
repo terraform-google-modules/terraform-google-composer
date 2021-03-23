@@ -49,9 +49,9 @@ resource "google_composer_environment" "composer_env" {
     }
 
     dynamic "private_environment_config" {
-      for_each = var.enable_private_endpoint != null ? [
+      for_each = var.use_ip_aliases ? [
         {
-          enable_private_endpoint    = var.enable_private_endpoint ? var.enable_private_endpoint : null
+          enable_private_endpoint    = var.enable_private_endpoint
           cloud_sql_ipv4_cidr_block  = var.cloud_sql_ipv4_cidr
           web_server_ipv4_cidr_block = var.web_server_ipv4_cidr
           master_ipv4_cidr_block     = var.master_ipv4_cidr
