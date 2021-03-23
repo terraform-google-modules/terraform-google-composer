@@ -14,17 +14,6 @@
  * limitations under the License.
  */
 
-/******************************************
-  Provider configuration
- *****************************************/
-provider "google" {
-  version = "~> 3.3"
-}
-
-provider "google-beta" {
-  version = "~> 3.3"
-}
-
 module "simple-composer-environment" {
   source = "../../modules/create_environment"
 

@@ -22,9 +22,11 @@ variable "project_id" {
 variable "network" {
   description = "Network where Cloud Composer is created."
   type        = string
+  default     = "default"
 }
 
 variable "subnetwork" {
-  description = "Subetwork where Cloud Composer is created."
+  description = "Subnetwork where Cloud Composer is created."
   type        = string
+  default     = "default"
 }
