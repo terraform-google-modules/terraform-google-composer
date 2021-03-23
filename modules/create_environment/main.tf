@@ -38,18 +38,30 @@ resource "google_composer_environment" "composer_env" {
       oauth_scopes    = var.oauth_scopes
       tags            = var.tags
 
-      ip_allocation_policy {
-        use_ip_aliases                = var.use_ip_aliases
-        cluster_secondary_range_name  = var.pod_ip_allocation_range_name
-        services_secondary_range_name = var.service_ip_allocation_range_name
+      dynamic "ip_allocation_policy" {
+        for_each = var.use_ip_aliases ? [1] : []
+        content {
+          use_ip_aliases                = var.use_ip_aliases
+          cluster_secondary_range_name  = var.pod_ip_allocation_range_name
+          services_secondary_range_name = var.service_ip_allocation_range_name
+        }
       }
     }
 
-    private_environment_config {
-      enable_private_endpoint    = var.enable_private_endpoint
-      cloud_sql_ipv4_cidr_block  = var.cloud_sql_ipv4_cidr
-      web_server_ipv4_cidr_block = var.web_server_ipv4_cidr
-      master_ipv4_cidr_block     = var.master_ipv4_cidr
+    dynamic "private_environment_config" {
+      for_each = var.enable_private_endpoint != null ? [
+        {
+          enable_private_endpoint    = var.enable_private_endpoint ? var.enable_private_endpoint : null
+          cloud_sql_ipv4_cidr_block  = var.cloud_sql_ipv4_cidr
+          web_server_ipv4_cidr_block = var.web_server_ipv4_cidr
+          master_ipv4_cidr_block     = var.master_ipv4_cidr
+      }] : []
+      content {
+        enable_private_endpoint    = private_environment_config.value["enable_private_endpoint"]
+        cloud_sql_ipv4_cidr_block  = private_environment_config.value["cloud_sql_ipv4_cidr_block"]
+        web_server_ipv4_cidr_block = private_environment_config.value["web_server_ipv4_cidr_block"]
+        master_ipv4_cidr_block     = private_environment_config.value["master_ipv4_cidr_block"]
+      }
     }
 
     dynamic "software_config" {

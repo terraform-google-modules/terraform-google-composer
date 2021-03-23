@@ -113,7 +113,7 @@ variable "tags" {
 }
 
 variable "use_ip_aliases" {
-  description = "enable Alias IPs in the GKE cluster. If true, a VPC-native cluster is created."
+  description = "Enable Alias IPs in the GKE cluster. If true, a VPC-native cluster is created."
   type        = bool
   default     = false
 }
