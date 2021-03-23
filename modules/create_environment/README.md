@@ -39,7 +39,6 @@ module "composer" {
 | machine\_type | Machine type of Cloud Composer nodes. | `string` | `"n1-standard-8"` | no |
 | master\_ipv4\_cidr | The CIDR block from which IP range in tenant project will be reserved for the master. | `string` | `null` | no |
 | network | The VPC network to host the composer cluster. | `string` | n/a | yes |
-| network\_name | Name of network created for Cloud Composer Environment. | `string` | `"composer-network-01"` | no |
 | network\_project\_id | The project ID of the shared VPC's host (for shared vpc support) | `string` | `""` | no |
 | node\_count | Number of worker nodes in Cloud Composer Environment. | `number` | `3` | no |
 | oauth\_scopes | Google API scopes to be made available on all node. | `set(string)` | <pre>[<br>  "https://www.googleapis.com/auth/cloud-platform"<br>]</pre> | no |
@@ -49,7 +48,6 @@ module "composer" {
 | python\_version | The default version of Python used to run the Airflow scheduler, worker, and webserver processes. | `string` | `"3"` | no |
 | region | Region where the Cloud Composer Environment is created. | `string` | `"us-central1"` | no |
 | service\_ip\_allocation\_range\_name | The name of the services' secondary range used to allocate IP addresses to the cluster. | `string` | `null` | no |
-| subnet\_name | Name of subnetwork created for Cloud Composer Environment. | `string` | `"composer-subnet-01"` | no |
 | subnetwork | The subnetwork to host the composer cluster. | `string` | n/a | yes |
 | subnetwork\_region | The subnetwork region of the shared VPC's host (for shared vpc support) | `string` | `""` | no |
 | tags | Tags applied to all nodes. Tags are used to identify valid sources or targets for network firewalls. | `set(string)` | `[]` | no |

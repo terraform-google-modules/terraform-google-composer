@@ -24,6 +24,26 @@ output "composer_env_name" {
   value       = module.simple-composer.composer_env_name
 }
 
+output "network" {
+  description = "The Cloud Composer Network."
+  value       = google_compute_network.main.name
+}
+
+output "subnetwork" {
+  description = "The Cloud Composer Subnetwork."
+  value       = google_compute_subnetwork.main.name
+}
+
+output "pod_ip_allocation_range_name" {
+  description = "The secondary IP range used for pods"
+  value       = google_compute_subnetwork.main.secondary_ip_range[0].range_name
+}
+
+output "service_ip_allocation_range_name" {
+  description = "The secondary IP range used for services"
+  value       = google_compute_subnetwork.main.secondary_ip_range[1].range_name
+}
+
 output "composer_env_id" {
   description = "ID of Cloud Composer Environment."
   value       = module.simple-composer.composer_env_id

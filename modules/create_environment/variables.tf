@@ -76,18 +76,6 @@ variable "machine_type" {
   default     = "n1-standard-8"
 }
 
-variable "network_name" {
-  description = "Name of network created for Cloud Composer Environment."
-  type        = string
-  default     = "composer-network-01"
-}
-
-variable "subnet_name" {
-  description = "Name of subnetwork created for Cloud Composer Environment."
-  type        = string
-  default     = "composer-subnet-01"
-}
-
 variable "composer_service_account" {
   description = "Service Account for running Cloud Composer."
   type        = string

@@ -19,14 +19,13 @@ variable "project_id" {
   type        = string
 }
 
-variable "network" {
-  description = "Network where Cloud Composer is created."
+variable "composer_sa" {
+  description = "Service Account to be used for running Cloud Composer Environment."
   type        = string
-  default     = "default"
 }
 
-variable "subnetwork" {
-  description = "Subnetwork where Cloud Composer is created."
+variable "region" {
+  description = "Region where Cloud Composer Environment is created."
   type        = string
-  default     = "default"
+  default     = "us-central1"
 }
