@@ -17,10 +17,14 @@
 module "simple-composer" {
   source = "../../../examples/simple_composer_env"
 
-  project_id               = var.project_id
-  composer_env_name        = "composer-env-${random_id.random_suffix.hex}"
-  region                   = "us-central1"
-  composer_service_account = var.composer_sa
+  project_id                       = var.project_id
+  composer_env_name                = "composer-env-${random_id.random_suffix.hex}"
+  region                           = var.region
+  composer_service_account         = var.composer_sa
+  network                          = google_compute_network.main.name
+  subnetwork                       = google_compute_subnetwork.main.name
+  pod_ip_allocation_range_name     = google_compute_subnetwork.main.secondary_ip_range[0].range_name
+  service_ip_allocation_range_name = google_compute_subnetwork.main.secondary_ip_range[1].range_name
 }
 
 resource "random_id" "random_suffix" {

@@ -28,9 +28,13 @@ provider "google-beta" {
 module "simple-composer-environment" {
   source = "../../modules/create_environment"
 
-  project_id        = var.project_id
-  composer_env_name = var.composer_env_name
-  region            = var.region
-
-  composer_service_account = var.composer_service_account
+  project_id                       = var.project_id
+  composer_env_name                = var.composer_env_name
+  region                           = var.region
+  composer_service_account         = var.composer_service_account
+  network                          = var.network
+  subnetwork                       = var.subnetwork
+  use_ip_aliases                   = true
+  pod_ip_allocation_range_name     = var.pod_ip_allocation_range_name
+  service_ip_allocation_range_name = var.service_ip_allocation_range_name
 }
