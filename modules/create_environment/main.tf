@@ -21,7 +21,7 @@ locals {
 
 resource "google_composer_environment" "composer_env" {
   provider = google-beta
-  
+
   project = var.project_id
   name    = var.composer_env_name
   region  = var.region
