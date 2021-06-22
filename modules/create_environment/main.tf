@@ -85,18 +85,10 @@ resource "google_composer_environment" "composer_env" {
     dynamic "encryption_config" {
       for_each = var.kms_key_name != null ? [
         {
-          airflow_config_overrides = var.airflow_config_overrides
-          env_variables            = var.env_variables
-          image_version            = var.image_version
-          pypi_packages            = var.pypi_packages
-          python_version           = var.python_version
+          kms_key_name = var.kms_key_name
       }] : []
       content {
-        airflow_config_overrides = software_config.value["airflow_config_overrides"]
-        env_variables            = software_config.value["env_variables"]
-        image_version            = software_config.value["image_version"]
-        pypi_packages            = software_config.value["pypi_packages"]
-        python_version           = software_config.value["python_version"]
+        kms_key_name = encryption_config.value["kms_key_name"]
       }
     }
   }
