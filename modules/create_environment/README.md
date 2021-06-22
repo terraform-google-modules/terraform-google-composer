@@ -35,6 +35,7 @@ module "composer" {
 | enable\_private\_endpoint | Configure public access to the cluster endpoint. | `bool` | `false` | no |
 | env\_variables | Variables of the airflow environment. | `map(string)` | `{}` | no |
 | image\_version | The version of the aiflow running in the cloud composer environment. | `string` | `null` | no |
+| kms\_key\_name | Customer-managed Encryption Key fully qualified resource name, i.e. projects/project-id/locations/location/keyRings/keyring/cryptoKeys/key. | `string` | `null` | no |
 | labels | The resource labels (a map of key/value pairs) to be applied to the Cloud Composer. | `map(string)` | `{}` | no |
 | machine\_type | Machine type of Cloud Composer nodes. | `string` | `"n1-standard-8"` | no |
 | master\_ipv4\_cidr | The CIDR block from which IP range in tenant project will be reserved for the master. | `string` | `null` | no |
