@@ -20,6 +20,8 @@ locals {
 }
 
 resource "google_composer_environment" "composer_env" {
+  provider = google-beta
+
   project = var.project_id
   name    = var.composer_env_name
   region  = var.region
@@ -79,6 +81,16 @@ resource "google_composer_environment" "composer_env" {
         image_version            = software_config.value["image_version"]
         pypi_packages            = software_config.value["pypi_packages"]
         python_version           = software_config.value["python_version"]
+      }
+    }
+
+    dynamic "encryption_config" {
+      for_each = var.kms_key_name != null ? [
+        {
+          kms_key_name = var.kms_key_name
+      }] : []
+      content {
+        kms_key_name = encryption_config.value["kms_key_name"]
       }
     }
   }

@@ -171,3 +171,9 @@ variable "enable_private_endpoint" {
   type        = bool
   default     = false
 }
+
+variable "kms_key_name" {
+  description = "Customer-managed Encryption Key fully qualified resource name, i.e. projects/project-id/locations/location/keyRings/keyring/cryptoKeys/key."
+  type        = string
+  default     = null
+}
