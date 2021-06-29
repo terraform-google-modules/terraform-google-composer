@@ -8,6 +8,17 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [2.0.0](https://www.github.com/terraform-google-modules/terraform-google-composer/compare/v1.0.0...v2.0.0) (2021-06-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* `create_environment` submodule now uses the `google-beta` provider.
+
+### Features
+
+* Add CMEK support to create_environment submodule by setting `kms_key_name` variable ([#16](https://www.github.com/terraform-google-modules/terraform-google-composer/issues/16)) ([9cd4934](https://www.github.com/terraform-google-modules/terraform-google-composer/commit/9cd4934e5803318430d46b2f05810581a2400819))
+
 ## [1.0.0](https://www.github.com/terraform-google-modules/terraform-google-composer/compare/v0.1.1...v1.0.0) (2021-04-01)
 
 
