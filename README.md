@@ -13,12 +13,11 @@ Basic usage of this module is as follows:
 ```hcl
 module "composer" {
   source  = "terraform-google-modules/composer/google"
-  version = "~> 0.1"
+  version = "~> 2.0"
 
   project_id        = "<PROJECT ID>"
   region            = "us-central1"
   composer_env_name = "composer-env-test"
-  composer_sa       = "project-service-account@<PROJECT_ID>.iam.gserviceaccount.com"
   network           = "test-network"
   subnetwork        = "composer-subnet"
 }
