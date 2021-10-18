@@ -53,6 +53,7 @@ module "composer" {
 | subnetwork\_region | The subnetwork region of the shared VPC's host (for shared vpc support) | `string` | `""` | no |
 | tags | Tags applied to all nodes. Tags are used to identify valid sources or targets for network firewalls. | `set(string)` | `[]` | no |
 | use\_ip\_aliases | Enable Alias IPs in the GKE cluster. If true, a VPC-native cluster is created. | `bool` | `false` | no |
+| web\_server\_allowed\_ip\_ranges | The network-level access control policy for the Airflow web server. If unspecified, no network-level access restrictions will be applied. | <pre>list(object({<br>    value       = string,<br>    description = string<br>  }))</pre> | `null` | no |
 | web\_server\_ipv4\_cidr | The CIDR block from which IP range in tenant project will be reserved for the web server. | `string` | `null` | no |
 | zone | Zone where the Cloud Composer nodes are created. | `string` | `"us-central1-f"` | no |
 
