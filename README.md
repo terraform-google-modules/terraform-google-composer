@@ -32,6 +32,8 @@ Functional examples are included in the
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | airflow\_config\_overrides | Airflow configuration properties to override. Property keys contain the section and property names, separated by a hyphen, for example "core-dags\_are\_paused\_at\_creation". | `map(string)` | `{}` | no |
+| airflow\_connections | A map of IDs to airflow connections. See the modules/airflow\_connection for a complete list of fields | `any` | `{}` | no |
+| airflow\_pools | A map of IDs to airflow pool configurations. See the modules/airflow\_pool for a complete list of fields | `any` | `{}` | no |
 | cloud\_sql\_ipv4\_cidr | The CIDR block from which IP range in tenant project will be reserved for Cloud SQL. | `string` | `null` | no |
 | composer\_env\_name | Name of Cloud Composer Environment | `string` | n/a | yes |
 | composer\_service\_account | Service Account for running Cloud Composer. | `string` | `null` | no |

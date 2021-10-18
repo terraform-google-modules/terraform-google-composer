@@ -188,12 +188,12 @@ variable "web_server_allowed_ip_ranges" {
 
 variable "airflow_connections" {
   type        = any
-  description = "A map of IDs to airflow connections containing URIs, hostnames"
+  description = "A map of IDs to airflow connections. See the modules/airflow_connection for a complete list of fields"
   default     = {}
 }
 
 variable "airflow_pools" {
   type        = any
-  description = "A map of IDs to airflow pools containing slot count and description"
+  description = "A map of IDs to airflow pool configurations. See the modules/airflow_pool for a complete list of fields"
   default     = {}
 }

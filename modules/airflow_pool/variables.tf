@@ -15,30 +15,38 @@
  */
 
 variable "project_id" {
-  type = string
+  type        = string
+  description = "Project ID where Cloud Composer Environment is created."
 }
 
 variable "enabled" {
-  type    = bool
-  default = true
+  type        = bool
+  default     = true
+  description = "Whether to create this resource or not"
 }
 
-variable "location" {
-  type = string
+variable "region" {
+  type        = string
+  description = "Region where the Cloud Composer Environment is created."
 }
 
-variable "environment" {
-  type = string
+variable "composer_env_name" {
+  type        = string
+  description = "Name of the Cloud Composer Environment."
 }
 
-variable "name" {
-  type = string
+variable "pool_name" {
+  type        = string
+  description = "The name of the pool"
 }
 
-variable "slots" {
-  type = number
+variable "slot_count" {
+  type        = number
+  description = "The number of slots in this pool"
 }
 
 variable "description" {
-  type = string
+  type        = string
+  description = "The description of the pool"
+  default     = ""
 }

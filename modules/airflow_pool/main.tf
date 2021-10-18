@@ -15,9 +15,9 @@
  */
 
 locals {
-  gcloud_cmd_body  = "composer environments run --project=${var.project_id} --location=${var.location} ${var.environment} pool"
-  create_cmd_body  = "${local.gcloud_cmd_body} -- --set ${jsonencode(var.name)} ${jsonencode(var.slots)} ${jsonencode(var.description)}"
-  destroy_cmd_body = "${local.gcloud_cmd_body} -- --delete ${jsonencode(var.name)}"
+  gcloud_cmd_body  = "composer environments run --project=${var.project_id} --location=${var.region} ${var.composer_env_name} pool"
+  create_cmd_body  = "${local.gcloud_cmd_body} -- --set ${jsonencode(var.pool_name)} ${jsonencode(var.slot_count)} ${jsonencode(var.description)}"
+  destroy_cmd_body = "${local.gcloud_cmd_body} -- --delete ${jsonencode(var.pool_name)}"
 }
 
 module "gcloud" {
