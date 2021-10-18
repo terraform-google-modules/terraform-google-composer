@@ -47,3 +47,31 @@ module "composer-environment" {
   kms_key_name                     = var.kms_key_name
   web_server_allowed_ip_ranges     = var.web_server_allowed_ip_ranges
 }
+
+module "airflow-connections" {
+  source      = "./modules/airflow_connection"
+  for_each    = var.airflow_connections
+  project_id  = var.project_id
+  location    = var.region
+  environment = var.composer_env_name
+  id          = each.key
+  uri         = lookup(each.value, "uri", null)
+  host        = lookup(each.value, "host", null)
+  login       = lookup(each.value, "login", null)
+  password    = lookup(each.value, "password", null)
+  port        = lookup(each.value, "port", null)
+  schema      = lookup(each.value, "schema", null)
+  type        = lookup(each.value, "type", null)
+  extra       = lookup(each.value, "extra", null)
+}
+
+module "airflow-pools" {
+  source      = "./modules/airflow_pool"
+  for_each    = var.airflow_pools
+  project_id  = var.project_id
+  location    = var.region
+  environment = var.composer_env_name
+  name        = each.key
+  slots       = each.value.slots
+  description = each.value.description
+}

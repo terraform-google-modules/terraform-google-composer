@@ -185,3 +185,15 @@ variable "web_server_allowed_ip_ranges" {
     description = string
   }))
 }
+
+variable "airflow_connections" {
+  type        = any
+  description = "A map of IDs to airflow connections containing URIs, hostnames"
+  default     = {}
+}
+
+variable "airflow_pools" {
+  type        = any
+  description = "A map of IDs to airflow pools containing slot count and description"
+  default     = {}
+}
