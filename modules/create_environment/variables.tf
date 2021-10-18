@@ -177,3 +177,12 @@ variable "kms_key_name" {
   type        = string
   default     = null
 }
+
+variable "web_server_allowed_ip_ranges" {
+  description = "The network-level access control policy for the Airflow web server. If unspecified, no network-level access restrictions will be applied."
+  default     = null
+  type = list(object({
+    value       = string,
+    description = string
+  }))
+}
