@@ -26,7 +26,7 @@ provider "google-beta" {
 }
 
 module "simple-composer-environment" {
-  source = "../../modules/create_environment"
+  source = "../.."
 
   project_id                       = var.project_id
   composer_env_name                = var.composer_env_name
