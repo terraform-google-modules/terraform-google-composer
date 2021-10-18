@@ -50,6 +50,19 @@ resource "google_composer_environment" "composer_env" {
       }
     }
 
+    dynamic "web_server_network_access_control" {
+      for_each = var.web_server_allowed_ip_ranges == null ? [] : [1]
+      content {
+        dynamic "allowed_ip_range" {
+          for_each = var.web_server_allowed_ip_ranges
+          content {
+            value       = allowed_ip_range.value.value
+            description = allowed_ip_range.value.description
+          }
+        }
+      }
+    }
+
     dynamic "private_environment_config" {
       for_each = var.use_ip_aliases ? [
         {
