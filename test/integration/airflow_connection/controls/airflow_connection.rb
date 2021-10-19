@@ -22,7 +22,7 @@ gcs_bucket = attribute('gcs_bucket')
 airflow_uri = attribute('airflow_uri')
 
 control "Cloud Composer Environment" do
-    title "Simple Cloud Composer"
+    title "Cloud Composer with connections"
 
     describe command("gcloud composer environments describe #{attribute("composer_env_name")} --location=us-central1 --project=#{attribute("project_id")} --format=json") do
         its(:exit_status) { should eq 0 }
@@ -45,5 +45,32 @@ control "Cloud Composer Environment" do
                 expect(config_data["airflowUri"]). to include(attribute("airflow_uri"))
             end
         end
+    end
+
+    describe command("gcloud composer environments run #{attribute("composer_env_name")} connections --location=us-central1 --project=#{attribute("project_id")} -- list") do
+        its(:exit_status) { should eq 0 }
+        its(:stderr) { should eq "" }
+
+        let!(:data) do
+            if subject.exit_status == 0
+                # In airflow>=2 we can run `list -o json` but let's perform regexp matches on the default human-readable table format to make it more portable 
+                subject.stdout
+            else
+                ""
+            end
+        end
+
+        it "has a posgres connection" do
+            expect(data).to match(/.*'example-1'.*'postgres'.*'host-1'.*5432.*\n/)
+        end
+
+        it "has a cloudsql connection" do
+            expect(data).to match(/.*'example-2'.*'gcpcloudsql'.*'host-2'.*5433.*\n/)
+        end
+
+        it "has a https connection" do
+            expect(data).to match(/.*'example-3'.*'https'.*'host-3'.*None.*\n/)
+        end
+
     end
 end
