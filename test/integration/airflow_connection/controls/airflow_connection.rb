@@ -53,7 +53,7 @@ control "Cloud Composer Environment" do
 
         let!(:data) do
             if subject.exit_status == 0
-                # In airflow>=2 we can run `list -o json` but let's perform regexp matches on the default human-readable table format to make it more portable 
+                # In airflow>=2 we can run `list -o json` but let's perform regexp matches on the default human-readable table format to make it more portable
                 subject.stdout
             else
                 ""
