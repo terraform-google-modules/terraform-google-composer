@@ -1,5 +1,5 @@
 /**
- * Copyright 2021 Google LLC
+ * Copyright 2020 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,18 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">= 0.13"
-  required_providers {
+variable "project_id" {
+  description = "Project ID where Cloud Composer Environment is created."
+  type        = string
+}
 
-    google = {
-      source  = "hashicorp/google"
-      version = "~> 3.53"
-    }
-  }
+variable "composer_sa" {
+  description = "Service Account to be used for running Cloud Composer Environment."
+  type        = string
+}
 
-  provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-composer:airflow_connection/v2.0.0"
-  }
+variable "region" {
+  description = "Region where Cloud Composer Environment is created."
+  type        = string
+  default     = "us-central1"
 }

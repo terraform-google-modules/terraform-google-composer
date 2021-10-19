@@ -26,7 +26,7 @@ locals {
     "--conn-uri"      = var.uri
   }
 
-  gcloud_cmd_body  = "composer environments run --project=${var.project_id} --region=${var.region} ${var.composer_env_name} connections"
+  gcloud_cmd_body  = "composer environments run --project=${var.project_id} --location=${var.region} ${var.composer_env_name} connections"
   create_cmd_body  = "${local.gcloud_cmd_body} -- add ${var.id} ${join(" ", [for k, v in local.create_parameters : "${k}=${jsonencode(v)}" if v != null])}"
   destroy_cmd_body = "${local.gcloud_cmd_body} -- delete ${var.id}"
 }

@@ -32,3 +32,15 @@ suites:
           backend: local
     provisioner:
       name: terraform
+  - name: airflow_connection
+    driver:
+      name: terraform
+      command_timeout: 3600
+      root_module_directory: test/fixtures/airflow_connection
+    verifier:
+      name: terraform
+      systems:
+        - name: airflow_connection
+          backend: local
+    provisioner:
+      name: terraform
