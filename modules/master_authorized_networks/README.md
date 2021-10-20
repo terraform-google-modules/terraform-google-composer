@@ -31,7 +31,7 @@ See the examples for cloudsql support.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | gke\_cluster | Name of the Cloud Composer Kubernetes cluster. | `string` | n/a | yes |
-| master\_authorized\_networks | List of master authorized networks. If none are provided this module will do nothing and it will use the Composer defaults | `list(object({ cidr_block = string, display_name = string }))` | `[]` | no |
+| master\_authorized\_networks | List of master authorized networks. If null is provided this module will do nothing. If empty string then all public traffic will be denied | `list(object({ cidr_block = string, display_name = string }))` | `null` | no |
 | project\_id | Project ID where Cloud Composer Environment is created. | `string` | n/a | yes |
 | zone | Zone where the Cloud Composer Kubernetes Master lives. | `string` | n/a | yes |
 

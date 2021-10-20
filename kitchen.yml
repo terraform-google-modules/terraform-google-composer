@@ -44,3 +44,15 @@ suites:
           backend: local
     provisioner:
       name: terraform
+  - name: airflow-pool
+    driver:
+      name: terraform
+      command_timeout: 3600
+      root_module_directory: test/fixtures/airflow-pool
+    verifier:
+      name: terraform
+      systems:
+        - name: airflow-pool
+          backend: local
+    provisioner:
+      name: terraform

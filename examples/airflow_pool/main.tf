@@ -44,40 +44,22 @@ module "simple-composer-environment" {
     { cidr_block = "0.0.0.0/0", display_name = "Everybody" }
   ]
 
-  airflow_connections = {
-
-    # Define a simple connection database connection.
-    # The credentials are only in code for simplicity.
-    example-1 = {
-      type     = "postgres"
-      host     = "host-1"
-      port     = "5432"
-      login    = "login1"
-      password = "p4ssw0rd"
-    }
-
-    # # Use the contrib module to create a connection using cloudsql proxy
-    example-2 = {
-      uri = "gcpcloudsql://login1:p4ssw0rd@host-2:5433/db-1"
-      extra = {
-        database_type     = "postgres"
-        project_id        = var.project_id
-        location          = var.region
-        instance          = "instance-1"
-        use_proxy         = true
-        sql_proxy_use_tcp = true
-      }
+  airflow_pools = {
+    inline-1 = {
+      slot_count  = 1111
+      description = "Inline Pool"
     }
   }
 }
 
-# Connections can be defined externally if you wish
-module "example-3" {
-  source            = "../../modules/airflow_connection"
+# Pools can be defined externally if you wish
+module "standalone-pool-1" {
+  source            = "../../modules/airflow_pool"
   project_id        = var.project_id
   composer_env_name = module.simple-composer-environment.composer_env_name
   region            = var.region
-  id                = "example-3"
-  uri               = "https://login1:p4ssw0rd@host-3/"
+  pool_name         = "standalone-pool-1"
+  slot_count        = 2222
+  description       = "Standalone Pool"
 }
 

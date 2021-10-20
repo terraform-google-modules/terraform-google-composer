@@ -80,6 +80,6 @@ module "airflow-pools" {
   region            = var.region
   composer_env_name = module.composer-environment.composer_env_name
   pool_name         = each.key
-  slot_count        = each.value.slots
+  slot_count        = each.value.slot_count
   description       = lookup(each.value, "description", "")
 }

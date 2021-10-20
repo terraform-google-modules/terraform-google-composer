@@ -44,7 +44,7 @@ Functional examples are included in the
 | kms\_key\_name | Customer-managed Encryption Key fully qualified resource name, i.e. projects/project-id/locations/location/keyRings/keyring/cryptoKeys/key. | `string` | `null` | no |
 | labels | The resource labels (a map of key/value pairs) to be applied to the Cloud Composer. | `map(string)` | `{}` | no |
 | machine\_type | Machine type of Cloud Composer nodes. | `string` | `"n1-standard-8"` | no |
-| master\_authorized\_networks | List of master authorized networks. If none are provided it will use the Composer defaults | `list(object({ cidr_block = string, display_name = string }))` | `[]` | no |
+| master\_authorized\_networks | List of master authorized networks. If null is provided this module will do nothing. If empty string then all public traffic will be denied | `list(object({ cidr_block = string, display_name = string }))` | `null` | no |
 | master\_ipv4\_cidr | The CIDR block from which IP range in tenant project will be reserved for the master. | `string` | `null` | no |
 | network | Network where Cloud Composer is created. | `string` | n/a | yes |
 | network\_project\_id | The project ID of the shared VPC's host (for shared vpc support) | `string` | `""` | no |
