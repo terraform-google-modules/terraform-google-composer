@@ -45,28 +45,28 @@ steps:
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy simple-composer-env-local']
 
-# ----- SUITE airflow_connection
+# ----- SUITE airflow-connection-local
 
-- id: create airflow_connection
+- id: create airflow-connection-local
   waitFor:
     - prepare
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do create airflow_connection']
-- id: converge airflow_connection
+  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do create airflow-connection-local']
+- id: converge airflow-connection-local
   waitFor:
-    - create airflow_connection
+    - create airflow-connection-local
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge airflow_connection']
-- id: verify airflow_connection
+  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge airflow-connection-local']
+- id: verify airflow-connection-local
   waitFor:
-    - converge airflow_connection
+    - converge airflow-connection-local
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify airflow_connection']
-- id: destroy airflow_connection
+  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify airflow-connection-local']
+- id: destroy airflow-connection-local
   waitFor:
-    - verify airflow_connection
+    - verify airflow-connection-local
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy airflow_connection']
+  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy airflow-connection-local']
 
 tags:
 - 'ci'
