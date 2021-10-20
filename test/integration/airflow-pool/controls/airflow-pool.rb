@@ -70,4 +70,11 @@ control "Cloud Composer Environment" do
         end
 
     end
+
+    after(:all) do
+        # Remove the gcloud delete hooks from the terraform state as they will fail if they run before the cluster is terminated
+        command("terraform state rm 'module.simple-composer.module.standalone-pool-1.module.gcloud.null_resource.run_destroy_command[0]'")
+        command("terraform state rm 'module.simple-composer.module.simple-composer-environment.module.airflow-pools[\"inline-1\"].module.gcloud.null_resource.run_destroy_command[0]'")
+        command("terraform state rm 'module.simple-composer.module.simple-composer-environment.module.master-authorized-networks.module.gcloud.null_resource.run_destroy_command[0]'")
+    end
 end
