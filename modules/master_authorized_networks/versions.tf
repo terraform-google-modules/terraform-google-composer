@@ -16,28 +16,8 @@
 
 terraform {
   required_version = ">= 0.13"
-  required_providers {
-
-    google = {
-      source  = "hashicorp/google"
-      version = "~> 3.53"
-    }
-
-    external = {
-      source = "hashicorp/external"
-    }
-
-    null = {
-      source = "hashicorp/null"
-    }
-
-    random = {
-      source = "hashicorp/random"
-    }
-
-  }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-composer:airflow_connection/v2.0.0"
+    module_name = "blueprints/terraform/terraform-google-composer:master_authorized_networks/v2.0.0"
   }
 }
