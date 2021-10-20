@@ -49,7 +49,6 @@ control "Cloud Composer Environment" do
 
     describe command("gcloud composer environments run #{attribute("composer_env_name")} connections --location=us-central1 --project=#{attribute("project_id")} -- list") do
         its(:exit_status) { should eq 0 }
-        its(:stderr) { should eq "" }
 
         let!(:data) do
             if subject.exit_status == 0
