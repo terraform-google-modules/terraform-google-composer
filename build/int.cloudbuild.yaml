@@ -24,26 +24,26 @@ steps:
 
 # ----- SUITE simple-composer-env-local
 
-- id: create simple-composer-env-local
-  waitFor:
-    - prepare
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do create simple-composer-env-local']
-- id: converge simple-composer-env-local
-  waitFor:
-    - create simple-composer-env-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge simple-composer-env-local']
-- id: verify simple-composer-env-local
-  waitFor:
-    - converge simple-composer-env-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify simple-composer-env-local']
-- id: destroy simple-composer-env-local
-  waitFor:
-    - verify simple-composer-env-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy simple-composer-env-local']
+# - id: create simple-composer-env-local
+#   waitFor:
+#     - prepare
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do create simple-composer-env-local']
+# - id: converge simple-composer-env-local
+#   waitFor:
+#     - create simple-composer-env-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge simple-composer-env-local']
+# - id: verify simple-composer-env-local
+#   waitFor:
+#     - converge simple-composer-env-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify simple-composer-env-local']
+# - id: destroy simple-composer-env-local
+#   waitFor:
+#     - verify simple-composer-env-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy simple-composer-env-local']
 
 # ----- SUITE airflow-connection-local
 
