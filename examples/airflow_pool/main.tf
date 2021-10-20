@@ -45,7 +45,7 @@ module "simple-composer-environment" {
   ]
 
   airflow_pools = {
-    inline-1 = {
+    inline-pool-1 = {
       slot_count  = 1111
       description = "Inline Pool"
     }
