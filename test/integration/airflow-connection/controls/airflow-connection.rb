@@ -70,15 +70,12 @@ control "Cloud Composer Environment" do
         it "has a https connection" do
             expect(data).to match(/.*'example-3'.*'https'.*'host-3'.*None.*\n/)
         end
-
-        after(:all) do
-            # Remove the gcloud delete hooks from the terraform state as they will fail if they run before the cluster is terminated
-            command("terraform state rm 'module.simple-composer.module.example-3.module.gcloud.null_resource.run_destroy_command[0]'")
-            command("terraform state rm 'module.simple-composer.module.simple-composer-environment.module.airflow-connections[\"example-1\"].module.gcloud.null_resource.run_destroy_command[0]'")
-            command("terraform state rm 'module.simple-composer.module.simple-composer-environment.module.airflow-connections[\"example-2\"].module.gcloud.null_resource.run_destroy_command[0]'")
-            command("terraform state rm 'module.simple-composer.module.simple-composer-environment.module.master-authorized-networks.module.gcloud.null_resource.run_command[0]'")
-            command("terraform state rm 'module.simple-composer.module.simple-composer-environment.module.master-authorized-networks.module.gcloud.null_resource.run_destroy_command[0]'")
-        end
-
     end
 end
+
+# Remove the gcloud delete hooks from the terraform state as they will fail if they run before the cluster is terminated
+command("terraform state rm 'module.simple-composer.module.example-3.module.gcloud.null_resource.run_destroy_command[0]'")
+command("terraform state rm 'module.simple-composer.module.simple-composer-environment.module.airflow-connections[\"example-1\"].module.gcloud.null_resource.run_destroy_command[0]'")
+command("terraform state rm 'module.simple-composer.module.simple-composer-environment.module.airflow-connections[\"example-2\"].module.gcloud.null_resource.run_destroy_command[0]'")
+command("terraform state rm 'module.simple-composer.module.simple-composer-environment.module.master-authorized-networks.module.gcloud.null_resource.run_command[0]'")
+command("terraform state rm 'module.simple-composer.module.simple-composer-environment.module.master-authorized-networks.module.gcloud.null_resource.run_destroy_command[0]'")
