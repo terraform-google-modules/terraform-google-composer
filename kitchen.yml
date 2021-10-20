@@ -32,7 +32,7 @@ suites:
           backend: local
     provisioner:
       name: terraform
-  - name: airflow_connection
+  - name: airflow-connection
     driver:
       name: terraform
       command_timeout: 3600
