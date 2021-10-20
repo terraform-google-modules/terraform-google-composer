@@ -53,7 +53,7 @@ module "airflow-connections" {
   for_each          = var.airflow_connections
   project_id        = var.project_id
   region            = var.region
-  composer_env_name = var.composer_env_name
+  composer_env_name = module.composer-environment.composer_env_name
   id                = each.key
   uri               = lookup(each.value, "uri", null)
   host              = lookup(each.value, "host", null)
@@ -70,7 +70,7 @@ module "airflow-pools" {
   for_each          = var.airflow_pools
   project_id        = var.project_id
   region            = var.region
-  composer_env_name = var.composer_env_name
+  composer_env_name = module.composer-environment.composer_env_name
   pool_name         = each.key
   slot_count        = each.value.slots
   description       = lookup(each.value, "description", "")
