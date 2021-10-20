@@ -25,6 +25,10 @@ provider "google-beta" {
   version = "~> 3.3"
 }
 
+provider "external" {
+  version = "2.1.0"
+}
+
 module "simple-composer-environment" {
   source = "../.."
 
