@@ -39,6 +39,8 @@ See the examples for cloudsql support.
 
 ## Outputs
 
-No output.
+| Name | Description |
+|------|-------------|
+| wait | An output to use when you want to depend on cmd finishing |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

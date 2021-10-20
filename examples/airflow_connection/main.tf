@@ -38,6 +38,12 @@ module "simple-composer-environment" {
   pod_ip_allocation_range_name     = var.pod_ip_allocation_range_name
   service_ip_allocation_range_name = var.service_ip_allocation_range_name
 
+  # Making the k8s master globally available is only to make the integration testing portable 
+  # and should be removed
+  master_authorized_networks = [
+    { cidr_block = "0.0.0.0/0", display_name = "Everybody" }
+  ]
+
   airflow_connections = {
 
     # Define a simple connection database connection.
