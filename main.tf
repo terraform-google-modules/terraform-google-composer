@@ -48,6 +48,14 @@ module "composer-environment" {
   web_server_allowed_ip_ranges     = var.web_server_allowed_ip_ranges
 }
 
+module "master-authorized-networks" {
+  source                     = "./modules/master_authorized_networks"
+  project_id                 = var.project_id
+  zone                       = var.zone
+  gke_cluster                = module.composer-environment.gke_cluster
+  master_authorized_networks = var.master_authorized_networks
+}
+
 module "airflow-connections" {
   source            = "./modules/airflow_connection"
   for_each          = var.airflow_connections

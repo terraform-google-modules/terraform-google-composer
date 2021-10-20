@@ -197,3 +197,9 @@ variable "airflow_pools" {
   description = "A map of IDs to airflow pool configurations. See the modules/airflow_pool for a complete list of fields"
   default     = {}
 }
+
+variable "master_authorized_networks" {
+  type        = list(object({ cidr_block = string, display_name = string }))
+  description = "List of master authorized networks. If null is provided this module will do nothing. If empty string then all public traffic will be denied"
+  default     = null
+}
