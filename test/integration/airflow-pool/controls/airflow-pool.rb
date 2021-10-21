@@ -68,17 +68,6 @@ control "Cloud Composer Environment" do
         it "has the standalone pool" do
             expect(data).to match(/.*standalone-pool-1.*2222.*Standalone Pool.*\n/)
         end
-
-        # Remove the gcloud delete hooks from the terraform state as they will fail if they run before the cluster is terminated
-        cleanup = <<-SH
-            terraform state rm 'module.simple-composer.module.standalone-pool-1.module.gcloud.null_resource.run_destroy_command[0]' &&
-            terraform state rm 'module.simple-composer.module.simple-composer-environment.module.airflow-pools["inline-1"].module.gcloud.null_resource.run_destroy_command[0]' &&
-            terraform state rm 'module.simple-composer.module.simple-composer-environment.module.master-authorized-networks.module.gcloud.null_resource.run_destroy_command[0]'
-        SH
-        describe command(cleanup) do
-            its(:exit_status) { should eq 0 }
-            its(:stderr) { should eq "" }
-        end
     end
 end
 
