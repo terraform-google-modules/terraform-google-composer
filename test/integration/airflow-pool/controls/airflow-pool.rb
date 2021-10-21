@@ -75,7 +75,9 @@ control "Cloud Composer Environment" do
             terraform state rm 'module.simple-composer.module.simple-composer-environment.module.airflow-pools["inline-1"].module.gcloud.null_resource.run_destroy_command[0]' &&
             terraform state rm 'module.simple-composer.module.simple-composer-environment.module.master-authorized-networks.module.gcloud.null_resource.run_destroy_command[0]'
         SH
-        describe(command(cleanup)) do
+        describe command(cleanup) do
+            its(:exit_status) { should eq 0 }
+            its(:stderr) { should eq "" }
         end
     end
 end
