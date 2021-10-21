@@ -21,6 +21,7 @@ variable "project_id" {
 
 variable "composer_env_name" {
   description = "Name of Cloud Composer Environment."
+  default     = "ci-composer"
   type        = string
 }
 

@@ -7,7 +7,7 @@ This example illustrates how to use the `airflow_connection` module.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| composer\_env\_name | Name of Cloud Composer Environment. | `string` | n/a | yes |
+| composer\_env\_name | Name of Cloud Composer Environment. | `string` | `"ci-composer"` | no |
 | composer\_service\_account | Service Account to be used for running Cloud Composer Environment. | `string` | n/a | yes |
 | network | Network where Cloud Composer is created. | `string` | n/a | yes |
 | pod\_ip\_allocation\_range\_name | The name of the cluster's secondary range used to allocate IP addresses to pods. | `string` | n/a | yes |
