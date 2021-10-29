@@ -29,3 +29,9 @@ variable "region" {
   type        = string
   default     = "us-central1"
 }
+
+variable "zone" {
+  description = "Zone where the Cloud Composer nodes are created."
+  type        = string
+  default     = "us-central1-f"
+}

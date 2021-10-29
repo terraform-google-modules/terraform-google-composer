@@ -47,39 +47,3 @@ module "composer-environment" {
   kms_key_name                     = var.kms_key_name
   web_server_allowed_ip_ranges     = var.web_server_allowed_ip_ranges
 }
-
-module "master-authorized-networks" {
-  source                     = "./modules/master_authorized_networks"
-  project_id                 = var.project_id
-  zone                       = var.zone
-  gke_cluster                = module.composer-environment.gke_cluster
-  master_authorized_networks = var.master_authorized_networks
-}
-
-module "airflow-connections" {
-  source            = "./modules/airflow_connection"
-  for_each          = var.airflow_connections
-  project_id        = var.project_id
-  region            = var.region
-  composer_env_name = module.composer-environment.composer_env_name
-  id                = each.key
-  uri               = lookup(each.value, "uri", null)
-  host              = lookup(each.value, "host", null)
-  login             = lookup(each.value, "login", null)
-  password          = lookup(each.value, "password", null)
-  port              = lookup(each.value, "port", null)
-  schema            = lookup(each.value, "schema", null)
-  type              = lookup(each.value, "type", null)
-  extra             = lookup(each.value, "extra", null)
-}
-
-module "airflow-pools" {
-  source            = "./modules/airflow_pool"
-  for_each          = var.airflow_pools
-  project_id        = var.project_id
-  region            = var.region
-  composer_env_name = module.composer-environment.composer_env_name
-  pool_name         = each.key
-  slot_count        = each.value.slot_count
-  description       = lookup(each.value, "description", "")
-}

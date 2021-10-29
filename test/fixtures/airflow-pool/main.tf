@@ -20,6 +20,7 @@ module "simple-composer" {
   project_id                       = var.project_id
   composer_env_name                = "composer-env-${random_id.random_suffix.hex}"
   region                           = var.region
+  zone                             = var.zone
   composer_service_account         = var.composer_sa
   network                          = google_compute_network.main.name
   subnetwork                       = google_compute_subnetwork.main.name

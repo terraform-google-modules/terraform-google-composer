@@ -30,8 +30,7 @@ provider "external" {
 }
 
 module "simple-composer-environment" {
-  source = "../.."
-
+  source                           = "../.."
   project_id                       = var.project_id
   composer_env_name                = var.composer_env_name
   region                           = var.region
@@ -41,37 +40,46 @@ module "simple-composer-environment" {
   use_ip_aliases                   = true
   pod_ip_allocation_range_name     = var.pod_ip_allocation_range_name
   service_ip_allocation_range_name = var.service_ip_allocation_range_name
+}
 
-  # Making the k8s master globally available is only to make the integration testing portable
-  # and should be removed
+# Making the k8s master globally available is only to make the integration testing portable and should be removed
+module "master-authorized-networks" {
+  source      = "../../modules/master_authorized_networks"
+  project_id  = var.project_id
+  zone        = var.zone
+  gke_cluster = module.simple-composer-environment.gke_cluster
   master_authorized_networks = [
     { cidr_block = "0.0.0.0/0", display_name = "Everybody" }
   ]
+}
 
-  airflow_connections = {
+module "example-1" {
+  source            = "../../modules/airflow_connection"
+  project_id        = var.project_id
+  composer_env_name = module.simple-composer-environment.composer_env_name
+  region            = var.region
+  id                = "example-1"
+  type              = "postgres"
+  host              = "host-1"
+  port              = "5432"
+  login             = "login1"
+  password          = "p4ssw0rd"
+}
 
-    # Define a simple connection database connection.
-    # The credentials are only in code for simplicity.
-    example-1 = {
-      type     = "postgres"
-      host     = "host-1"
-      port     = "5432"
-      login    = "login1"
-      password = "p4ssw0rd"
-    }
-
-    # # Use the contrib module to create a connection using cloudsql proxy
-    example-2 = {
-      uri = "gcpcloudsql://login1:p4ssw0rd@host-2:5433/db-1"
-      extra = {
-        database_type     = "postgres"
-        project_id        = var.project_id
-        location          = var.region
-        instance          = "instance-1"
-        use_proxy         = true
-        sql_proxy_use_tcp = true
-      }
-    }
+module "example-2" {
+  source            = "../../modules/airflow_connection"
+  project_id        = var.project_id
+  composer_env_name = module.simple-composer-environment.composer_env_name
+  region            = var.region
+  id                = "example-2"
+  uri               = "gcpcloudsql://login1:p4ssw0rd@host-2:5433/db-1"
+  extra = {
+    database_type     = "postgres"
+    project_id        = var.project_id
+    location          = var.region
+    instance          = "instance-1"
+    use_proxy         = true
+    sql_proxy_use_tcp = true
   }
 }
 
@@ -84,4 +92,3 @@ module "example-3" {
   id                = "example-3"
   uri               = "https://login1:p4ssw0rd@host-3/"
 }
-

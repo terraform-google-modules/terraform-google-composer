@@ -185,21 +185,3 @@ variable "web_server_allowed_ip_ranges" {
     description = string
   }))
 }
-
-variable "airflow_connections" {
-  type        = any
-  description = "A map of IDs to airflow connections. See the modules/airflow_connection for a complete list of fields"
-  default     = {}
-}
-
-variable "airflow_pools" {
-  type        = any
-  description = "A map of IDs to airflow pool configurations. See the modules/airflow_pool for a complete list of fields"
-  default     = {}
-}
-
-variable "master_authorized_networks" {
-  type        = list(object({ cidr_block = string, display_name = string }))
-  description = "List of master authorized networks. If null is provided this module will do nothing. If empty string then all public traffic will be denied"
-  default     = null
-}

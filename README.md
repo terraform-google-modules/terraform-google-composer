@@ -32,8 +32,6 @@ Functional examples are included in the
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | airflow\_config\_overrides | Airflow configuration properties to override. Property keys contain the section and property names, separated by a hyphen, for example "core-dags\_are\_paused\_at\_creation". | `map(string)` | `{}` | no |
-| airflow\_connections | A map of IDs to airflow connections. See the modules/airflow\_connection for a complete list of fields | `any` | `{}` | no |
-| airflow\_pools | A map of IDs to airflow pool configurations. See the modules/airflow\_pool for a complete list of fields | `any` | `{}` | no |
 | cloud\_sql\_ipv4\_cidr | The CIDR block from which IP range in tenant project will be reserved for Cloud SQL. | `string` | `null` | no |
 | composer\_env\_name | Name of Cloud Composer Environment | `string` | n/a | yes |
 | composer\_service\_account | Service Account for running Cloud Composer. | `string` | `null` | no |
@@ -44,7 +42,6 @@ Functional examples are included in the
 | kms\_key\_name | Customer-managed Encryption Key fully qualified resource name, i.e. projects/project-id/locations/location/keyRings/keyring/cryptoKeys/key. | `string` | `null` | no |
 | labels | The resource labels (a map of key/value pairs) to be applied to the Cloud Composer. | `map(string)` | `{}` | no |
 | machine\_type | Machine type of Cloud Composer nodes. | `string` | `"n1-standard-8"` | no |
-| master\_authorized\_networks | List of master authorized networks. If null is provided this module will do nothing. If empty string then all public traffic will be denied | `list(object({ cidr_block = string, display_name = string }))` | `null` | no |
 | master\_ipv4\_cidr | The CIDR block from which IP range in tenant project will be reserved for the master. | `string` | `null` | no |
 | network | Network where Cloud Composer is created. | `string` | n/a | yes |
 | network\_project\_id | The project ID of the shared VPC's host (for shared vpc support) | `string` | `""` | no |

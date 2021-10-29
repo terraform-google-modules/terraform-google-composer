@@ -41,29 +41,27 @@ module "simple-composer-environment" {
   use_ip_aliases                   = true
   pod_ip_allocation_range_name     = var.pod_ip_allocation_range_name
   service_ip_allocation_range_name = var.service_ip_allocation_range_name
+}
 
-  # Making the k8s master globally available is only to make the integration testing portable
-  # and should be removed
+# Making the k8s master globally available is only to make the integration testing portable and should be removed
+module "master-authorized-networks" {
+  source      = "../../modules/master_authorized_networks"
+  project_id  = var.project_id
+  zone        = var.zone
+  gke_cluster = module.simple-composer-environment.gke_cluster
   master_authorized_networks = [
     { cidr_block = "0.0.0.0/0", display_name = "Everybody" }
   ]
-
-  airflow_pools = {
-    inline-pool-1 = {
-      slot_count  = 1111
-      description = "Inline Pool"
-    }
-  }
 }
 
 # Pools can be defined externally if you wish
-module "standalone-pool-1" {
+module "pool-1" {
   source            = "../../modules/airflow_pool"
   project_id        = var.project_id
   composer_env_name = module.simple-composer-environment.composer_env_name
   region            = var.region
-  pool_name         = "standalone-pool-1"
+  pool_name         = "pool-1"
   slot_count        = 2222
-  description       = "Standalone Pool"
+  description       = "Pool 1"
 }
 

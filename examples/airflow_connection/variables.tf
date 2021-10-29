@@ -30,6 +30,11 @@ variable "region" {
   type        = string
 }
 
+variable "zone" {
+  description = "Zone where the Cloud Composer nodes are created."
+  type        = string
+}
+
 variable "composer_service_account" {
   description = "Service Account to be used for running Cloud Composer Environment."
   type        = string

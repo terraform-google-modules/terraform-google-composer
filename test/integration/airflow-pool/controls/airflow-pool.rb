@@ -61,12 +61,8 @@ control "Cloud Composer Environment" do
             end
         end
 
-        it "has the inline pool" do
-            expect(data).to match(/.*inline-pool-1.*1111.*Inline Pool.*\n/)
-        end
-
-        it "has the standalone pool" do
-            expect(data).to match(/.*standalone-pool-1.*2222.*Standalone Pool.*\n/)
+        it "has a pool" do
+            expect(data).to match(/.*pool-1.*2222.*Pool 1.*\n/)
         end
     end
 end
