@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [2.1.0](https://www.github.com/terraform-google-modules/terraform-google-composer/compare/v2.0.0...v2.1.0) (2021-10-19)
+
+
+### Features
+
+* add allowed_ip_ranges variable ([#21](https://www.github.com/terraform-google-modules/terraform-google-composer/issues/21)) ([b91c587](https://www.github.com/terraform-google-modules/terraform-google-composer/commit/b91c587706abd8f22d03976fff1c03cdef6d7d10))
+
 ## [2.0.0](https://www.github.com/terraform-google-modules/terraform-google-composer/compare/v1.0.0...v2.0.0) (2021-06-22)
 
 
