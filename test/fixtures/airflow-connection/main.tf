@@ -21,7 +21,7 @@ module "simple-composer" {
   composer_env_name                = "composer-env-${random_id.random_suffix.hex}"
   region                           = var.region
   zone                             = var.zone
-  composer_service_account         = var.composer_sa
+  composer_service_account         = "ci-composer@${var.project_id}.iam.gserviceaccount.com"
   network                          = google_compute_network.main.name
   subnetwork                       = google_compute_subnetwork.main.name
   pod_ip_allocation_range_name     = google_compute_subnetwork.main.secondary_ip_range[0].range_name

@@ -19,11 +19,6 @@ variable "project_id" {
   type        = string
 }
 
-variable "composer_sa" {
-  description = "Service Account to be used for running Cloud Composer Environment."
-  type        = string
-}
-
 variable "region" {
   description = "Region where Cloud Composer Environment is created."
   type        = string
