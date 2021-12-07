@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [2.2.0](https://www.github.com/terraform-google-modules/terraform-google-composer/compare/v2.1.0...v2.2.0) (2021-11-24)
+
+
+### Features
+
+* update TPG version constraints to allow 4.0 ([#27](https://www.github.com/terraform-google-modules/terraform-google-composer/issues/27)) ([759bcb9](https://www.github.com/terraform-google-modules/terraform-google-composer/commit/759bcb991d5917858717906acfd2e05f9d042891))
+
 ## [2.1.0](https://www.github.com/terraform-google-modules/terraform-google-composer/compare/v2.0.0...v2.1.0) (2021-10-19)
 
 
