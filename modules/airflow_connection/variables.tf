@@ -91,6 +91,3 @@ variable "extra" {
   default     = null
   sensitive   = true
 }
-
-
-
