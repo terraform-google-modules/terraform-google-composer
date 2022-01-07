@@ -21,12 +21,10 @@ locals {
 }
 
 module "gcloud" {
-  source                 = "terraform-google-modules/gcloud/google"
-  enabled                = var.enabled
-  version                = "3.0.1"
-  platform               = "linux"
-  create_cmd_entrypoint  = "gcloud"
-  create_cmd_body        = local.create_cmd_body
-  destroy_cmd_entrypoint = "gcloud"
-  destroy_cmd_body       = local.destroy_cmd_body
+  source           = "terraform-google-modules/gcloud/google"
+  enabled          = var.enabled
+  version          = "~> 3.1"
+  platform         = "linux"
+  create_cmd_body  = local.create_cmd_body
+  destroy_cmd_body = local.destroy_cmd_body
 }
