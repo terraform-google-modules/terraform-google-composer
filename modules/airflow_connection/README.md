@@ -24,7 +24,6 @@ See the examples for cloudsql support.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | composer\_env\_name | Name of the Cloud Composer Environment. | `string` | n/a | yes |
-| enabled | Whether to create this resource or not | `bool` | `true` | no |
 | extra | The optional exta field of the connection. If this is not a string it will be encoded as json which is useful for things like oauth tokens and gcpcloudsql | `any` | `null` | no |
 | host | The optional host field of the connection | `string` | `null` | no |
 | id | The ID of the connection within Airflow | `string` | n/a | yes |

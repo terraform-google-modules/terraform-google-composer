@@ -22,7 +22,6 @@ locals {
 
 module "gcloud" {
   source           = "terraform-google-modules/gcloud/google"
-  enabled          = var.enabled
   version          = "~> 3.1"
   platform         = "linux"
   create_cmd_body  = local.create_cmd_body

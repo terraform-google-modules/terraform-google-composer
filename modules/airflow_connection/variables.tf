@@ -19,12 +19,6 @@ variable "project_id" {
   description = "Project ID where Cloud Composer Environment is created."
 }
 
-variable "enabled" {
-  type        = bool
-  default     = true
-  description = "Whether to create this resource or not"
-}
-
 variable "region" {
   type        = string
   description = "Region where the Cloud Composer Environment is created."
