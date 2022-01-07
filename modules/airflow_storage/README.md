@@ -24,7 +24,6 @@ See the examples for cloudsql support.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | destination\_path | The optional destination path | `string` | `null` | no |
-| enabled | n/a | `bool` | `true` | no |
 | environment | n/a | `string` | n/a | yes |
 | location | n/a | `string` | n/a | yes |
 | project\_id | n/a | `string` | n/a | yes |
