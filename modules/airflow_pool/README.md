@@ -22,7 +22,7 @@ module "pool" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | composer\_env\_name | Name of the Cloud Composer Environment. | `string` | n/a | yes |
-| description | The description of the pool | `string` | `""` | no |
+| description | The description of the pool | `string` | `"Managed by Terraform"` | no |
 | enabled | Whether to create this resource or not | `bool` | `true` | no |
 | pool\_name | The name of the pool | `string` | n/a | yes |
 | project\_id | Project ID where Cloud Composer Environment is created. | `string` | n/a | yes |

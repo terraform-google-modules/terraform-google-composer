@@ -48,5 +48,5 @@ variable "slot_count" {
 variable "description" {
   type        = string
   description = "The description of the pool"
-  default     = ""
+  default     = "Managed by Terraform"
 }
