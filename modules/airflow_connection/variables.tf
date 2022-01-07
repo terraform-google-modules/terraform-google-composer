@@ -46,7 +46,6 @@ variable "host" {
   description = "The optional host field of the connection"
 }
 
-
 variable "uri" {
   type        = string
   default     = null
