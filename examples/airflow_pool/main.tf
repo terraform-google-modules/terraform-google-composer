@@ -30,8 +30,7 @@ provider "external" {
 }
 
 module "simple-composer-environment" {
-  source = "../.."
-
+  source                           = "../../modules/create_environment"
   project_id                       = var.project_id
   composer_env_name                = var.composer_env_name
   region                           = var.region
