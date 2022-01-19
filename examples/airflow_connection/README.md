@@ -1,6 +1,6 @@
-# Simple Cloud Composer Environment Example
+# Demonstrates Airflow Connections
 
-This example illustrates how to use the `composer` module.
+This example illustrates how to use the `airflow_connection` module.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
@@ -15,6 +15,7 @@ This example illustrates how to use the `composer` module.
 | region | Region where Cloud Composer Environment is created. | `string` | n/a | yes |
 | service\_ip\_allocation\_range\_name | The name of the services' secondary range used to allocate IP addresses to the cluster. | `string` | n/a | yes |
 | subnetwork | Subetwork where Cloud Composer is created. | `string` | n/a | yes |
+| zone | Zone where the Cloud Composer nodes are created. | `string` | n/a | yes |
 
 ## Outputs
 

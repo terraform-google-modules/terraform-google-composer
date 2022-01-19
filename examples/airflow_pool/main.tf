@@ -14,6 +14,21 @@
  * limitations under the License.
  */
 
+/******************************************
+  Provider configuration
+ *****************************************/
+provider "google" {
+  version = "~> 3.3"
+}
+
+provider "google-beta" {
+  version = "~> 3.3"
+}
+
+provider "external" {
+  version = "2.1.0"
+}
+
 module "simple-composer-environment" {
   source                           = "../../modules/create_environment"
   project_id                       = var.project_id
@@ -26,3 +41,26 @@ module "simple-composer-environment" {
   pod_ip_allocation_range_name     = var.pod_ip_allocation_range_name
   service_ip_allocation_range_name = var.service_ip_allocation_range_name
 }
+
+# Making the k8s master globally available is only to make the integration testing portable and should be removed
+module "master-authorized-networks" {
+  source      = "../../modules/master_authorized_networks"
+  project_id  = var.project_id
+  zone        = var.zone
+  gke_cluster = module.simple-composer-environment.gke_cluster
+  master_authorized_networks = [
+    { cidr_block = "0.0.0.0/0", display_name = "Everybody" }
+  ]
+}
+
+# Pools can be defined externally if you wish
+module "pool-1" {
+  source            = "../../modules/airflow_pool"
+  project_id        = var.project_id
+  composer_env_name = module.simple-composer-environment.composer_env_name
+  region            = var.region
+  pool_name         = "pool-1"
+  slot_count        = 2222
+  description       = "Pool 1"
+}
+
