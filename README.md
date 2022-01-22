@@ -36,6 +36,7 @@ Functional examples are included in the
 | project\_id | Project ID where Cloud Composer Environment is created. | `string` | n/a | yes |
 | region | Region where the Cloud Composer Environment is created. | `string` | n/a | yes |
 | subnetwork | Subetwork where Cloud Composer is created. | `string` | n/a | yes |
+| zone | Zone where the Cloud Composer Environment is created. | `string` | n/a | yes |
 
 ## Outputs
 

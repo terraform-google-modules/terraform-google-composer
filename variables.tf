@@ -29,6 +29,11 @@ variable "region" {
   type        = string
 }
 
+variable "zone" {
+  description = "Zone where the Cloud Composer Environment is created."
+  type        = string
+}
+
 variable "network" {
   description = "Network where Cloud Composer is created."
   type        = string
