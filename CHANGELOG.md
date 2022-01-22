@@ -8,6 +8,18 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [2.3.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v2.2.0...v2.3.0) (2022-01-22)
+
+
+### Features
+
+* add submodules for managing connections and pools ([#25](https://github.com/terraform-google-modules/terraform-google-composer/issues/25)) ([73a0f94](https://github.com/terraform-google-modules/terraform-google-composer/commit/73a0f9426fc5a750d9e42573481f24c969043589))
+
+
+### Bug Fixes
+
+* Add the zone variable to the root module ([#35](https://github.com/terraform-google-modules/terraform-google-composer/issues/35)) ([a638976](https://github.com/terraform-google-modules/terraform-google-composer/commit/a638976d595a87bb55525154e902d94fb00194d9))
+
 ## [2.2.0](https://www.github.com/terraform-google-modules/terraform-google-composer/compare/v2.1.0...v2.2.0) (2021-11-24)
 
 
