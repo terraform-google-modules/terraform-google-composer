@@ -18,6 +18,6 @@ terraform {
   required_version = ">= 0.13"
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-composer:airflow_pool/v2.0.0"
+    module_name = "blueprints/terraform/terraform-google-composer:airflow_pool/v2.3.0"
   }
 }
