@@ -20,9 +20,14 @@ locals {
     "roles/compute.networkAdmin",
     "roles/compute.instanceAdmin.v1",
     "roles/iam.serviceAccountUser",
-    "roles/composer.worker",
-    "roles/iam.securityAdmin"
+    "roles/composer.worker"
   ]
+}
+
+resource "google_project_iam_member" "composer_agent_service_account" {
+  project = module.project.project_id
+  role    = "roles/composer.ServiceAgentV2Ext"
+  member  = format("serviceAccount:service-%s@cloudcomposer-accounts.iam.gserviceaccount.com", module.project.project_number)
 }
 
 resource "google_service_account" "int_test" {

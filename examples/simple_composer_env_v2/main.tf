@@ -24,6 +24,7 @@ module "simple-composer-environment" {
   subnetwork                       = var.subnetwork
   pod_ip_allocation_range_name     = var.pod_ip_allocation_range_name
   service_ip_allocation_range_name = var.service_ip_allocation_range_name
+  grant_sa_agent_permission        = false
   environment_size                 = "ENVIRONMENT_SIZE_SMALL"
   scheduler = {
     enabled    = true

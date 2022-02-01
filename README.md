@@ -71,7 +71,6 @@ the resources of this module:
 - Instance Admin: `roles/compute.instanceAdmin.v1`
 - Service Account User: `roles/iam.serviceAccountUser`
 - Composer Worker: `roles/composer.worker`
-- Security Admin: `roles/iam.securityAdmin`
 
 The [Project Factory module][project-factory-module] and the
 [IAM module][iam-module] may be used in combination to provision a
