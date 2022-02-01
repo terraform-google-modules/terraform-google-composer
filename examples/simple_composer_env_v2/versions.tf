@@ -14,13 +14,16 @@
  * limitations under the License.
  */
 
-module "composer-environment" {
-  source = "./modules/create_environment_v1"
-
-  project_id        = var.project_id
-  composer_env_name = var.composer_env_name
-  region            = var.region
-  zone              = var.zone
-  network           = var.network
-  subnetwork        = var.subnetwork
+terraform {
+  required_version = ">= 0.13"
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = "~> 4.8.0"
+    }
+    google-beta = {
+      source  = "hashicorp/google-beta"
+      version = "~> 4.8.0"
+    }
+  }
 }

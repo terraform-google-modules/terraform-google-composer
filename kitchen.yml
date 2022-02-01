@@ -20,11 +20,23 @@ platforms:
   - name: local
 
 suites:
-  - name: simple-composer-env
+  - name: simple-composer-env_v1
     driver:
       name: terraform
       command_timeout: 3600
-      root_module_directory: test/fixtures/simple-composer-env
+      root_module_directory: test/fixtures/simple-composer-env_v1
+    verifier:
+      name: terraform
+      systems:
+        - name: simple-composer-env
+          backend: local
+    provisioner:
+      name: terraform
+  - name: simple-composer-env_v2
+    driver:
+      name: terraform
+      command_timeout: 3600
+      root_module_directory: test/fixtures/simple-composer-env_v2
     verifier:
       name: terraform
       systems:

@@ -8,7 +8,7 @@ The resources/services/activations/deletions that this module will create/trigge
 
 ## Usage
 
-Basic usage of this module is as follows:
+There are two Cloud Composer versions available ([examples](./examples/)), simple usage is as follows::
 
 ```hcl
 module "composer" {
@@ -71,6 +71,7 @@ the resources of this module:
 - Instance Admin: `roles/compute.instanceAdmin.v1`
 - Service Account User: `roles/iam.serviceAccountUser`
 - Composer Worker: `roles/composer.worker`
+- Security Admin: `roles/iam.securityAdmin`
 
 The [Project Factory module][project-factory-module] and the
 [IAM module][iam-module] may be used in combination to provision a
