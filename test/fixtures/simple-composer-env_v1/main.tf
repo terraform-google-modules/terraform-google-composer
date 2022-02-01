@@ -15,7 +15,7 @@
  */
 
 module "simple-composer" {
-  source = "../../../examples/simple_composer_env"
+  source = "../../../examples/simple_composer_env_v1"
 
   project_id                       = var.project_id
   composer_env_name                = "composer-env-${random_id.random_suffix.hex}"

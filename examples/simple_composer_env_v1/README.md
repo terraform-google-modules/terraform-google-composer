@@ -1,4 +1,4 @@
-# Simple Cloud Composer Environment Example
+# Simple Cloud Composer Environment (V1) Example
 
 This example illustrates how to use the `composer` module.
 
