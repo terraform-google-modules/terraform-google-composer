@@ -8,7 +8,7 @@ The resources/services/activations/deletions that this module will create/trigge
 
 ## Usage
 
-There are two Cloud Composer versions available ([examples](./examples/)), simple usage is as follows::
+There are two Cloud Composer versions available ([examples](./examples/)), simple usage is as follows:
 
 ```hcl
 module "composer" {
