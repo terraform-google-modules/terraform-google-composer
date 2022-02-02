@@ -40,6 +40,8 @@ module "simple-composer-environment" {
   use_ip_aliases                   = true
   pod_ip_allocation_range_name     = var.pod_ip_allocation_range_name
   service_ip_allocation_range_name = var.service_ip_allocation_range_name
+  node_count                       = var.node_count
+  machine_type                     = var.machine_type
 }
 
 # Making the k8s master globally available is only to make the integration testing portable and should be removed

@@ -9,7 +9,9 @@ This example illustrates how to use the `composer` module.
 |------|-------------|------|---------|:--------:|
 | composer\_env\_name | Name of Cloud Composer Environment. | `string` | `"ci-composer"` | no |
 | composer\_service\_account | Service Account to be used for running Cloud Composer Environment. | `string` | n/a | yes |
+| machine\_type | Cluster machine type. | `string` | `"n1-standard-1"` | no |
 | network | Network where Cloud Composer is created. | `string` | n/a | yes |
+| node\_count | Cluster node count. | `number` | `3` | no |
 | pod\_ip\_allocation\_range\_name | The name of the cluster's secondary range used to allocate IP addresses to pods. | `string` | n/a | yes |
 | project\_id | Project ID where Cloud Composer Environment is created. | `string` | n/a | yes |
 | region | Region where Cloud Composer Environment is created. | `string` | n/a | yes |

@@ -59,3 +59,15 @@ variable "service_ip_allocation_range_name" {
   type        = string
   description = "The name of the services' secondary range used to allocate IP addresses to the cluster."
 }
+
+variable "node_count" {
+  type        = number
+  description = "Cluster node count."
+  default     = 3
+}
+
+variable "machine_type" {
+  type        = string
+  description = "Cluster machine type."
+  default     = "n1-standard-1"
+}
