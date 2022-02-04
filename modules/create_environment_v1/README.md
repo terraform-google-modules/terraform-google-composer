@@ -1,4 +1,4 @@
-# Module Cloud Composer Environment (([V1](https://cloud.google.com/composer/docs/concepts/overview)))
+# Module Cloud Composer Environment ([V1](https://cloud.google.com/composer/docs/concepts/overview))
 
 This optional module is used to create a Cloud Composer environment.
 

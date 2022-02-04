@@ -134,7 +134,7 @@ resource "google_composer_environment" "composer_env" {
     dynamic "master_authorized_networks_config" {
       for_each = local.master_authorized_networks_config
       content {
-        enabled = length(var.master_authorized_networks) == 0
+        enabled = length(var.master_authorized_networks) > 0
         dynamic "cidr_blocks" {
           for_each = master_authorized_networks_config.value["cidr_blocks"]
           content {
