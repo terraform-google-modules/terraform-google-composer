@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Google LLC
+ * Copyright 2022 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -171,14 +171,12 @@ variable "environment_size" {
 
 variable "scheduler" {
   type = object({
-    enabled    = bool
     cpu        = string
     memory_gb  = number
     storage_gb = number
     count      = number
   })
   default = {
-    enabled    = true
     cpu        = 2
     memory_gb  = 7.5
     storage_gb = 5
@@ -189,13 +187,11 @@ variable "scheduler" {
 
 variable "web_server" {
   type = object({
-    enabled    = bool
     cpu        = string
     memory_gb  = number
     storage_gb = number
   })
   default = {
-    enabled    = true
     cpu        = 2
     memory_gb  = 7.5
     storage_gb = 5
@@ -205,7 +201,6 @@ variable "web_server" {
 
 variable "worker" {
   type = object({
-    enabled    = bool
     cpu        = string
     memory_gb  = number
     storage_gb = number
@@ -213,7 +208,6 @@ variable "worker" {
     max_count  = number
   })
   default = {
-    enabled    = true
     cpu        = 2
     memory_gb  = 7.5
     storage_gb = 5

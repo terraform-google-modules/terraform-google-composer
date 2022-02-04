@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Google LLC
+ * Copyright 2022 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -101,13 +101,7 @@ resource "google_composer_environment" "composer_env" {
     workloads_config {
 
       dynamic "scheduler" {
-        for_each = var.scheduler.enabled ? [
-          {
-            cpu        = var.scheduler.cpu
-            memory_gb  = var.scheduler.memory_gb
-            storage_gb = var.scheduler.storage_gb
-            count      = var.scheduler.count
-        }] : []
+        for_each = var.scheduler != null ? [var.scheduler] : []
         content {
           cpu        = scheduler.value["cpu"]
           memory_gb  = scheduler.value["memory_gb"]
@@ -117,12 +111,7 @@ resource "google_composer_environment" "composer_env" {
       }
 
       dynamic "web_server" {
-        for_each = var.web_server.enabled ? [
-          {
-            cpu        = var.web_server.cpu
-            memory_gb  = var.web_server.memory_gb
-            storage_gb = var.web_server.storage_gb
-        }] : []
+        for_each = var.web_server != null ? [var.web_server] : []
         content {
           cpu        = web_server.value["cpu"]
           memory_gb  = web_server.value["memory_gb"]
@@ -131,14 +120,7 @@ resource "google_composer_environment" "composer_env" {
       }
 
       dynamic "worker" {
-        for_each = var.worker.enabled ? [
-          {
-            cpu        = var.worker.cpu
-            memory_gb  = var.worker.memory_gb
-            storage_gb = var.worker.storage_gb
-            min_count  = var.worker.min_count
-            max_count  = var.worker.max_count
-        }] : []
+        for_each = var.worker != null ? [var.worker] : []
         content {
           cpu        = worker.value["cpu"]
           memory_gb  = worker.value["memory_gb"]

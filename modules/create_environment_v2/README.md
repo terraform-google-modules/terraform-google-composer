@@ -1,4 +1,4 @@
-# Module Cloud Composer Environment (V2)
+# Module Cloud Composer Environment ([V2](https://cloud.google.com/composer/docs/composer-2/composer-overview))
 
 This optional module is used to create a Cloud Composer environment.
 
@@ -38,15 +38,15 @@ module "composer" {
 | project\_id | Project ID where Cloud Composer Environment is created. | `string` | n/a | yes |
 | pypi\_packages | Custom Python Package Index (PyPI) packages to be installed in the environment. Keys refer to the lowercase package name (e.g. "numpy"). | `map(string)` | `{}` | no |
 | region | Region where the Cloud Composer Environment is created. | `string` | `"us-central1"` | no |
-| scheduler | Configuration for resources used by Airflow schedulers. | <pre>object({<br>    enabled    = bool<br>    cpu        = string<br>    memory_gb  = number<br>    storage_gb = number<br>    count      = number<br>  })</pre> | <pre>{<br>  "count": 2,<br>  "cpu": 2,<br>  "enabled": true,<br>  "memory_gb": 7.5,<br>  "storage_gb": 5<br>}</pre> | no |
+| scheduler | Configuration for resources used by Airflow schedulers. | <pre>object({<br>    cpu        = string<br>    memory_gb  = number<br>    storage_gb = number<br>    count      = number<br>  })</pre> | <pre>{<br>  "count": 2,<br>  "cpu": 2,<br>  "memory_gb": 7.5,<br>  "storage_gb": 5<br>}</pre> | no |
 | service\_ip\_allocation\_range\_name | The name of the services' secondary range used to allocate IP addresses to the cluster. | `string` | `null` | no |
 | subnetwork | The subnetwork to host the composer cluster. | `string` | n/a | yes |
 | subnetwork\_region | The subnetwork region of the shared VPC's host (for shared vpc support) | `string` | `""` | no |
 | use\_private\_environment | Enable private environment. | `bool` | `false` | no |
-| web\_server | Configuration for resources used by Airflow web server. | <pre>object({<br>    enabled    = bool<br>    cpu        = string<br>    memory_gb  = number<br>    storage_gb = number<br>  })</pre> | <pre>{<br>  "cpu": 2,<br>  "enabled": true,<br>  "memory_gb": 7.5,<br>  "storage_gb": 5<br>}</pre> | no |
+| web\_server | Configuration for resources used by Airflow web server. | <pre>object({<br>    cpu        = string<br>    memory_gb  = number<br>    storage_gb = number<br>  })</pre> | <pre>{<br>  "cpu": 2,<br>  "memory_gb": 7.5,<br>  "storage_gb": 5<br>}</pre> | no |
 | web\_server\_allowed\_ip\_ranges | The network-level access control policy for the Airflow web server. If unspecified, no network-level access restrictions will be applied. | <pre>list(object({<br>    value       = string,<br>    description = string<br>  }))</pre> | `null` | no |
 | web\_server\_ipv4\_cidr | The CIDR block from which IP range in tenant project will be reserved for the web server. | `string` | `null` | no |
-| worker | Configuration for resources used by Airflow workers. | <pre>object({<br>    enabled    = bool<br>    cpu        = string<br>    memory_gb  = number<br>    storage_gb = number<br>    min_count  = number<br>    max_count  = number<br>  })</pre> | <pre>{<br>  "cpu": 2,<br>  "enabled": true,<br>  "max_count": 6,<br>  "memory_gb": 7.5,<br>  "min_count": 2,<br>  "storage_gb": 5<br>}</pre> | no |
+| worker | Configuration for resources used by Airflow workers. | <pre>object({<br>    cpu        = string<br>    memory_gb  = number<br>    storage_gb = number<br>    min_count  = number<br>    max_count  = number<br>  })</pre> | <pre>{<br>  "cpu": 2,<br>  "max_count": 6,<br>  "memory_gb": 7.5,<br>  "min_count": 2,<br>  "storage_gb": 5<br>}</pre> | no |
 
 ## Outputs
 

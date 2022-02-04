@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Google LLC
+ * Copyright 2022 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,20 +27,17 @@ module "simple-composer-environment" {
   grant_sa_agent_permission        = false
   environment_size                 = "ENVIRONMENT_SIZE_SMALL"
   scheduler = {
-    enabled    = true
     cpu        = 0.5
     memory_gb  = 1.875
     storage_gb = 1
     count      = 1
   }
   web_server = {
-    enabled    = true
     cpu        = 0.5
     memory_gb  = 1.875
     storage_gb = 1
   }
   worker = {
-    enabled    = true
     cpu        = 0.5
     memory_gb  = 1.875
     storage_gb = 1
