@@ -1,5 +1,5 @@
 /**
- * Copyright 2021 Google LLC
+ * Copyright 2020 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,10 +14,30 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">= 0.13"
+variable "project_id" {
+  type = string
+}
 
-  provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-composer:airflow_connection/v2.4.0"
-  }
+variable "location" {
+  type = string
+}
+
+variable "environment" {
+  type = string
+}
+
+variable "type" {
+  description = "The type of resource to upload. Either dag, plugin or data"
+  type        = string
+}
+
+variable "source_path" {
+  description = "The source on the local file system"
+  type        = string
+}
+
+variable "destination_path" {
+  description = "The optional destination path"
+  type        = string
+  default     = null
 }

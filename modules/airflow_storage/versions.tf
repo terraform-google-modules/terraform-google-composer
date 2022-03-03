@@ -15,9 +15,16 @@
  */
 
 terraform {
-  required_version = ">= 0.13"
+  required_version = ">= 0.14"
+  required_providers {
+
+    google = {
+      source  = "hashicorp/google"
+      version = "~> 3.53"
+    }
+  }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-composer:airflow_connection/v2.4.0"
+    module_name = "blueprints/terraform/terraform-google-composer:airflow_storage/v2.4.0"
   }
 }

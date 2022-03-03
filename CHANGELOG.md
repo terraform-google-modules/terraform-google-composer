@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [2.4.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v2.3.0...v2.4.0) (2022-02-14)
+
+
+### Features
+
+* add submodule to manage storage ([#28](https://github.com/terraform-google-modules/terraform-google-composer/issues/28)) ([d349d07](https://github.com/terraform-google-modules/terraform-google-composer/commit/d349d07811a2d4b84102caf9cb33ee90a02972da))
+
 ## [2.3.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v2.2.0...v2.3.0) (2022-01-22)
 
 
