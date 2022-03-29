@@ -24,6 +24,12 @@ locals {
   ]
 }
 
+resource "google_project_iam_member" "composer_agent_service_account" {
+  project = module.project.project_id
+  role    = "roles/composer.ServiceAgentV2Ext"
+  member  = format("serviceAccount:service-%s@cloudcomposer-accounts.iam.gserviceaccount.com", module.project.project_number)
+}
+
 resource "google_service_account" "int_test" {
   project      = module.project.project_id
   account_id   = "ci-composer"

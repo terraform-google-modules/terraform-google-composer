@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Google LLC
+ * Copyright 2022 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,19 @@
  * limitations under the License.
  */
 
-module "simple-composer-environment" {
-  source                           = "../../modules/create_environment"
+module "simple-composer" {
+  source = "../../../examples/simple_composer_env_v2"
+
   project_id                       = var.project_id
-  composer_env_name                = var.composer_env_name
+  composer_env_name                = "composer-env-${random_id.random_suffix.hex}"
   region                           = var.region
-  composer_service_account         = var.composer_service_account
-  network                          = var.network
-  subnetwork                       = var.subnetwork
-  use_ip_aliases                   = true
-  pod_ip_allocation_range_name     = var.pod_ip_allocation_range_name
-  service_ip_allocation_range_name = var.service_ip_allocation_range_name
+  composer_service_account         = var.composer_sa
+  network                          = google_compute_network.main.name
+  subnetwork                       = google_compute_subnetwork.main.name
+  pod_ip_allocation_range_name     = google_compute_subnetwork.main.secondary_ip_range[0].range_name
+  service_ip_allocation_range_name = google_compute_subnetwork.main.secondary_ip_range[1].range_name
+}
+
+resource "random_id" "random_suffix" {
+  byte_length = 2
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Google LLC
+ * Copyright 2022 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-module "composer-environment" {
-  source = "./modules/create_environment_v1"
+data "google_project" "project" {
+  project_id = var.project_id
+}
 
-  project_id        = var.project_id
-  composer_env_name = var.composer_env_name
-  region            = var.region
-  zone              = var.zone
-  network           = var.network
-  subnetwork        = var.subnetwork
+resource "google_project_iam_member" "composer_agent_service_account" {
+  count   = var.grant_sa_agent_permission ? 1 : 0
+  project = data.google_project.project.project_id
+  role    = "roles/composer.ServiceAgentV2Ext"
+  member  = format("serviceAccount:%s", local.cloud_composer_sa)
 }

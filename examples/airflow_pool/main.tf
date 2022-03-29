@@ -30,7 +30,7 @@ provider "external" {
 }
 
 module "simple-composer-environment" {
-  source                           = "../../modules/create_environment"
+  source                           = "../../modules/create_environment_v1"
   project_id                       = var.project_id
   composer_env_name                = var.composer_env_name
   region                           = var.region
@@ -40,6 +40,8 @@ module "simple-composer-environment" {
   use_ip_aliases                   = true
   pod_ip_allocation_range_name     = var.pod_ip_allocation_range_name
   service_ip_allocation_range_name = var.service_ip_allocation_range_name
+  node_count                       = 3
+  machine_type                     = "n1-standard-1"
 }
 
 # Making the k8s master globally available is only to make the integration testing portable and should be removed
