@@ -8,6 +8,17 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [3.0.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v2.4.0...v3.0.0) (2022-03-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* Cloud composer v2 (#36)
+
+### Features
+
+* Cloud composer v2 ([#36](https://github.com/terraform-google-modules/terraform-google-composer/issues/36)) ([959db7d](https://github.com/terraform-google-modules/terraform-google-composer/commit/959db7d36dca43fa74866d79a91f1d5d1121fa16))
+
 ## [2.4.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v2.3.0...v2.4.0) (2022-02-14)
 
 
