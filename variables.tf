@@ -45,7 +45,7 @@ variable "subnetwork" {
 }
 
 variable "enable_private_endpoint" {
-  description = "enable_private_endpoint"
+  description = "Configure public access to the cluster endpoint."
   type = bool
   default = false
 }
