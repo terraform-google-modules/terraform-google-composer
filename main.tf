@@ -23,4 +23,5 @@ module "composer-environment" {
   zone              = var.zone
   network           = var.network
   subnetwork        = var.subnetwork
+  enable_private_endpoint = var.enable_private_endpoint
 }

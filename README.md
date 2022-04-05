@@ -26,6 +26,7 @@ module "composer" {
   composer_env_name = "composer-env-test"
   network           = "test-network"
   subnetwork        = "composer-subnet"
+  enable_private_endpoint = false
 }
 ```
 
@@ -38,6 +39,7 @@ Functional examples are included in the
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | composer\_env\_name | Name of Cloud Composer Environment | `string` | n/a | yes |
+| enable\_private\_endpoint | enable\_private\_endpoint | `bool` | `false` | no |
 | network | Network where Cloud Composer is created. | `string` | n/a | yes |
 | project\_id | Project ID where Cloud Composer Environment is created. | `string` | n/a | yes |
 | region | Region where the Cloud Composer Environment is created. | `string` | n/a | yes |

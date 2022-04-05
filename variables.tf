@@ -43,3 +43,9 @@ variable "subnetwork" {
   description = "Subetwork where Cloud Composer is created."
   type        = string
 }
+
+variable "enable_private_endpoint" {
+  description = "enable_private_endpoint"
+  type = bool
+  default = false
+}
