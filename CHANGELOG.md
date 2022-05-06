@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [3.1.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v3.0.0...v3.1.0) (2022-04-19)
+
+
+### Features
+
+* add enable_private_endpoint to composer root module ([#43](https://github.com/terraform-google-modules/terraform-google-composer/issues/43)) ([ad566d1](https://github.com/terraform-google-modules/terraform-google-composer/commit/ad566d18516aab5ae8061f544d921213f1bf5746))
+
 ## [3.0.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v2.4.0...v3.0.0) (2022-03-29)
 
 
