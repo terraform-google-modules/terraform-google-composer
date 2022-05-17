@@ -17,6 +17,9 @@
 locals {
   network_project_id = var.network_project_id != "" ? var.network_project_id : var.project_id
   subnetwork_region  = var.subnetwork_region != "" ? var.subnetwork_region : join("-", slice(split("-", var.zone), 0, 2))
+  master_authorized_networks_config = length(var.master_authorized_networks) == 0 ? [] : [{
+    cidr_blocks : var.master_authorized_networks
+  }]
 }
 
 resource "google_composer_environment" "composer_env" {
