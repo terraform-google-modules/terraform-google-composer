@@ -106,6 +106,12 @@ variable "use_private_environment" {
   default     = false
 }
 
+variable "cloud_composer_connection_subnetwork" {
+  description = "When specified, the environment will use Private Service Connect instead of VPC peerings to connect to Cloud SQL in the Tenant Project"
+  type        = string
+  default     = null
+}
+
 variable "cloud_sql_ipv4_cidr" {
   description = "The CIDR block from which IP range in tenant project will be reserved for Cloud SQL."
   type        = string

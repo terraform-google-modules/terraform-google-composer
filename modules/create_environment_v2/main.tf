@@ -74,6 +74,7 @@ resource "google_composer_environment" "composer_env" {
           cloud_sql_ipv4_cidr_block              = var.cloud_sql_ipv4_cidr
           web_server_ipv4_cidr_block             = var.web_server_ipv4_cidr
           cloud_composer_network_ipv4_cidr_block = var.cloud_composer_network_ipv4_cidr_block
+          cloud_composer_connection_subnetwork   = var.cloud_composer_connection_subnetwork
       }] : []
       content {
         enable_private_endpoint                = private_environment_config.value["enable_private_endpoint"]
@@ -81,6 +82,7 @@ resource "google_composer_environment" "composer_env" {
         cloud_sql_ipv4_cidr_block              = private_environment_config.value["cloud_sql_ipv4_cidr_block"]
         web_server_ipv4_cidr_block             = private_environment_config.value["web_server_ipv4_cidr_block"]
         cloud_composer_network_ipv4_cidr_block = private_environment_config.value["cloud_composer_network_ipv4_cidr_block"]
+        cloud_composer_connection_subnetwork   = private_environment_config.value["cloud_composer_connection_subnetwork"]
       }
     }
 
