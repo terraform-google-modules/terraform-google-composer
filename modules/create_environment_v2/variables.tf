@@ -36,6 +36,12 @@ variable "labels" {
   default     = {}
 }
 
+variable "tags" {
+  description = "Tags applied to all nodes. Tags are used to identify valid sources or targets for network firewalls."
+  type        = set(string)
+  default     = []
+}
+
 variable "network" {
   type        = string
   description = "The VPC network to host the composer cluster."
