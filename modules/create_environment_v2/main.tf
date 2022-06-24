@@ -40,6 +40,7 @@ resource "google_composer_environment" "composer_env" {
       network         = "projects/${local.network_project_id}/global/networks/${var.network}"
       subnetwork      = "projects/${local.network_project_id}/regions/${local.subnetwork_region}/subnetworks/${var.subnetwork}"
       service_account = var.composer_service_account
+      tags            = var.tags
 
       dynamic "ip_allocation_policy" {
         for_each = (var.pod_ip_allocation_range_name != null || var.service_ip_allocation_range_name != null) ? [1] : []
@@ -72,7 +73,6 @@ resource "google_composer_environment" "composer_env" {
           enable_private_endpoint                = var.enable_private_endpoint
           master_ipv4_cidr_block                 = var.master_ipv4_cidr
           cloud_sql_ipv4_cidr_block              = var.cloud_sql_ipv4_cidr
-          web_server_ipv4_cidr_block             = var.web_server_ipv4_cidr
           cloud_composer_network_ipv4_cidr_block = var.cloud_composer_network_ipv4_cidr_block
           cloud_composer_connection_subnetwork   = var.cloud_composer_connection_subnetwork
       }] : []
@@ -80,7 +80,6 @@ resource "google_composer_environment" "composer_env" {
         enable_private_endpoint                = private_environment_config.value["enable_private_endpoint"]
         master_ipv4_cidr_block                 = private_environment_config.value["master_ipv4_cidr_block"]
         cloud_sql_ipv4_cidr_block              = private_environment_config.value["cloud_sql_ipv4_cidr_block"]
-        web_server_ipv4_cidr_block             = private_environment_config.value["web_server_ipv4_cidr_block"]
         cloud_composer_network_ipv4_cidr_block = private_environment_config.value["cloud_composer_network_ipv4_cidr_block"]
         cloud_composer_connection_subnetwork   = private_environment_config.value["cloud_composer_connection_subnetwork"]
       }
@@ -140,8 +139,8 @@ resource "google_composer_environment" "composer_env" {
         dynamic "cidr_blocks" {
           for_each = master_authorized_networks_config.value["cidr_blocks"]
           content {
-            cidr_block   = master_authorized_networks_config.value["cidr_block"]
-            display_name = master_authorized_networks_config.value["display_name"]
+            cidr_block   = cidr_blocks.value["cidr_block"]
+            display_name = cidr_blocks.value["display_name"]
           }
         }
       }

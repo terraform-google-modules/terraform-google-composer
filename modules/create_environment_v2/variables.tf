@@ -36,6 +36,12 @@ variable "labels" {
   default     = {}
 }
 
+variable "tags" {
+  description = "Tags applied to all nodes. Tags are used to identify valid sources or targets for network firewalls."
+  type        = set(string)
+  default     = []
+}
+
 variable "network" {
   type        = string
   description = "The VPC network to host the composer cluster."
@@ -114,12 +120,6 @@ variable "cloud_composer_connection_subnetwork" {
 
 variable "cloud_sql_ipv4_cidr" {
   description = "The CIDR block from which IP range in tenant project will be reserved for Cloud SQL."
-  type        = string
-  default     = null
-}
-
-variable "web_server_ipv4_cidr" {
-  description = "The CIDR block from which IP range in tenant project will be reserved for the web server."
   type        = string
   default     = null
 }
