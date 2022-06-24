@@ -118,12 +118,6 @@ variable "cloud_sql_ipv4_cidr" {
   default     = null
 }
 
-variable "web_server_ipv4_cidr" {
-  description = "The CIDR block from which IP range in tenant project will be reserved for the web server."
-  type        = string
-  default     = null
-}
-
 variable "master_ipv4_cidr" {
   description = "The CIDR block from which IP range in tenant project will be reserved for the master."
   type        = string
