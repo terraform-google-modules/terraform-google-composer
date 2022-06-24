@@ -8,6 +8,20 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [3.2.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v3.1.0...v3.2.0) (2022-06-24)
+
+
+### Features
+
+* add network tags support for v2 ([#48](https://github.com/terraform-google-modules/terraform-google-composer/issues/48)) ([a4644c0](https://github.com/terraform-google-modules/terraform-google-composer/commit/a4644c048f647417b4c491de6cb813abe2d7eaec))
+* Support to create v2 private service connection ([#50](https://github.com/terraform-google-modules/terraform-google-composer/issues/50)) ([7840e07](https://github.com/terraform-google-modules/terraform-google-composer/commit/7840e07682b05c663cd83261131cee2dac972728))
+
+
+### Bug Fixes
+
+* dynamic master authorized networks blocks ([#47](https://github.com/terraform-google-modules/terraform-google-composer/issues/47)) ([a61f6a7](https://github.com/terraform-google-modules/terraform-google-composer/commit/a61f6a7c4a84173584b33e62c3dc690112285aea))
+* Remove web_server_ipv4_cidr_block from composer v2 ([#52](https://github.com/terraform-google-modules/terraform-google-composer/issues/52)) ([d3b2e0f](https://github.com/terraform-google-modules/terraform-google-composer/commit/d3b2e0f3e127352f97009f5e593efc72ce2f3b29)), closes [#51](https://github.com/terraform-google-modules/terraform-google-composer/issues/51)
+
 ## [3.1.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v3.0.0...v3.1.0) (2022-04-19)
 
 
