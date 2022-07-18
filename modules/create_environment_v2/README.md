@@ -22,6 +22,7 @@ module "composer" {
 | cloud\_sql\_ipv4\_cidr | The CIDR block from which IP range in tenant project will be reserved for Cloud SQL. | `string` | `null` | no |
 | composer\_env\_name | Name of Cloud Composer Environment | `string` | n/a | yes |
 | composer\_service\_account | Service Account for running Cloud Composer. | `string` | `null` | no |
+| enable\_ip\_masq\_agent | Deploys 'ip-masq-agent' daemon set in the GKE cluster and defines nonMasqueradeCIDRs equals to pod IP range so IP masquerading is used for all destination addresses, except between pods traffic. | `bool` | `false` | no |
 | enable\_private\_endpoint | Configure public access to the cluster endpoint. | `bool` | `false` | no |
 | env\_variables | Variables of the airflow environment. | `map(string)` | `{}` | no |
 | environment\_size | The environment size controls the performance parameters of the managed Cloud Composer infrastructure that includes the Airflow database. Values for environment size are: ENVIRONMENT\_SIZE\_SMALL, ENVIRONMENT\_SIZE\_MEDIUM, and ENVIRONMENT\_SIZE\_LARGE. | `string` | `"ENVIRONMENT_SIZE_MEDIUM"` | no |

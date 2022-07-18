@@ -37,10 +37,11 @@ resource "google_composer_environment" "composer_env" {
     environment_size = var.environment_size
 
     node_config {
-      network         = "projects/${local.network_project_id}/global/networks/${var.network}"
-      subnetwork      = "projects/${local.network_project_id}/regions/${local.subnetwork_region}/subnetworks/${var.subnetwork}"
-      service_account = var.composer_service_account
-      tags            = var.tags
+      network              = "projects/${local.network_project_id}/global/networks/${var.network}"
+      subnetwork           = "projects/${local.network_project_id}/regions/${local.subnetwork_region}/subnetworks/${var.subnetwork}"
+      service_account      = var.composer_service_account
+      tags                 = var.tags
+      enable_ip_masq_agent = var.enable_ip_masq_agent
 
       dynamic "ip_allocation_policy" {
         for_each = (var.pod_ip_allocation_range_name != null || var.service_ip_allocation_range_name != null) ? [1] : []

@@ -31,14 +31,15 @@ resource "google_composer_environment" "composer_env" {
     node_count = var.node_count
 
     node_config {
-      zone            = var.zone
-      machine_type    = var.machine_type
-      network         = "projects/${local.network_project_id}/global/networks/${var.network}"
-      subnetwork      = "projects/${local.network_project_id}/regions/${local.subnetwork_region}/subnetworks/${var.subnetwork}"
-      service_account = var.composer_service_account
-      disk_size_gb    = var.disk_size
-      oauth_scopes    = var.oauth_scopes
-      tags            = var.tags
+      zone                 = var.zone
+      machine_type         = var.machine_type
+      network              = "projects/${local.network_project_id}/global/networks/${var.network}"
+      subnetwork           = "projects/${local.network_project_id}/regions/${local.subnetwork_region}/subnetworks/${var.subnetwork}"
+      service_account      = var.composer_service_account
+      disk_size_gb         = var.disk_size
+      oauth_scopes         = var.oauth_scopes
+      tags                 = var.tags
+      enable_ip_masq_agent = var.enable_ip_masq_agent
 
       dynamic "ip_allocation_policy" {
         for_each = var.use_ip_aliases ? [1] : []

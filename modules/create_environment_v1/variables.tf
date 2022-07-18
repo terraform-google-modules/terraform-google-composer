@@ -100,6 +100,12 @@ variable "tags" {
   default     = []
 }
 
+variable "enable_ip_masq_agent" {
+  description = "Deploys 'ip-masq-agent' daemon set in the GKE cluster and defines nonMasqueradeCIDRs equals to pod IP range so IP masquerading is used for all destination addresses, except between pods traffic."
+  type        = bool
+  default     = false
+}
+
 variable "use_ip_aliases" {
   description = "Enable Alias IPs in the GKE cluster. If true, a VPC-native cluster is created."
   type        = bool

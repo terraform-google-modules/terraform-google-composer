@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-timeout: 3600s
+timeout: 7200s
 steps:
 - id: prepare
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
@@ -30,39 +30,49 @@ steps:
 
 # ----- SUITE simple-composer-env-v1-local
 
-- id: converge simple-composer-env-v1-local
+- id: init-simple-composer-env-v1
   waitFor:
-    - create all
+    - prepare
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge simple-composer-env-v1-local']
-- id: verify simple-composer-env-v1-local
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV1Module --stage init --verbose']
+- id: apply-simple-composer-env-v1
   waitFor:
-    - converge simple-composer-env-v1-local
+    - init-simple-composer-env-v1
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify simple-composer-env-v1-local']
-- id: destroy simple-composer-env-v1-local
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV1Module --stage apply --timeout 50m --verbose']
+- id: verify-simple-composer-env-v1
   waitFor:
-    - verify simple-composer-env-v1-local
+    - apply-simple-composer-env-v1
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy simple-composer-env-v1-local']
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV1Module --stage verify --verbose']
+- id: destroy-simple-composer-env-v1
+  waitFor:
+    - verify-simple-composer-env-v1
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV1Module --stage destroy --timeout 50m --verbose']
 
   # ----- SUITE simple-composer-env-v2-local
 
-- id: converge simple-composer-env-v2-local
+- id: init-simple-composer-env-v2
   waitFor:
-    - create all
+    - prepare
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge simple-composer-env-v2-local']
-- id: verify simple-composer-env-v2-local
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage init --verbose']
+- id: apply-simple-composer-env-v2
   waitFor:
-    - converge simple-composer-env-v2-local
+    - init-simple-composer-env-v2
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify simple-composer-env-v2-local']
-- id: destroy simple-composer-env-v2-local
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage apply --timeout 50m --verbose']
+- id: verify-simple-composer-env-v2
   waitFor:
-    - verify simple-composer-env-v2-local
+    - apply-simple-composer-env-v2
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy simple-composer-env-v2-local']
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage verify --verbose']
+- id: destroy-simple-composer-env-v2
+  waitFor:
+    - verify-simple-composer-env-v2
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage destroy --timeout 50m --verbose']
 
 # ----- SUITE airflow-connection-local
 
