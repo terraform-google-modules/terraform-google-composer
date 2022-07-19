@@ -39,7 +39,7 @@ steps:
   waitFor:
     - init-simple-composer-env-v1
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV1Module --stage apply --timeout 50m --verbose']
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV1Module --stage apply --verbose']
 - id: verify-simple-composer-env-v1
   waitFor:
     - apply-simple-composer-env-v1
@@ -49,7 +49,7 @@ steps:
   waitFor:
     - verify-simple-composer-env-v1
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV1Module --stage destroy --timeout 50m --verbose']
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV1Module --stage destroy --verbose']
 
   # ----- SUITE simple-composer-env-v2-local
 
@@ -62,7 +62,7 @@ steps:
   waitFor:
     - init-simple-composer-env-v2
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage apply --timeout 50m --verbose']
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage apply --verbose']
 - id: verify-simple-composer-env-v2
   waitFor:
     - apply-simple-composer-env-v2
@@ -72,7 +72,7 @@ steps:
   waitFor:
     - verify-simple-composer-env-v2
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage destroy --timeout 50m --verbose']
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage destroy --verbose']
 
 # ----- SUITE airflow-connection-local
 
