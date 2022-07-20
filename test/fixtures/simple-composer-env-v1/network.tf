@@ -21,11 +21,12 @@ resource "google_compute_network" "main" {
 }
 
 resource "google_compute_subnetwork" "main" {
-  project       = var.project_id
-  name          = "ci-composer-test-${random_string.suffix.result}"
-  ip_cidr_range = "10.0.0.0/17"
-  region        = var.region
-  network       = google_compute_network.main.self_link
+  project                  = var.project_id
+  name                     = "ci-composer-test-${random_string.suffix.result}"
+  ip_cidr_range            = "10.0.0.0/17"
+  region                   = var.region
+  network                  = google_compute_network.main.self_link
+  private_ip_google_access = true
 
   secondary_ip_range {
     range_name    = "ci-composer-test-pods-${random_string.suffix.result}"
