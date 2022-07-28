@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [3.3.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v3.2.0...v3.3.0) (2022-07-28)
+
+
+### Features
+
+* support IP Masquerade agent ([#54](https://github.com/terraform-google-modules/terraform-google-composer/issues/54)) ([5d8ea7f](https://github.com/terraform-google-modules/terraform-google-composer/commit/5d8ea7f463d5987f6d3b3feb71bdb0ffab7e4b19))
+
 ## [3.2.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v3.1.0...v3.2.0) (2022-06-24)
 
 
