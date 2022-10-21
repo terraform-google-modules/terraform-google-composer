@@ -18,7 +18,7 @@ locals {
   cloud_services_service_account     = format("serviceAccount:%s@cloudservices.gserviceaccount.com", data.google_project.service_project.number)
   services_container_service_account = format("serviceAccount:service-%s@container-engine-robot.iam.gserviceaccount.com", data.google_project.service_project.number)
   host_container_service_account     = format("serviceAccount:service-%s@container-engine-robot.iam.gserviceaccount.com", data.google_project.host_project.number)
-  all_sa_list                        = split(",","${local.cloud_composer_service_account},${local.cloud_services_service_account},${local.services_container_service_account},${local.host_container_service_account}")
+  all_sa_list                        = split(",", "${local.cloud_composer_service_account},${local.cloud_services_service_account},${local.services_container_service_account},${local.host_container_service_account}")
 }
 
 
