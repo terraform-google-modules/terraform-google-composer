@@ -18,7 +18,7 @@ locals {
   cloud_services_service_account     = format("serviceAccount:%s@cloudservices.gserviceaccount.com", data.google_project.service_project.number)
   services_container_service_account = format("serviceAccount:service-%s@container-engine-robot.iam.gserviceaccount.com", data.google_project.service_project.number)
   host_container_service_account     = format("serviceAccount:service-%s@container-engine-robot.iam.gserviceaccount.com", data.google_project.host_project.number)
-  all_sa_list                        = split(",","${local.cloud_composer_service_account},${local.cloud_services_service_account}, ${local.services_container_service_account},${local.host_container_service_account}")
+  all_sa_list                        = split(",","${local.cloud_composer_service_account},${local.cloud_services_service_account},${local.services_container_service_account},${local.host_container_service_account}")
 }
 
 
@@ -85,34 +85,6 @@ resource "google_compute_subnetwork_iam_member" "composer_managed_sa_iam_binding
   member     = each.value
 }
 
-# resource "google_compute_subnetwork_iam_member" "composer_managed_sa_iam_bindings" {
-#   project    = var.network_project_id
-#   region     = var.region
-#   subnetwork = var.subnetwork
-#   role       = "roles/compute.networkUser"
-#   member     = format("serviceAccount:%s", google_project_service_identity.composer_sa.email)
-# }
-
-# resource "google_compute_subnetwork_iam_member" "host_container_engine_iam_bindings" {
-#   project    = var.network_project_id
-#   region     = var.region
-#   subnetwork = var.subnetwork
-#   role       = "roles/compute.networkUser"
-#   member     = format("serviceAccount:%s", local.host_container_engine_sa)
-# }
-
-/*
-https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-shared-vpc#kubernetes_engine_access
-*/
-
-# resource "google_compute_subnetwork_iam_member" "service_container_engine_iam_bindings" {
-#   project    = var.network_project_id
-#   region     = var.region
-#   subnetwork = var.subnetwork
-#   role       = "roles/compute.networkUser"
-#   member     = format("serviceAccount:%s", local.service_container_engine_sa)
-# }
-
 /***
 5. In the host project, grant the Host Service Agent User of GKE Service Account of the service project 
 at project level to use the GKE Service Account of the host project to configure shared network resources. 
@@ -138,14 +110,7 @@ resource "google_project_service_identity" "composer_sa" {
   service = "composer.googleapis.com"
 }
 
-/*
-resource "google_project_service_identity" "composer_sa_host_project" {
-  provider = google-beta
 
-  project = data.google_project.host_project.project_id
-  service = "composer.googleapis.com"
-}
-*/
 /***
 8. In the host project,Edit permissions for the Composer Agent Service Account, 
 service-SERVICE_PROJECT_NUMBER@cloudcomposer-accounts.iam.gserviceaccount.com)
