@@ -13,7 +13,7 @@
 # limitations under the License.
 
 /***************************************
-composer.cloud.google.com 
+composer.cloud.google.com
 ***************************************/
 
 resource "google_dns_managed_zone" "composer_cloud_zone" {

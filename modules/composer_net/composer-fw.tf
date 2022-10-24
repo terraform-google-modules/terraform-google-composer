@@ -20,7 +20,7 @@ All firewall rules have been crafted based on the requirements specified in this
 https://cloud.google.com/composer/docs/composer-2/configure-private-ip#step_3_configure_firewall_rules
 
 /****
-1. Allow egress from GKE Node IP range to any destination (0.0.0.0/0), TCP/UDP port 53, or if you know DNS server IP addresses, 
+1. Allow egress from GKE Node IP range to any destination (0.0.0.0/0), TCP/UDP port 53, or if you know DNS server IP addresses,
 then allow egress from GKE Node IP range to DNS IP addresses over TCP/UDP port 53.
 ****/
 resource "google_compute_firewall" "allow-composer-dns-egress" {

@@ -86,12 +86,17 @@ When destroying, destroy the composer resource first through targeted operation
 
 terraform destroy -target=module.composer_env
 
-Then proceed to destroying everything else 
-
-
+Then proceed to destroying everything else
 ### Enable APIs
 In order to operate with the Service Account you must activate the following APIs on the project where the Service Account was created:
 
 - Cloud Composer - composer.googleapis.com
 - Kubernetes Engine API - container.googleapis.com
 - Service Usage API - serviceusage.googleapis.com
+
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Inputs
+
+## Outputs
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

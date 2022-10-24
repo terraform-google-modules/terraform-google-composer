@@ -56,7 +56,7 @@ resource "google_project_iam_member" "service_account_user" {
 }
 /***
 
-3. Grant compute.networkUser to the service project's Google APIs service account at the host project level. 
+3. Grant compute.networkUser to the service project's Google APIs service account at the host project level.
 This is a requirement for managed instance groups used with Shared VPC because this
 type of service account performs tasks such as instance creation.
 
@@ -67,12 +67,12 @@ resource "google_project_iam_member" "composer_network_user_binding_service_proj
   member  = local.cloud_services_service_account
 }
 /***
-4. Grant compute.networkUser at the subnet level to the following: 
-a. service project's GKE service accounts 
+4. Grant compute.networkUser at the subnet level to the following:
+a. service project's GKE service accounts
 b. Cloud Composer google managed service account from service project
 c. GKE google managed service account from service project
 d. GKE google managed service account from host project
-For each service account, add another role, add compute.networkUser. This permission must be granted at 
+For each service account, add another role, add compute.networkUser. This permission must be granted at
 the network level to allow a service account to set up the VPC peering architecture required by Cloud Composer.
 ***/
 
@@ -87,11 +87,11 @@ resource "google_compute_subnetwork_iam_member" "composer_managed_sa_iam_binding
 
 /***
 5. In the host project, grant the Host Service Agent User of GKE Service Account of the service project 
-at project level to use the GKE Service Account of the host project to configure shared network resources. 
+at project level to use the GKE Service Account of the host project to configure shared network resources.
 https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-shared-vpc#kubernetes_engine_access
 
-This binding allows the service project's GKE service account to perform network management operations 
-in the host project, as if it were the host project's GKE service account. 
+This binding allows the service project's GKE service account to perform network management operations
+in the host project, as if it were the host project's GKE service account.
 This role can only be granted to a service project's GKE service account.
 ***/
 
@@ -112,7 +112,7 @@ resource "google_project_service_identity" "composer_sa" {
 
 
 /***
-8. In the host project,Edit permissions for the Composer Agent Service Account, 
+8. In the host project,Edit permissions for the Composer Agent Service Account,
 service-SERVICE_PROJECT_NUMBER@cloudcomposer-accounts.iam.gserviceaccount.com)
 For this account, add another role:
 For Private IP environments, add the Composer Shared VPC Agent role.
