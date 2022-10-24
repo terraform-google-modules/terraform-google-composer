@@ -76,35 +76,6 @@ variable "service_ip_allocation_range_name" {
   default     = null
 }
 
-# variable "airflow_config_overrides" {
-#   type        = map(string)
-#   description = "Airflow configuration properties to override. Property keys contain the section and property names, separated by a hyphen, for example \"core-dags_are_paused_at_creation\"."
-#   default     = {}
-# }
-
-# variable "env_variables" {
-#   type        = map(string)
-#   description = "Variables of the airflow environment."
-#   default     = {}
-# }
-
-# variable "image_version" {
-#   type        = string
-#   description = "The version of the aiflow running in the cloud composer environment."
-#   default     = "composer-2.0.2-airflow-2.1.4"
-# }
-
-# variable "pypi_packages" {
-#   type        = map(string)
-#   description = " Custom Python Package Index (PyPI) packages to be installed in the environment. Keys refer to the lowercase package name (e.g. \"numpy\")."
-#   default     = {}
-# }
-
-# variable "use_private_environment" {
-#   description = "Enable private environment."
-#   type        = bool
-#   default     = false
-# }
 
 variable "cloud_sql_ipv4_cidr" {
   description = "The CIDR block from which IP range in tenant project will be reserved for Cloud SQL."
@@ -112,11 +83,6 @@ variable "cloud_sql_ipv4_cidr" {
   default     = null
 }
 
-# variable "web_server_ipv4_cidr" {
-#   description = "The CIDR block from which IP range in tenant project will be reserved for the web server."
-#   type        = string
-#   default     = null
-# }
 
 variable "master_ipv4_cidr" {
   description = "The CIDR block from which IP range in tenant project will be reserved for the master."
@@ -136,86 +102,11 @@ variable "cloud_composer_network_ipv4_cidr_block" {
   default     = null
 }
 
-# variable "web_server_allowed_ip_ranges" {
-#   description = "The network-level access control policy for the Airflow web server. If unspecified, no network-level access restrictions will be applied."
-#   default     = null
-#   type = list(object({
-#     value       = string,
-#     description = string
-#   }))
-# }
-
-# variable "maintenance_start_time" {
-#   description = "Time window specified for daily or recurring maintenance operations in RFC3339 format"
-#   type        = string
-#   default     = "05:00"
-# }
-
-# variable "maintenance_end_time" {
-#   description = "Time window specified for recurring maintenance operations in RFC3339 format"
-#   type        = string
-#   default     = null
-# }
-
-# variable "maintenance_recurrence" {
-#   description = "Frequency of the recurring maintenance window in RFC5545 format."
-#   type        = string
-#   default     = null
-# }
-
 variable "environment_size" {
   type        = string
   description = "The environment size controls the performance parameters of the managed Cloud Composer infrastructure that includes the Airflow database. Values for environment size are: ENVIRONMENT_SIZE_SMALL, ENVIRONMENT_SIZE_MEDIUM, and ENVIRONMENT_SIZE_LARGE."
   default     = "ENVIRONMENT_SIZE_MEDIUM"
 }
-
-# variable "scheduler" {
-#   type = object({
-#     cpu        = string
-#     memory_gb  = number
-#     storage_gb = number
-#     count      = number
-#   })
-#   default = {
-#     cpu        = 2
-#     memory_gb  = 7.5
-#     storage_gb = 5
-#     count      = 2
-#   }
-#   description = "Configuration for resources used by Airflow schedulers."
-# }
-
-# variable "web_server" {
-#   type = object({
-#     cpu        = string
-#     memory_gb  = number
-#     storage_gb = number
-#   })
-#   default = {
-#     cpu        = 2
-#     memory_gb  = 7.5
-#     storage_gb = 5
-#   }
-#   description = "Configuration for resources used by Airflow web server."
-# }
-
-# variable "worker" {
-#   type = object({
-#     cpu        = string
-#     memory_gb  = number
-#     storage_gb = number
-#     min_count  = number
-#     max_count  = number
-#   })
-#   default = {
-#     cpu        = 2
-#     memory_gb  = 7.5
-#     storage_gb = 5
-#     min_count  = 2
-#     max_count  = 6
-#   }
-#   description = "Configuration for resources used by Airflow workers."
-# }
 
 variable "master_authorized_networks" {
   type = list(object({
@@ -226,23 +117,23 @@ variable "master_authorized_networks" {
   description = "List of master authorized networks. If none are provided, disallow external access (except the cluster node IPs, which GKE automatically whitelists)."
 }
 variable "gke_subnet_ip_range" {
-  type        = list
+  type        = list(string)
   description = "The GKE subnet IP range"
 }
 
 variable "gke_pods_services_ip_ranges" {
-  type        = list
+  type        = list(string)
   description = "The secondary IP ranges for the GKE Pods and Services IP ranges"
 }
 
 variable "restricted_vip" {
-  type        = list
+  type        = list(string)
   default     = ["199.36.153.4/30"]
   description = "Google's Restricted Virtual IP endpoints that support VPC SC services"
 }
 
 variable "load_balancer_ips" {
-  type        = list
+  type        = list(string)
   default     = ["130.211.0.0/22", "35.191.0.0/16"]
   description = "Google's Load balancer IP ranges that issue health checks"
 }

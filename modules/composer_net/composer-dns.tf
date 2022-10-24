@@ -37,7 +37,7 @@ resource "google_dns_record_set" "composer_cloud_zone-dev-A-record" {
   type    = "A"
   ttl     = 300
 
-  managed_zone = "${google_dns_managed_zone.composer_cloud_zone.name}"
+  managed_zone = google_dns_managed_zone.composer_cloud_zone.name
 
   rrdatas = ["199.36.153.4", "199.36.153.5", "199.36.153.6", "199.36.153.7"]
 }
@@ -48,7 +48,7 @@ resource "google_dns_record_set" "composer_cloud_zone-CNAME" {
   type    = "CNAME"
   ttl     = 300
 
-  managed_zone = "${google_dns_managed_zone.composer_cloud_zone.name}"
+  managed_zone = google_dns_managed_zone.composer_cloud_zone.name
 
   rrdatas = ["composer.cloud.google.com."]
 }

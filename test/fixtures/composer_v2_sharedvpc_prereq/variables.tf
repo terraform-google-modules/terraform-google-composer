@@ -123,25 +123,25 @@ variable "master_authorized_networks" {
   description = "List of master authorized networks. If none are provided, disallow external access (except the cluster node IPs, which GKE automatically whitelists)."
 }
 variable "gke_subnet_ip_range" {
-  type        = list
+  type        = list(string)
   description = "The GKE subnet IP range"
   default     = []
 }
 
 variable "gke_pods_services_ip_ranges" {
-  type        = list
+  type        = list(string)
   description = "The secondary IP ranges for the GKE Pods and Services IP ranges"
   default     = []
 }
 
 variable "restricted_vip" {
-  type        = list
+  type        = list(string)
   default     = ["199.36.153.4/30"]
   description = "Google's Restricted Virtual IP endpoints that support VPC SC services"
 }
 
 variable "load_balancer_ips" {
-  type        = list
+  type        = list(string)
   default     = ["130.211.0.0/22", "35.191.0.0/16"]
   description = "Google's Load balancer IP ranges that issue health checks"
 }
