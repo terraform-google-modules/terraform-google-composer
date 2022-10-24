@@ -86,7 +86,7 @@ resource "google_compute_subnetwork_iam_member" "composer_managed_sa_iam_binding
 }
 
 /***
-5. In the host project, grant the Host Service Agent User of GKE Service Account of the service project 
+5. In the host project, grant the Host Service Agent User of GKE Service Account of the service project
 at project level to use the GKE Service Account of the host project to configure shared network resources.
 https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-shared-vpc#kubernetes_engine_access
 
