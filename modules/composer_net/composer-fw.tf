@@ -13,6 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+locals {
+  restricted_vip = ["199.36.153.4/30"]
+}
 /***
 These firewall rules are crafted assuming that there is a "deny-egress" rule that most customers prefer to implement
 /***
@@ -106,7 +109,7 @@ resource "google_compute_firewall" "allow-gkeworkers-restricted-vip" {
   }
   target_service_accounts = [google_service_account.composer_sa.email]
   direction               = "EGRESS"
-  destination_ranges      = var.restricted_vip
+  destination_ranges      = local.restricted_vip
 
   log_config {
     metadata = "INCLUDE_ALL_METADATA"

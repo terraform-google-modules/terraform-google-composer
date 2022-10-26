@@ -42,13 +42,25 @@ resource "google_service_account" "composer_sa" {
   display_name = "composer-sa"
   project      = var.service_project_id
 }
-
+/*
 resource "google_project_iam_member" "composer_worker" {
   project = var.service_project_id
   role    = "roles/composer.worker"
   member  = "serviceAccount:${google_service_account.composer_sa.email}"
 }
+*/
+resource "google_service_account_iam_member" "composer_worker" {
+  service_account_id = "serviceAccount:${google_service_account.composer_sa.email}"
+  role               = "roles/composer.worker"
+  member             = "serviceAccount:${google_service_account.composer_sa.email}"
+}
 
+resource "google_service_account_iam_member" "service_account_user" {
+  service_account_id = "serviceAccount:${google_service_account.composer_sa.email}"
+  role               = "roles/iam.serviceAccountUser"
+  member             = "serviceAccount:${google_service_account.composer_sa.email}"
+}
+/*
 resource "google_project_iam_member" "service_account_user" {
   project = var.service_project_id
   role    = "roles/iam.serviceAccountUser"

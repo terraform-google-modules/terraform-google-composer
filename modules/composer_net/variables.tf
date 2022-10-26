@@ -35,7 +35,6 @@ variable "network" {
 variable "network_project_id" {
   type        = string
   description = "The project ID of the shared VPC's host (for shared vpc support)"
-  default     = ""
 }
 
 variable "subnetwork" {
@@ -108,12 +107,6 @@ variable "gke_subnet_ip_range" {
 variable "gke_pods_services_ip_ranges" {
   type        = list(string)
   description = "The secondary IP ranges for the GKE Pods and Services IP ranges"
-}
-
-variable "restricted_vip" {
-  type        = list(string)
-  default     = ["199.36.153.4/30"]
-  description = "Google's Restricted Virtual IP endpoints that support VPC SC services"
 }
 
 variable "load_balancer_ips" {
