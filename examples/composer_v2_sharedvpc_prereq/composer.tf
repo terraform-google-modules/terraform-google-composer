@@ -14,7 +14,7 @@
 
 module "composer_net" {
   source                                 = "../../modules/composer_net"
-  service_project_id                     = var.service_project_id
+  service_project_id                     = var.project_id
   network_project_id                     = var.network_project_id
   region                                 = var.region
   network                                = var.network
@@ -38,8 +38,6 @@ module "composer_env" {
   network                                = var.network
   subnetwork                             = var.subnetwork
   composer_env_name                      = var.composer_env_name
-  gke_pods_services_ip_ranges            = var.gke_pods_services_ip_ranges
-  gke_subnet_ip_range                    = var.gke_subnet_ip_range
   cloud_composer_network_ipv4_cidr_block = var.cloud_composer_network_ipv4_cidr_block
   master_ipv4_cidr                       = var.master_ipv4_cidr
   cloud_sql_ipv4_cidr                    = var.cloud_sql_ipv4_cidr

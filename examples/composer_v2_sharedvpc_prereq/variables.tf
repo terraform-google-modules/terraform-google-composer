@@ -76,6 +76,15 @@ variable "service_ip_allocation_range_name" {
   default     = null
 }
 
+variable "gke_subnet_ip_range" {
+  type        = list(string)
+  description = "The GKE subnet IP range"
+}
+
+variable "gke_pods_services_ip_ranges" {
+  type        = list(string)
+  description = "The secondary IP ranges for the GKE Pods and Services IP ranges"
+}
 
 variable "cloud_sql_ipv4_cidr" {
   description = "The CIDR block from which IP range in tenant project will be reserved for Cloud SQL."
