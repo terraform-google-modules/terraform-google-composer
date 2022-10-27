@@ -15,7 +15,7 @@
  */
 
 output "project_id" {
-  description = "The name of the Cloud Composer Environment."
+  description = "The id of the project where cloud composer was created."
   value       = var.service_project_id
 }
 
