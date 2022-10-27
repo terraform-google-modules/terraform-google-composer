@@ -33,7 +33,7 @@ module "composer_env" {
     module.composer_net
   ]
   source = "../../modules/create_environment_v2"
-  service_project_id                     = "ctl-new-svc"
+  project_id                             = "ctl-new-svc"
   network_project_id                     = "ctl-new-hvpc"
   composer_env_name                      = "san-composer-2"
   region                                 = "us-central1"
@@ -44,8 +44,6 @@ module "composer_env" {
   cloud_sql_ipv4_cidr                    = "192.168.0.0/17"
   pod_ip_allocation_range_name           = "composer-pods-1"
   service_ip_allocation_range_name       = "composer-services-1"
-  gke_subnet_ip_range                    = ["10.100.232.0/27"]
-  gke_pods_services_ip_ranges            = ["10.1.0.0/16", "10.4.0.0/16", "10.10.10.0/24", "10.10.14.0/24"]
   grant_sa_agent_permission              = true
   use_private_environment                = true
   enable_private_endpoint                = true
