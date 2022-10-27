@@ -42,37 +42,25 @@ resource "google_service_account" "composer_sa" {
   display_name = "composer-sa"
   project      = var.service_project_id
 }
-/*
+
 resource "google_project_iam_member" "composer_worker" {
   project = var.service_project_id
   role    = "roles/composer.worker"
   member  = "serviceAccount:${google_service_account.composer_sa.email}"
 }
-*/
-resource "google_service_account_iam_member" "composer_worker" {
-  service_account_id = "serviceAccount:${google_service_account.composer_sa.email}"
-  role               = "roles/composer.worker"
-  member             = "serviceAccount:${google_service_account.composer_sa.email}"
-}
 
-resource "google_service_account_iam_member" "service_account_user" {
-  service_account_id = "serviceAccount:${google_service_account.composer_sa.email}"
-  role               = "roles/iam.serviceAccountUser"
-  member             = "serviceAccount:${google_service_account.composer_sa.email}"
-}
-/*
+
 resource "google_project_iam_member" "service_account_user" {
   project = var.service_project_id
   role    = "roles/iam.serviceAccountUser"
   member  = "serviceAccount:${google_service_account.composer_sa.email}"
 }
 /***
-
 3. Grant compute.networkUser to the service project's Google APIs service account at the host project level.
 This is a requirement for managed instance groups used with Shared VPC because this
 type of service account performs tasks such as instance creation.
 
-**/
+***/
 resource "google_project_iam_member" "composer_network_user_binding_service_project_cloud_services" {
   project = var.network_project_id
   role    = "roles/compute.networkUser"
