@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package composer_v2_sharedvpc_prereq
+package composer-v2-sharedvpc-prereq
 
 import (
 	"fmt"

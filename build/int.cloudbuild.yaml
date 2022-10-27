@@ -111,6 +111,28 @@ steps:
 #   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
 #   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy airflow-pool-local']
 
+  # ----- SUITE composer-v2-sharedvpc-prereq-local
+
+- id: init-composer-v2-sharedvpc-prereq
+  waitFor:
+    - prepare
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2SharedVpcModule --stage init --verbose']
+- id: apply-composer-v2-sharedvpc-prereq
+  waitFor:
+    - init-composer-v2-sharedvpc-prereq
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2SharedVpcModule --stage apply --verbose']
+- id: verify-composer-v2-sharedvpc-prereq
+  waitFor:
+    - apply-composer-v2-sharedvpc-prereq
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2SharedVpcModule --stage verify --verbose']
+- id: destroy-composer-v2-sharedvpc-prereq
+  waitFor:
+    - verify-composer-v2-sharedvpc-prereq
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2SharedVpcModule --stage destroy --verbose']
 tags:
 - 'ci'
 - 'integration'
