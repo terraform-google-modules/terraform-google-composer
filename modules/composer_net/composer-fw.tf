@@ -15,6 +15,7 @@
 
 locals {
   restricted_vip = ["199.36.153.4/30"]
+  load_balancer_ips = ["130.211.0.0/22", "35.191.0.0/16"]
 }
 /***
 These firewall rules are crafted assuming that there is a "deny-egress" rule that most customers prefer to implement
@@ -131,7 +132,7 @@ resource "google_compute_firewall" "allow-healthcheck-ingress-composer-gke" {
   }
   target_service_accounts = [google_service_account.composer_sa.email]
   direction               = "INGRESS"
-  source_ranges           = var.load_balancer_ips
+  source_ranges           = local.load_balancer_ips
   log_config {
     metadata = "INCLUDE_ALL_METADATA"
   }

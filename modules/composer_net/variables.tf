@@ -109,12 +109,6 @@ variable "gke_pods_services_ip_ranges" {
   description = "The secondary IP ranges for the GKE Pods and Services IP ranges"
 }
 
-variable "load_balancer_ips" {
-  type        = list(string)
-  default     = ["130.211.0.0/22", "35.191.0.0/16"]
-  description = "Google's Load balancer IP ranges that issue health checks"
-}
-
 variable "grant_sa_agent_permission" {
   type        = bool
   default     = true

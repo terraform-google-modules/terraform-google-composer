@@ -15,3 +15,7 @@
 output "composer_sa_email" {
   value = google_service_account.composer_sa.email
 }
+
+output "service_project_id" {
+  value = var.service_project_id
+}

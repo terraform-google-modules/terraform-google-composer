@@ -16,7 +16,7 @@
 
 output "project_id" {
   description = "The id of the project where cloud composer was created."
-  value       = var.service_project_id
+  value       = module.composer_net.service_project_id
 }
 
 output "composer_env_name" {

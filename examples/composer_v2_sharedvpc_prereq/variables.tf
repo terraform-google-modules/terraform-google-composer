@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+/*
 variable "service_project_id" {
   description = "Project ID where Cloud Composer Environment is created."
   type        = string
@@ -126,20 +127,10 @@ variable "gke_pods_services_ip_ranges" {
   description = "The secondary IP ranges for the GKE Pods and Services IP ranges"
 }
 
-variable "restricted_vip" {
-  type        = list(string)
-  default     = ["199.36.153.4/30"]
-  description = "Google's Restricted Virtual IP endpoints that support VPC SC services"
-}
-
-variable "load_balancer_ips" {
-  type        = list(string)
-  default     = ["130.211.0.0/22", "35.191.0.0/16"]
-  description = "Google's Load balancer IP ranges that issue health checks"
-}
 
 variable "grant_sa_agent_permission" {
   type        = bool
   default     = true
   description = "Cloud Composer relies on Workload Identity as Google API authentication mechanism for Airflow. "
 }
+*/
