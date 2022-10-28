@@ -32,10 +32,10 @@ module "composer_env" {
   depends_on = [
     module.composer_net
   ]
-  source = "../../modules/create_environment_v2"
+  source                                 = "../../modules/create_environment_v2"
   project_id                             = "ctl-new-svc"
   network_project_id                     = "ctl-new-hvpc"
-  composer_env_name                      = "san-composer-2"
+  composer_env_name                      = "san-composer-3"
   region                                 = "us-central1"
   network                                = "composer-network"
   subnetwork                             = "composer-subnetwork"
