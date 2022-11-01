@@ -14,8 +14,8 @@
 
 module "composer_net" {
   source                                 = "../../modules/composer_net"
-  service_project_id                     = "ctl-new-svc"
-  network_project_id                     = "ctl-new-hvpc"
+  service_project_id                     = "ci-composer-service-ed44"
+  network_project_id                     = "ci-composer-9bbc"
   composer_env_name                      = "san-composer-4"
   region                                 = "us-central1"
   network                                = "composer-network"
@@ -31,8 +31,8 @@ module "composer_env" {
     module.composer_net
   ]
   source                                 = "../../modules/create_environment_v2"
-  project_id                             = "ctl-new-svc"
-  network_project_id                     = "ctl-new-hvpc"
+  project_id                             = "ci-composer-service-ed44"
+  network_project_id                     = "ci-composer-9bbc"
   composer_env_name                      = "san-composer-4"
   region                                 = "us-central1"
   network                                = "composer-network"
