@@ -15,7 +15,7 @@
  */
 
 output "host_project_id" {
-  value = module.host_project.project_id
+  value = module.project.project_id
 }
 
 output "service_project_id" {

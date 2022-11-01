@@ -5,9 +5,9 @@
  *****************************************/
 module "shared-vpc" {
   source  = "terraform-google-modules/network/google"
-  version = "~> 4.1"
+  version = "~> 4.0"
 
-  project_id                             = module.host_project.project_id
+  project_id                             = module.project.project_id
   network_name                           = "composer-network"
   delete_default_internet_gateway_routes = false
   subnets = [
@@ -49,7 +49,7 @@ module "shared-vpc" {
 }
 
 resource "google_compute_router" "router" {
-  project = module.host_project.project_id
+  project = module.project.project_id
   name    = "nat-router"
   network = module.shared-vpc.network_self_link
   region  = "us-central1"
@@ -58,7 +58,7 @@ resource "google_compute_router" "router" {
 module "cloud-nat-shared-vpc" {
   source                             = "terraform-google-modules/cloud-nat/google"
   version                            = "~> 2.0.0"
-  project_id                         = module.host_project.project_id
+  project_id                         = module.project.project_id
   region                             = "us-central1"
   router                             = google_compute_router.router.name
   name                               = "nat-config"

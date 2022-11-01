@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-module "host_project" {
+module "project" {
   source  = "terraform-google-modules/project-factory/google"
   version = "~> 13.0"
 
