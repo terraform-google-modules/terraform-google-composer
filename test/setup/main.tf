@@ -14,11 +14,31 @@
  * limitations under the License.
  */
 
-module "project" {
+module "host_project" {
   source  = "terraform-google-modules/project-factory/google"
   version = "~> 13.0"
 
   name              = "ci-composer"
+  random_project_id = "true"
+  org_id            = var.org_id
+  folder_id         = var.folder_id
+  billing_account   = var.billing_account
+
+  activate_apis = [
+    "cloudresourcemanager.googleapis.com",
+    "storage-api.googleapis.com",
+    "serviceusage.googleapis.com",
+    "composer.googleapis.com",
+    "compute.googleapis.com",
+    "iam.googleapis.com",
+  ]
+}
+
+module "service_project" {
+  source  = "terraform-google-modules/project-factory/google"
+  version = "~> 13.0"
+
+  name              = "ci-composer-service"
   random_project_id = "true"
   org_id            = var.org_id
   folder_id         = var.folder_id

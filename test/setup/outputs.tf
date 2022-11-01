@@ -14,8 +14,12 @@
  * limitations under the License.
  */
 
-output "project_id" {
-  value = module.project.project_id
+output "host_project_id" {
+  value = module.host_project.project_id
+}
+
+output "service_project_id" {
+  value = module.service_project.project_id
 }
 
 output "composer_sa" {

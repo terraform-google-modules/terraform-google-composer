@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-output "project_id" {
+output "service_project_id" {
   description = "The id of the project where cloud composer was created."
   value       = module.composer_net.service_project_id
 }

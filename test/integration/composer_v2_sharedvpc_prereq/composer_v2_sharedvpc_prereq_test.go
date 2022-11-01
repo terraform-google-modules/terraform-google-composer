@@ -29,7 +29,7 @@ func TestSimpleComposerEnvV2SharedVpcModule(t *testing.T) {
 	composer.DefineVerify(func(assert *assert.Assertions) {
 		composer.DefaultVerify(assert)
 
-		projectID := composer.GetStringOutput("project_id")
+		serviceprojectID := composer.GetStringOutput("service_project_id")
 
 		op := gcloud.Runf(t, "composer environments describe %s --project=%s --location=us-central1", composer.GetStringOutput("composer_env_name"), projectID)
 		assert.Equal(fmt.Sprintf("projects/%s/locations/us-central1/environments/%s", projectID, composer.GetStringOutput("composer_env_name")), op.Get("name").String(), "Composer name is valid")

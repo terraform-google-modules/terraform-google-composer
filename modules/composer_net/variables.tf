@@ -42,17 +42,6 @@ variable "subnetwork" {
   description = "The subnetwork to host the composer cluster."
 }
 
-variable "subnetwork_region" {
-  type        = string
-  description = "The subnetwork region of the shared VPC's host (for shared vpc support)"
-  default     = ""
-}
-
-variable "composer_service_account" {
-  description = "Service Account for running Cloud Composer."
-  type        = string
-  default     = null
-}
 
 variable "pod_ip_allocation_range_name" {
   description = "The name of the cluster's secondary range used to allocate IP addresses to pods."
@@ -78,11 +67,6 @@ variable "master_ipv4_cidr" {
   default     = null
 }
 
-variable "enable_private_endpoint" {
-  description = "Configure public access to the cluster endpoint."
-  type        = bool
-  default     = false
-}
 
 variable "cloud_composer_network_ipv4_cidr_block" {
   description = "The CIDR block from which IP range in tenant project will be reserved."
@@ -91,14 +75,6 @@ variable "cloud_composer_network_ipv4_cidr_block" {
 }
 
 
-variable "master_authorized_networks" {
-  type = list(object({
-    cidr_block   = string
-    display_name = string
-  }))
-  default     = []
-  description = "List of master authorized networks. If none are provided, disallow external access (except the cluster node IPs, which GKE automatically whitelists)."
-}
 variable "gke_subnet_ip_range" {
   type        = list(string)
   description = "The GKE subnet IP range"
@@ -109,11 +85,6 @@ variable "gke_pods_services_ip_ranges" {
   description = "The secondary IP ranges for the GKE Pods and Services IP ranges"
 }
 
-variable "grant_sa_agent_permission" {
-  type        = bool
-  default     = true
-  description = "Cloud Composer relies on Workload Identity as Google API authentication mechanism for Airflow. "
-}
 
 variable "composer_env_name" {
   description = "Name of Cloud Composer Environment"
