@@ -3,13 +3,13 @@
 /******************************************
   Network Creation
  *****************************************/
-module "vpc-standalone" {
+module "shared-vpc" {
   source  = "terraform-google-modules/network/google"
   version = "~> 4.1"
 
   project_id                             = module.host_project.project_id
   network_name                           = "composer-network"
-  delete_default_internet_gateway_routes = true
+  delete_default_internet_gateway_routes = false
   subnets = [
     {
       subnet_name           = "composer-subnet"
@@ -24,11 +24,11 @@ module "vpc-standalone" {
     "composer-subnet" = [
       {
         range_name    = "composer-pods-1"
-        ip_cidr_range =  "10.1.0.0/16"
+        ip_cidr_range = "10.1.0.0/16"
       },
       {
         range_name    = "composer-services-1"
-        ip_cidr_range =  "10.4.0.0/16"
+        ip_cidr_range = "10.4.0.0/16"
       }
     ]
   }
@@ -38,5 +38,30 @@ module "vpc-standalone" {
       name              = "route-to-restricted-vip"
       destination_range = "199.36.153.4/30"
       next_hop_internet = "true"
+    },
+    {
+      name              = "internet-for-bastion-1"
+      destination_range = "0.0.0.0/0"
+      next_hop_internet = "true"
+      priority          = 1000
     }
   ]
+}
+
+resource "google_compute_router" "router" {
+  project = module.host_project.project_id
+  name    = "nat-router"
+  network = module.shared-vpc.network_self_link
+  region  = "us-central1"
+}
+
+module "cloud-nat-shared-vpc" {
+  source                             = "terraform-google-modules/cloud-nat/google"
+  version                            = "~> 2.0.0"
+  project_id                         = module.host_project.project_id
+  region                             = "us-central1"
+  router                             = google_compute_router.router.name
+  name                               = "nat-config"
+  source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
+}
+
