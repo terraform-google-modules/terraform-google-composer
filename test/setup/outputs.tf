@@ -22,11 +22,11 @@ output "service_project_id" {
   value = module.service_project.project_id
 }
 
-output "composer_sa" {
-  value = google_service_account.int_test.email
-}
+# output "composer_sa" {
+#   value = google_service_account.int_test.email
+# }
 
-output "sa_key" {
-  value     = google_service_account_key.int_test.private_key
-  sensitive = true
-}
+# output "sa_key" {
+#   value     = google_service_account_key.int_test.private_key
+#   sensitive = true
+# }
