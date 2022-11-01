@@ -31,8 +31,8 @@ func TestSimpleComposerEnvV2SharedVpcModule(t *testing.T) {
 
 		serviceprojectID := composer.GetStringOutput("service_project_id")
 
-		op := gcloud.Runf(t, "composer environments describe %s --project=%s --location=us-central1", composer.GetStringOutput("composer_env_name"), projectID)
-		assert.Equal(fmt.Sprintf("projects/%s/locations/us-central1/environments/%s", projectID, composer.GetStringOutput("composer_env_name")), op.Get("name").String(), "Composer name is valid")
+		op := gcloud.Runf(t, "composer environments describe %s --project=%s --location=us-central1", composer.GetStringOutput("composer_env_name"), serviceprojectID)
+		assert.Equal(fmt.Sprintf("projects/%s/locations/us-central1/environments/%s", serviceprojectID, composer.GetStringOutput("composer_env_name")), op.Get("name").String(), "Composer name is valid")
 		assert.Equal(composer.GetStringOutput("airflow_uri"), op.Get("config.airflowUri").String(), "AirflowUri is valid")
 		assert.Equal(composer.GetStringOutput("gke_cluster"), op.Get("config.gkeCluster").String(), "GKE Cluster is valid")
 		assert.Equal(composer.GetStringOutput("gcs_bucket"), op.Get("config.dagGcsPrefix").String(), "GCS-Dag is valid")
