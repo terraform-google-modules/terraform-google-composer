@@ -66,6 +66,7 @@ module "cloud-nat-shared-vpc" {
 }
 
 resource "google_compute_shared_vpc_service_project" "service-project" {
+  depends_on = [google_folder_iam_binding.shared-vpc-iam]
   host_project    = module.project.project_id
   service_project = module.service_project.project_id
 }
