@@ -57,7 +57,7 @@ resource "google_compute_router" "router" {
 
 module "cloud-nat-shared-vpc" {
   source                             = "terraform-google-modules/cloud-nat/google"
-  version                            = "~> 2.0.0"
+  version                            = "~> 2.2.1"
   project_id                         = module.project.project_id
   region                             = "us-central1"
   router                             = google_compute_router.router.name
