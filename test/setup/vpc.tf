@@ -65,3 +65,7 @@ module "cloud-nat-shared-vpc" {
   source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
 }
 
+resource "google_compute_shared_vpc_service_project" "service-project" {
+  host_project    = module.project.project_id
+  service_project = module.service_project.project_id
+}
