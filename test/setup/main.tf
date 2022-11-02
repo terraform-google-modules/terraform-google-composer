@@ -29,6 +29,7 @@ module "project" {
     "storage-api.googleapis.com",
     "serviceusage.googleapis.com",
     "composer.googleapis.com",
+    "dns.googleapis.com",
     "compute.googleapis.com",
     "iam.googleapis.com",
   ]
