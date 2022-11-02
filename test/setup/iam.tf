@@ -57,3 +57,12 @@ resource "google_folder_iam_binding" "shared-vpc-iam" {
     "serviceAccount:${var.orchestrator_service_account}",
   ]
 }
+
+resource "google_organization_iam_binding" "shared-vpc-org-iam" {
+  org_id  = var.org_id
+  role    = "roles/compute.xpnAdmin"
+
+  members = [
+    "serviceAccount:${var.orchestrator_service_account}",
+  ]
+}
