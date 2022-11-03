@@ -34,6 +34,7 @@ module "composer_env" {
   project_id                             = "ci-composer-service-e286"
   network_project_id                     = "ci-composer-8cb8"
   composer_env_name                      = "san-composer-2"
+  composer_service_account               = module.composer_net.composer_sa_email
   region                                 = "us-central1"
   network                                = "composer-network"
   subnetwork                             = "composer-subnet"
