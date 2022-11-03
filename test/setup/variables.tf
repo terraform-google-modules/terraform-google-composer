@@ -27,6 +27,6 @@ variable "billing_account" {
 
 variable "orchestrator_service_account" {
   description = "The service account that will be creating all the resources in setup project"
-  type = string
-  default = "cft-onboarding@sky-new-hvpc.iam.gserviceaccount.com"
+  type        = string
+  default     = "cft-onboarding@sky-new-hvpc.iam.gserviceaccount.com"
 }

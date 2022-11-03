@@ -55,18 +55,9 @@ resource "google_project_iam_member" "orch_project_iam_binding" {
 }
 
 resource "google_folder_iam_member" "shared-vpc-iam" {
-  folder  = "folders/${var.folder_id}"
-  role    = "roles/compute.xpnAdmin"
+  folder = "folders/${var.folder_id}"
+  role   = "roles/compute.xpnAdmin"
 
   member = "serviceAccount:${var.orchestrator_service_account}"
 }
-/*
-resource "google_organization_iam_binding" "shared-vpc-org-iam" {
-  org_id  = var.org_id
-  role    = "roles/compute.xpnAdmin"
 
-  members = [
-    "serviceAccount:${var.orchestrator_service_account}",
-  ]
-}
-*/

@@ -19,7 +19,7 @@ resource "google_dns_record_set" "restricted-google-apis-A-record" {
   type    = "A"
   ttl     = 300
 
-  managed_zone = "${google_dns_managed_zone.google-apis.name}"
+  managed_zone = google_dns_managed_zone.google-apis.name
 
   rrdatas = ["199.36.153.4", "199.36.153.5", "199.36.153.6", "199.36.153.7"]
 }
@@ -30,7 +30,7 @@ resource "google_dns_record_set" "google-api-CNAME" {
   type    = "CNAME"
   ttl     = 300
 
-  managed_zone = "${google_dns_managed_zone.google-apis.name}"
+  managed_zone = google_dns_managed_zone.google-apis.name
 
   rrdatas = ["restricted.googleapis.com."]
 }
@@ -56,7 +56,7 @@ resource "google_dns_record_set" "restricted-gcr-io-A-record" {
   type    = "A"
   ttl     = 300
 
-  managed_zone = "${google_dns_managed_zone.gcr-io.name}"
+  managed_zone = google_dns_managed_zone.gcr-io.name
 
   rrdatas = ["199.36.153.4", "199.36.153.5", "199.36.153.6", "199.36.153.7"]
 }
@@ -67,7 +67,7 @@ resource "google_dns_record_set" "gcr-io-CNAME" {
   type    = "CNAME"
   ttl     = 300
 
-  managed_zone = "${google_dns_managed_zone.gcr-io.name}"
+  managed_zone = google_dns_managed_zone.gcr-io.name
 
   rrdatas = ["gcr.io."]
 }
@@ -82,7 +82,7 @@ resource "google_dns_managed_zone" "pkg-dev" {
 
   private_visibility_config {
     networks {
-      network_url =module.shared-vpc.network_self_link
+      network_url = module.shared-vpc.network_self_link
     }
   }
 }
@@ -93,7 +93,7 @@ resource "google_dns_record_set" "restricted-pkg-dev-A-record" {
   type    = "A"
   ttl     = 300
 
-  managed_zone = "${google_dns_managed_zone.pkg-dev.name}"
+  managed_zone = google_dns_managed_zone.pkg-dev.name
 
   rrdatas = ["199.36.153.4", "199.36.153.5", "199.36.153.6", "199.36.153.7"]
 }
@@ -104,7 +104,7 @@ resource "google_dns_record_set" "pkg-dev-CNAME" {
   type    = "CNAME"
   ttl     = 300
 
-  managed_zone = "${google_dns_managed_zone.pkg-dev.name}"
+  managed_zone = google_dns_managed_zone.pkg-dev.name
 
   rrdatas = ["pkg.dev."]
 }
