@@ -48,16 +48,19 @@ resource "google_service_account_key" "int_test" {
   service_account_id = google_service_account.int_test.id
 }
 
+resource "google_project_iam_member" "orch_project_iam_binding" {
+  project = module.project.project_id
+  role    = "roles/resourcemanager.projectIamAdmin"
+  member  = "serviceAccount:${var.orchestrator_service_account}"
+}
 
-resource "google_folder_iam_binding" "shared-vpc-iam" {
+resource "google_folder_iam_member" "shared-vpc-iam" {
   folder  = "folders/${var.folder_id}"
   role    = "roles/compute.xpnAdmin"
 
-  members = [
-    "serviceAccount:${var.orchestrator_service_account}",
-  ]
+  member = "serviceAccount:${var.orchestrator_service_account}"
 }
-
+/*
 resource "google_organization_iam_binding" "shared-vpc-org-iam" {
   org_id  = var.org_id
   role    = "roles/compute.xpnAdmin"
@@ -66,3 +69,4 @@ resource "google_organization_iam_binding" "shared-vpc-org-iam" {
     "serviceAccount:${var.orchestrator_service_account}",
   ]
 }
+*/

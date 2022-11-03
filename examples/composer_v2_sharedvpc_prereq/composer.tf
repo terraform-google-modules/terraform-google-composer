@@ -14,12 +14,12 @@
 
 module "composer_net" {
   source                                 = "../../modules/composer_net"
-  service_project_id                     = "ci-composer-service-ed44"
-  network_project_id                     = "ci-composer-9bbc"
-  composer_env_name                      = "san-composer-4"
+  service_project_id                     = "ci-composer-service-e286"
+  network_project_id                     = "ci-composer-8cb8"
+  composer_env_name                      = "san-composer-2"
   region                                 = "us-central1"
   network                                = "composer-network"
-  subnetwork                             = "composer-subnetwork"
+  subnetwork                             = "composer-subnet"
   cloud_composer_network_ipv4_cidr_block = "192.168.192.0/24"
   master_ipv4_cidr                       = "192.168.193.0/28"
   cloud_sql_ipv4_cidr                    = "192.168.0.0/17"
@@ -31,12 +31,12 @@ module "composer_env" {
     module.composer_net
   ]
   source                                 = "../../modules/create_environment_v2"
-  project_id                             = "ci-composer-service-ed44"
-  network_project_id                     = "ci-composer-9bbc"
-  composer_env_name                      = "san-composer-4"
+  project_id                             = "ci-composer-service-e286"
+  network_project_id                     = "ci-composer-8cb8"
+  composer_env_name                      = "san-composer-2"
   region                                 = "us-central1"
   network                                = "composer-network"
-  subnetwork                             = "composer-subnetwork"
+  subnetwork                             = "composer-subnet"
   cloud_composer_network_ipv4_cidr_block = "192.168.192.0/24"
   master_ipv4_cidr                       = "192.168.193.0/28"
   cloud_sql_ipv4_cidr                    = "192.168.0.0/17"
