@@ -2,7 +2,7 @@ resource "google_dns_managed_zone" "google-apis" {
   name        = "restricted-googleapis-zone"
   project     = module.project.project_id
   dns_name    = "googleapis.com."
-  description = "restricted zone for Google API's"
+  description = "restricted zone for Google APIs"
 
   visibility = "private"
 
