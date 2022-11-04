@@ -20,7 +20,8 @@ locals {
     "roles/compute.networkAdmin",
     "roles/compute.instanceAdmin.v1",
     "roles/iam.serviceAccountUser",
-    "roles/composer.worker"
+    "roles/composer.worker",
+    "roles/resourcemanager.projectIamAdmin"
   ]
 }
 
