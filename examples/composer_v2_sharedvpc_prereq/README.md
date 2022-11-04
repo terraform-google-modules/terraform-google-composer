@@ -97,7 +97,12 @@ In order to operate with the Service Account you must activate the following API
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 
-No input.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| composer\_sa | Service Account to be used for running Cloud Composer Environment. | `string` | n/a | yes |
+| host\_project\_id | The project ID of the shared VPC's host (for shared vpc support) | `string` | n/a | yes |
+| region | Region where Cloud Composer Environment is created. | `string` | `"us-central1"` | no |
+| service\_project\_id | Project ID where Cloud Composer Environment is created. | `string` | n/a | yes |
 
 ## Outputs
 

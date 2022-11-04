@@ -14,9 +14,14 @@
  * limitations under the License.
  */
 
-variable "project_id" {
+variable "service_project_id" {
   description = "Project ID where Cloud Composer Environment is created."
   type        = string
+}
+
+variable "host_project_id" {
+  type        = string
+  description = "The project ID of the shared VPC's host (for shared vpc support)"
 }
 
 variable "composer_sa" {
