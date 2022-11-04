@@ -54,4 +54,3 @@ resource "google_project_iam_member" "int_test_service_project_iam" {
 resource "google_service_account_key" "int_test" {
   service_account_id = google_service_account.int_test.id
 }
-

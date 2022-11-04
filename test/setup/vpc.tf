@@ -63,13 +63,15 @@ module "shared_vpc" {
 }
 
 resource "google_compute_shared_vpc_host_project" "host" {
-  project = module.project.project_id
+  provider   = google-beta
+  depends_on = [google_folder_iam_member.shared_vpc_iam]
+  project    = module.project.project_id
 }
 
 resource "google_compute_router" "router" {
   project = module.project.project_id
   name    = "nat-router"
-  network = module.shared-vpc.network_self_link
+  network = module.shared_vpc.network_self_link
   region  = "us-central1"
 }
 
