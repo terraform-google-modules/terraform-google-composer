@@ -63,7 +63,9 @@ module "shared-vpc" {
 }
 
 resource "google_compute_shared_vpc_host_project" "host" {
-  project = module.project.project_id
+  provider   = google-beta
+  depends_on = [google_folder_iam_member.shared_vpc_iam]
+  project    = module.project.project_id
 }
 
 resource "google_compute_router" "router" {
@@ -85,7 +87,7 @@ module "cloud-nat-shared-vpc" {
 
 resource "google_compute_shared_vpc_service_project" "service-project" {
   provider        = google-beta
-  depends_on      = [google_folder_iam_member.shared-vpc-iam, google_compute_shared_vpc_host_project.host]
+  depends_on      = [google_folder_iam_member.shared_vpc_iam, google_compute_shared_vpc_host_project.host]
   host_project    = module.project.project_id
   service_project = module.service_project.project_id
 }
