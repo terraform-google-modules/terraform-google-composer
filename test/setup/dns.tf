@@ -23,7 +23,7 @@ resource "google_dns_managed_zone" "google-apis" {
 
   private_visibility_config {
     networks {
-      network_url = module.shared-vpc.network_self_link
+      network_url = module.shared_vpc.network_self_link
     }
   }
 }
@@ -60,7 +60,7 @@ resource "google_dns_managed_zone" "gcr-io" {
 
   private_visibility_config {
     networks {
-      network_url = module.shared-vpc.network_self_link
+      network_url = module.shared_vpc.network_self_link
     }
   }
 }
@@ -97,7 +97,7 @@ resource "google_dns_managed_zone" "pkg-dev" {
 
   private_visibility_config {
     networks {
-      network_url = module.shared-vpc.network_self_link
+      network_url = module.shared_vpc.network_self_link
     }
   }
 }

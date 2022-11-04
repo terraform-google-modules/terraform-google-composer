@@ -14,8 +14,8 @@
 
 module "composer_net" {
   source                                 = "../../modules/composer_net"
-  service_project_id                     = "ci-composer-service-e286"
-  network_project_id                     = "ci-composer-8cb8"
+  service_project_id                     = var.service_project_id
+  network_project_id                     = var.host_project_id
   composer_env_name                      = "san-composer-2"
   region                                 = "us-central1"
   network                                = "composer-network"
@@ -31,8 +31,8 @@ module "composer_env" {
     module.composer_net
   ]
   source                                 = "../../modules/create_environment_v2"
-  project_id                             = "ci-composer-service-e286"
-  network_project_id                     = "ci-composer-8cb8"
+  service_project_id                     = var.service_project_id
+  project_id                             = var.host_project_id
   composer_env_name                      = "san-composer-2"
   composer_service_account               = module.composer_net.composer_sa_email
   region                                 = "us-central1"

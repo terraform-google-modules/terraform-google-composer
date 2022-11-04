@@ -44,20 +44,14 @@ resource "google_project_iam_member" "int_test" {
   member  = "serviceAccount:${google_service_account.int_test.email}"
 }
 
+resource "google_project_iam_member" "int_test_service_project_iam" {
+  count = length(local.int_required_roles)
+  project = module.service_project.project_id
+  role    = local.int_required_roles[count.index]
+  member  = "serviceAccount:${google_service_account.int_test.email}"
+}
+
 resource "google_service_account_key" "int_test" {
   service_account_id = google_service_account.int_test.id
-}
-
-resource "google_project_iam_member" "orch_project_iam_binding" {
-  project = module.project.project_id
-  role    = "roles/resourcemanager.projectIamAdmin"
-  member  = "serviceAccount:${var.orchestrator_service_account}"
-}
-
-resource "google_folder_iam_member" "shared-vpc-iam" {
-  folder = "folders/${var.folder_id}"
-  role   = "roles/compute.xpnAdmin"
-
-  member = "serviceAccount:${var.orchestrator_service_account}"
 }
 

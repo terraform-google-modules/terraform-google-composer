@@ -14,19 +14,18 @@
  * limitations under the License.
  */
 
-output "host_project_id" {
-  value = module.project.project_id
+variable "project_id" {
+  description = "Project ID where Cloud Composer Environment is created."
+  type        = string
 }
 
-output "service_project_id" {
-  value = module.service_project.project_id
+variable "composer_sa" {
+  description = "Service Account to be used for running Cloud Composer Environment."
+  type        = string
 }
 
-output "composer_sa" {
-  value = google_service_account.int_test.email
-}
-
-output "sa_key" {
-  value     = google_service_account_key.int_test.private_key
-  sensitive = true
+variable "region" {
+  description = "Region where Cloud Composer Environment is created."
+  type        = string
+  default     = "us-central1"
 }
