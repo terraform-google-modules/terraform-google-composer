@@ -32,6 +32,7 @@ module "project" {
     "dns.googleapis.com",
     "compute.googleapis.com",
     "iam.googleapis.com",
+    "container.googleapis.com"
   ]
 }
 
@@ -52,5 +53,6 @@ module "service_project" {
     "composer.googleapis.com",
     "compute.googleapis.com",
     "iam.googleapis.com",
+    "container.googleapis.com"
   ]
 }
