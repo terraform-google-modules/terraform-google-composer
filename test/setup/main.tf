@@ -34,6 +34,12 @@ module "project" {
     "iam.googleapis.com",
     "container.googleapis.com"
   ]
+  activate_api_identities = [
+    {
+      api   = "container.googleapis.com"
+      roles = ["roles/container.serviceAgent"]
+    }
+  ]
 }
 
 module "service_project" {
@@ -54,5 +60,11 @@ module "service_project" {
     "compute.googleapis.com",
     "iam.googleapis.com",
     "container.googleapis.com"
+  ]
+  activate_api_identities = [
+    {
+      api   = "container.googleapis.com"
+      roles = ["roles/container.serviceAgent"]
+    }
   ]
 }
