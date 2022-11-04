@@ -17,7 +17,7 @@
 /******************************************
   Network Creation
  *****************************************/
-module "shared-vpc" {
+module "shared_vpc" {
   source  = "terraform-google-modules/network/google"
   version = "~> 4.0"
 
@@ -71,11 +71,11 @@ resource "google_compute_shared_vpc_host_project" "host" {
 resource "google_compute_router" "router" {
   project = module.project.project_id
   name    = "nat-router"
-  network = module.shared-vpc.network_self_link
+  network = module.shared_vpc.network_self_link
   region  = "us-central1"
 }
 
-module "cloud-nat-shared-vpc" {
+module "cloud_nat_shared_vpc" {
   source                             = "terraform-google-modules/cloud-nat/google"
   version                            = "~> 2.2.1"
   project_id                         = module.project.project_id
@@ -85,7 +85,7 @@ module "cloud-nat-shared-vpc" {
   source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
 }
 
-resource "google_compute_shared_vpc_service_project" "service-project" {
+resource "google_compute_shared_vpc_service_project" "service_project" {
   provider        = google-beta
   depends_on      = [google_folder_iam_member.shared_vpc_iam, google_compute_shared_vpc_host_project.host]
   host_project    = module.project.project_id
