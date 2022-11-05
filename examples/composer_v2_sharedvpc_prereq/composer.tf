@@ -18,7 +18,7 @@ module "composer_net" {
   network_project_id                     = var.project_id
   composer_env_name                      = "san-composer-2"
   region                                 = "us-central1"
-  network                                = "composer-network"
+  network                                = var.network
   subnetwork                             = "composer-subnet"
   cloud_composer_network_ipv4_cidr_block = "192.168.192.0/24"
   master_ipv4_cidr                       = "192.168.193.0/28"
@@ -36,7 +36,7 @@ module "composer_env" {
   composer_env_name                      = "san-composer-2"
   composer_service_account               = module.composer_net.composer_sa_email
   region                                 = "us-central1"
-  network                                = "composer-network"
+  network                                = var.network
   subnetwork                             = "composer-subnet"
   cloud_composer_network_ipv4_cidr_block = "192.168.192.0/24"
   master_ipv4_cidr                       = "192.168.193.0/28"

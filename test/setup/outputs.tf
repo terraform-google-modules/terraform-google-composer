@@ -30,3 +30,7 @@ output "sa_key" {
   value     = google_service_account_key.int_test.private_key
   sensitive = true
 }
+
+output "network" {
+  value       = module.shared_vpc.network_name
+}

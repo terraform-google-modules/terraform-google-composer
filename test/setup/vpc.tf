@@ -14,6 +14,11 @@
  * limitations under the License.
  */
 
+resource "random_string" "suffix" {
+  length  = 4
+  special = false
+  upper   = false
+}
 /******************************************
   Network Creation
  *****************************************/
@@ -22,12 +27,12 @@ module "shared_vpc" {
   version = "~> 4.0"
 
   project_id                             = module.project.project_id
-  network_name                           = "composer-network"
+  network_name                           = "composer-network-${random_string.suffix.result}"
   delete_default_internet_gateway_routes = false
   subnets = [
     {
       subnet_name           = "composer-subnet"
-      subnet_ip             = "10.100.232.0/27"
+      subnet_ip             = "10.0.0.0/17"
       subnet_region         = "us-central1"
       subnet_private_access = "true"
       subnet_flow_logs      = "true"
@@ -46,6 +51,11 @@ module "shared_vpc" {
       }
     ]
   }
+/****
+Route to restricted VIP is created to operate within VPC SC
+Route to internet is created as some API calls (cloudbilling.googleapis.com, serviceusage.googleapis.com are not
+supported by restricted VIP )
+****/
 
   routes = [
     {
