@@ -32,5 +32,6 @@ output "sa_key" {
 }
 
 output "network" {
-  value       = module.shared_vpc.network_name
+  value = module.shared_vpc.network_name
 }
+

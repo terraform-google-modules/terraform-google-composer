@@ -34,3 +34,9 @@ variable "region" {
   type        = string
   default     = "us-central1"
 }
+
+variable "network" {
+  type        = string
+  description = "The name of the network being created"
+}
+

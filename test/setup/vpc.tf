@@ -51,7 +51,7 @@ module "shared_vpc" {
       }
     ]
   }
-/****
+  /****
 Route to restricted VIP is created to operate within VPC SC
 Route to internet is created as some API calls (cloudbilling.googleapis.com, serviceusage.googleapis.com are not
 supported by restricted VIP )
