@@ -99,10 +99,8 @@ In order to operate with the Service Account you must activate the following API
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| composer\_sa | Service Account to be used for running Cloud Composer Environment. | `string` | n/a | yes |
 | network | The name of the network being created | `string` | n/a | yes |
 | project\_id | The project ID of the shared VPC's host (for shared vpc support) | `string` | n/a | yes |
-| region | Region where Cloud Composer Environment is created. | `string` | `"us-central1"` | no |
 | service\_project\_id | Project ID where Cloud Composer Environment is created. | `string` | n/a | yes |
 
 ## Outputs
@@ -114,6 +112,5 @@ In order to operate with the Service Account you must activate the following API
 | composer\_env\_name | Name of the Cloud Composer Environment. |
 | gcs\_bucket | Google Cloud Storage bucket which hosts DAGs for the Cloud Composer Environment. |
 | gke\_cluster | Google Kubernetes Engine cluster used to run the Cloud Composer Environment. |
-| service\_project\_id | The id of the project where cloud composer was created. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

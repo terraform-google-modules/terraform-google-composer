@@ -24,17 +24,6 @@ variable "project_id" {
   description = "The project ID of the shared VPC's host (for shared vpc support)"
 }
 
-variable "composer_sa" {
-  description = "Service Account to be used for running Cloud Composer Environment."
-  type        = string
-}
-
-variable "region" {
-  description = "Region where Cloud Composer Environment is created."
-  type        = string
-  default     = "us-central1"
-}
-
 variable "network" {
   type        = string
   description = "The name of the network being created"

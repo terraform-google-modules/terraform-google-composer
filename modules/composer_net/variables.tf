@@ -43,18 +43,6 @@ variable "subnetwork" {
 }
 
 
-variable "pod_ip_allocation_range_name" {
-  description = "The name of the cluster's secondary range used to allocate IP addresses to pods."
-  type        = string
-  default     = null
-}
-
-variable "service_ip_allocation_range_name" {
-  type        = string
-  description = "The name of the services' secondary range used to allocate IP addresses to the cluster."
-  default     = null
-}
-
 variable "cloud_sql_ipv4_cidr" {
   description = "The CIDR block from which IP range in tenant project will be reserved for Cloud SQL."
   type        = string

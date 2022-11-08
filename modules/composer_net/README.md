@@ -15,9 +15,7 @@ This example illustrates how to use the `composer-net` module. Please see exampl
 | master\_ipv4\_cidr | The CIDR block from which IP range in tenant project will be reserved for the master. | `string` | `null` | no |
 | network | The VPC network to host the composer cluster. | `string` | n/a | yes |
 | network\_project\_id | The project ID of the shared VPC's host (for shared vpc support) | `string` | n/a | yes |
-| pod\_ip\_allocation\_range\_name | The name of the cluster's secondary range used to allocate IP addresses to pods. | `string` | `null` | no |
 | region | Region where the Cloud Composer Environment is created. | `string` | `"us-central1"` | no |
-| service\_ip\_allocation\_range\_name | The name of the services' secondary range used to allocate IP addresses to the cluster. | `string` | `null` | no |
 | service\_project\_id | Project ID where Cloud Composer Environment is created. | `string` | n/a | yes |
 | subnetwork | The subnetwork to host the composer cluster. | `string` | n/a | yes |
 
@@ -26,7 +24,6 @@ This example illustrates how to use the `composer-net` module. Please see exampl
 | Name | Description |
 |------|-------------|
 | composer\_sa\_email | n/a |
-| service\_project\_id | n/a |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
