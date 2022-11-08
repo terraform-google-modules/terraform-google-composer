@@ -14,6 +14,11 @@
  * limitations under the License.
  */
 
+output "service_project_id" {
+  description = "The id of the project where cloud composer was created."
+  value       = var.service_project_id
+}
+
 output "composer_env_name" {
   description = "Name of the Cloud Composer Environment."
   value       = module.composer_env.composer_env_name

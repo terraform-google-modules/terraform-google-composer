@@ -112,5 +112,6 @@ In order to operate with the Service Account you must activate the following API
 | composer\_env\_name | Name of the Cloud Composer Environment. |
 | gcs\_bucket | Google Cloud Storage bucket which hosts DAGs for the Cloud Composer Environment. |
 | gke\_cluster | Google Kubernetes Engine cluster used to run the Cloud Composer Environment. |
+| service\_project\_id | The id of the project where cloud composer was created. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
