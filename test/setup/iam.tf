@@ -20,7 +20,8 @@ locals {
     "roles/compute.networkAdmin",
     "roles/compute.instanceAdmin.v1",
     "roles/iam.serviceAccountUser",
-    "roles/composer.worker"
+    "roles/composer.worker",
+    "roles/resourcemanager.projectIamAdmin"
   ]
 }
 
@@ -40,6 +41,13 @@ resource "google_project_iam_member" "int_test" {
   count = length(local.int_required_roles)
 
   project = module.project.project_id
+  role    = local.int_required_roles[count.index]
+  member  = "serviceAccount:${google_service_account.int_test.email}"
+}
+
+resource "google_project_iam_member" "int_test_service_project_iam" {
+  count   = length(local.int_required_roles)
+  project = module.service_project.project_id
   role    = local.int_required_roles[count.index]
   member  = "serviceAccount:${google_service_account.int_test.email}"
 }

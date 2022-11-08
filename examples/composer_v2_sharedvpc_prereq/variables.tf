@@ -14,24 +14,18 @@
  * limitations under the License.
  */
 
-output "project_id" {
-  value = module.project.project_id
+variable "service_project_id" {
+  description = "Project ID where Cloud Composer Environment is created."
+  type        = string
 }
 
-output "service_project_id" {
-  value = module.service_project.project_id
+variable "project_id" {
+  type        = string
+  description = "The project ID of the shared VPC's host (for shared vpc support)"
 }
 
-output "composer_sa" {
-  value = google_service_account.int_test.email
-}
-
-output "sa_key" {
-  value     = google_service_account_key.int_test.private_key
-  sensitive = true
-}
-
-output "network" {
-  value = module.shared_vpc.network_name
+variable "network" {
+  type        = string
+  description = "The name of the network being created"
 }
 
