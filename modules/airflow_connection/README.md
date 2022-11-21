@@ -4,14 +4,14 @@ This optional module is used to create a Cloud Composer Connection.
 
 ```hcl
 module "connection" {
-  source      = "terraform-google-modules/composer/google//modules/airflow_connection"
-  project     = "project-123"
-  environment = "Composer-Prod-Env"
-  location    = "us-central1"
-  id          = "my-database"
-  host        = var.host
-  login       = var.user
-  password    = var.password
+  source            = "terraform-google-modules/composer/google//modules/airflow_connection"
+  project_id        = "project-123"
+  composer_env_name = "Composer-Prod-Env"
+  region            = "us-central1"
+  id                = "my-database"
+  host              = var.host
+  login             = var.user
+  password          = var.password
 }
 ```
 
