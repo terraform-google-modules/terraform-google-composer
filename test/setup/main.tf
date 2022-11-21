@@ -16,7 +16,7 @@
 
 module "project" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 13.0"
+  version = "~> 14.0"
 
   name              = "ci-composer"
   random_project_id = "true"
@@ -44,7 +44,7 @@ module "project" {
 
 module "service_project" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 13.0"
+  version = "~> 14.0"
 
   name              = "ci-composer-service"
   random_project_id = "true"

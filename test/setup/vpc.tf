@@ -24,7 +24,7 @@ resource "random_string" "suffix" {
  *****************************************/
 module "shared_vpc" {
   source  = "terraform-google-modules/network/google"
-  version = "~> 4.0"
+  version = "~> 5.0"
 
   project_id                             = module.project.project_id
   network_name                           = "composer-network-${random_string.suffix.result}"
