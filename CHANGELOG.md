@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [3.4.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v3.3.0...v3.4.0) (2022-11-28)
+
+
+### Features
+
+* adding a module for networking/iam requirements and example for composer-v2 ([#60](https://github.com/terraform-google-modules/terraform-google-composer/issues/60)) ([b44bb6f](https://github.com/terraform-google-modules/terraform-google-composer/commit/b44bb6f794aac5aed6d2ccbcce25bf67b131f8be))
+
 ## [3.3.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v3.2.0...v3.3.0) (2022-07-28)
 
 

@@ -19,7 +19,7 @@ Simple usage is as follows:
 ```hcl
 module "composer" {
   source  = "terraform-google-modules/composer/google"
-  version = "~> 2.0"
+  version = "~> 3.4"
 
   project_id        = "<PROJECT ID>"
   region            = "us-central1"
