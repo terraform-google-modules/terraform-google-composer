@@ -3,8 +3,8 @@ module github.com/terraform-google-modules/terraform-google-composer/test/integr
 go 1.18
 
 require (
-	github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.1.0
-	github.com/stretchr/testify v1.8.0
+	github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.3.0
+	github.com/stretchr/testify v1.8.1
 )
 
 require (
