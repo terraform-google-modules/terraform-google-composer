@@ -243,3 +243,13 @@ variable "grant_sa_agent_permission" {
   default     = true
   description = "Cloud Composer relies on Workload Identity as Google API authentication mechanism for Airflow. "
 }
+
+variable "scheduled_snapshots_config" {
+  type = object({
+    enabled                    = bool
+    snapshot_location          = string
+    snapshot_creation_schedule = string
+    time_zone                  = string
+  })
+  description = "The recovery configuration settings for the Cloud Composer environment."
+}

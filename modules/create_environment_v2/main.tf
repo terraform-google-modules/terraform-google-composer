@@ -146,6 +146,19 @@ resource "google_composer_environment" "composer_env" {
         }
       }
     }
+
+    recovery_config {
+
+      dynamic "scheduled_snapshots_config" {
+        for_each = var.scheduled_snapshots_config != null ? [var.scheduled_snapshots_config] : []
+        content {
+          enabled                    = scheduled_snapshots_config.value["enabled"]
+          snapshot_location          = scheduled_snapshots_config.value["snapshot_location"]
+          snapshot_creation_schedule = scheduled_snapshots_config.value["snapshot_creation_schedule"]
+          time_zone                  = scheduled_snapshots_config.value["time_zone"]
+        }
+      }
+    }
   }
 
   depends_on = [google_project_iam_member.composer_agent_service_account]

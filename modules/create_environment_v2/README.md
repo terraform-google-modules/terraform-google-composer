@@ -40,6 +40,7 @@ module "composer" {
 | project\_id | Project ID where Cloud Composer Environment is created. | `string` | n/a | yes |
 | pypi\_packages | Custom Python Package Index (PyPI) packages to be installed in the environment. Keys refer to the lowercase package name (e.g. "numpy"). | `map(string)` | `{}` | no |
 | region | Region where the Cloud Composer Environment is created. | `string` | `"us-central1"` | no |
+| scheduled\_snapshots\_config | The recovery configuration settings for the Cloud Composer environment. | <pre>object({<br>    enabled                    = bool<br>    snapshot_location          = string<br>    snapshot_creation_schedule = string<br>    time_zone                  = string<br>  })</pre> | n/a | yes |
 | scheduler | Configuration for resources used by Airflow schedulers. | <pre>object({<br>    cpu        = string<br>    memory_gb  = number<br>    storage_gb = number<br>    count      = number<br>  })</pre> | <pre>{<br>  "count": 2,<br>  "cpu": 2,<br>  "memory_gb": 7.5,<br>  "storage_gb": 5<br>}</pre> | no |
 | service\_ip\_allocation\_range\_name | The name of the services' secondary range used to allocate IP addresses to the cluster. | `string` | `null` | no |
 | subnetwork | The subnetwork to host the composer cluster. | `string` | n/a | yes |
