@@ -43,7 +43,7 @@ Functional examples are included in the
 | network | Network where Cloud Composer is created. | `string` | n/a | yes |
 | project\_id | Project ID where Cloud Composer Environment is created. | `string` | n/a | yes |
 | region | Region where the Cloud Composer Environment is created. | `string` | n/a | yes |
-| subnetwork | Subetwork where Cloud Composer is created. | `string` | n/a | yes |
+| subnetwork | Subnetwork where Cloud Composer is created. | `string` | n/a | yes |
 | zone | Zone where the Cloud Composer Environment is created. | `string` | n/a | yes |
 
 ## Outputs
