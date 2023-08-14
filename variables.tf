@@ -40,7 +40,7 @@ variable "network" {
 }
 
 variable "subnetwork" {
-  description = "Subetwork where Cloud Composer is created."
+  description = "Subnetwork where Cloud Composer is created."
   type        = string
 }
 
