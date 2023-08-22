@@ -24,7 +24,7 @@ resource "random_string" "suffix" {
  *****************************************/
 module "shared_vpc" {
   source  = "terraform-google-modules/network/google"
-  version = "~> 6.0"
+  version = "~> 7.0"
 
   project_id                             = module.project.project_id
   network_name                           = "composer-network-${random_string.suffix.result}"
@@ -86,7 +86,7 @@ resource "google_compute_router" "router" {
 
 module "cloud_nat_shared_vpc" {
   source                             = "terraform-google-modules/cloud-nat/google"
-  version                            = "~> 2.2.1"
+  version                            = "~> 4.1.0"
   project_id                         = module.project.project_id
   region                             = "us-central1"
   router                             = google_compute_router.router.name
