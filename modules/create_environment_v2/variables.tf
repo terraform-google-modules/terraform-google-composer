@@ -229,6 +229,20 @@ variable "worker" {
   description = "Configuration for resources used by Airflow workers."
 }
 
+variable "triggerer" {
+  type = object({
+    cpu        = string
+    memory_gb  = number
+    count = number
+  })
+  default = {
+    cpu        = 2
+    memory_gb  = 7.5
+    count = 1
+  }
+  description = "Configuration for resources used by Airflow trigger."
+}
+
 variable "master_authorized_networks" {
   type = list(object({
     cidr_block   = string
