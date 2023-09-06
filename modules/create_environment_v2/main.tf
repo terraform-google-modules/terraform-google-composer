@@ -112,6 +112,15 @@ resource "google_composer_environment" "composer_env" {
         }
       }
 
+      dynamic "triggerer" {
+        for_each = var.triggerer != null ? [var.triggerer] : []
+        content {
+          cpu        = triggerer.value["cpu"]
+          memory_gb  = triggerer.value["memory_gb"]
+          count      = triggerer.value["count"]
+        }
+      }
+
       dynamic "web_server" {
         for_each = var.web_server != null ? [var.web_server] : []
         content {
