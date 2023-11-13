@@ -131,6 +131,15 @@ resource "google_composer_environment" "composer_env" {
           max_count  = worker.value["max_count"]
         }
       }
+
+      dynamic "triggerer" {
+        for_each = var.triggerer != null ? [var.triggerer] : []
+        content {
+          cpu       = triggerer.value["cpu"]
+          memory_gb = triggerer.value["memory_gb"]
+          count     = triggerer.value["count"]
+        }
+      }
     }
 
     dynamic "master_authorized_networks_config" {

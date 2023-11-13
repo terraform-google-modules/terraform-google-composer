@@ -229,6 +229,35 @@ variable "worker" {
   description = "Configuration for resources used by Airflow workers."
 }
 
+variable "triggerer" {
+  type = object({
+    cpu       = string
+    memory_gb = number
+    count     = number
+  })
+  default = {
+    cpu       = 1 # One CPU shared by main thread, async thread, gunicorn, and livenessProbe.
+    memory_gb = 1 # Base memory usage + livenessProbe uses about 0.5 GiB, so set limit to 1GiB.
+    count     = 2
+  }
+  description = "Configuration for resources used by Airflow triggerers."
+
+  validation {
+    condition     = can(index([0.5, 0.75, 1], tonumber(var.triggerer.cpu)))
+    error_message = "The triggerer.cpu value must be one of these choices: (0.5, 0.75, 1)."
+  }
+
+  validation {
+    condition     = var.triggerer.memory_gb <= var.triggerer.cpu * 6.5 && var.triggerer.memory_gb >= var.triggerer.cpu
+    error_message = "The triggerer memory_gb:cpu ratio must be between 1:1 and 6.5:1."
+  }
+
+  validation {
+    condition     = tonumber(var.triggerer.count) == floor(var.triggerer.count) && var.triggerer.count >= 0 && var.triggerer.count <= 10
+    error_message = "The triggerer.count value must be an integer between 0 and 10."
+  }
+}
+
 variable "master_authorized_networks" {
   type = list(object({
     cidr_block   = string
