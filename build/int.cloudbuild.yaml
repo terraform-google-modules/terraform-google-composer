@@ -69,8 +69,7 @@ steps:
 
 - id: init-simple-composer-env-v2
   waitFor:
-    - converge airflow-connection-local
-    - converge airflow-pool-local
+    - verify airflow-pool-local
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage init --verbose']
 - id: apply-simple-composer-env-v2
@@ -93,9 +92,7 @@ steps:
 
 - id: init-composer-v2-sharedvpc-prereq
   waitFor:
-    - converge airflow-connection-local
-    - converge airflow-pool-local
-    - init-simple-composer-env-v2
+    - destroy-simple-composer-env-v2
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2SharedVpcModule --stage init --verbose']
 - id: apply-composer-v2-sharedvpc-prereq
@@ -118,9 +115,7 @@ steps:
 
 - id: init-simple-composer-env-v1
   waitFor:
-    - converge airflow-connection-local
-    - converge airflow-pool-local
-    - init-composer-v2-sharedvpc-prereq
+    - destroy-composer-v2-sharedvpc-prereq
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV1Module --stage init --verbose']
 - id: apply-simple-composer-env-v1
