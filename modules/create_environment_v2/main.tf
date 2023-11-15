@@ -32,9 +32,17 @@ resource "google_composer_environment" "composer_env" {
   region  = var.region
   labels  = var.labels
 
+  dynamic "storage_config" {
+    for_each = var.storage_bucket != null ? ["storage_config"] : []
+    content {
+      bucket = var.storage_bucket
+    }
+  }
+
   config {
 
     environment_size = var.environment_size
+    resilience_mode  = var.resilience_mode
 
     node_config {
       network              = "projects/${local.network_project_id}/global/networks/${var.network}"
@@ -65,6 +73,12 @@ resource "google_composer_environment" "composer_env" {
         pypi_packages            = software_config.value["pypi_packages"]
         env_variables            = software_config.value["env_variables"]
         image_version            = software_config.value["image_version"]
+        dynamic "cloud_data_lineage_integration" {
+          for_each = var.cloud_data_lineage_integration ? ["cloud_data_lineage_integration"] : []
+          content {
+            enabled = var.cloud_data_lineage_integration
+          }
+        }
       }
     }
 
@@ -131,6 +145,16 @@ resource "google_composer_environment" "composer_env" {
           max_count  = worker.value["max_count"]
         }
       }
+
+      dynamic "triggerer" {
+        for_each = var.triggerer != null ? [var.triggerer] : []
+        content {
+          cpu       = triggerer.value["cpu"]
+          memory_gb = triggerer.value["memory_gb"]
+          count     = triggerer.value["count"]
+        }
+      }
+
     }
 
     dynamic "master_authorized_networks_config" {
@@ -146,6 +170,32 @@ resource "google_composer_environment" "composer_env" {
         }
       }
     }
+
+    dynamic "recovery_config" {
+      for_each = var.scheduled_snapshots_config != null ? ["recovery_config"] : []
+      content {
+        dynamic "scheduled_snapshots_config" {
+          for_each = var.scheduled_snapshots_config != null ? [var.scheduled_snapshots_config] : []
+          content {
+            enabled                    = scheduled_snapshots_config.value["enabled"]
+            snapshot_location          = scheduled_snapshots_config.value["snapshot_location"]
+            snapshot_creation_schedule = scheduled_snapshots_config.value["snapshot_creation_schedule"]
+            time_zone                  = scheduled_snapshots_config.value["time_zone"]
+          }
+        }
+      }
+    }
+
+    dynamic "maintenance_window" {
+      for_each = var.maintenance_window != null ? [var.maintenance_window] : []
+      content {
+        start_time = maintenance_window.value["start_time"]
+        end_time   = maintenance_window.value["end_time"]
+        recurrence = maintenance_window.value["recurrence"]
+      }
+
+    }
+
   }
 
   depends_on = [google_project_iam_member.composer_agent_service_account]

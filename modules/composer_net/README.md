@@ -23,7 +23,7 @@ This example illustrates how to use the `composer-net` module. Please see exampl
 
 | Name | Description |
 |------|-------------|
-| composer\_sa\_email | n/a |
+| composer\_sa\_email | composer service account email |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

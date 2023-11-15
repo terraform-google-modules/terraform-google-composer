@@ -15,15 +15,18 @@
  */
 
 variable "project_id" {
-  type = string
+  type        = string
+  description = "Project ID"
 }
 
 variable "location" {
-  type = string
+  type        = string
+  description = "Location of the resource"
 }
 
 variable "environment" {
-  type = string
+  type        = string
+  description = "Environment"
 }
 
 variable "type" {
