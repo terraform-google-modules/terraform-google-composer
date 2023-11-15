@@ -27,4 +27,5 @@ module "simple-composer-environment" {
   service_ip_allocation_range_name = var.service_ip_allocation_range_name
   node_count                       = 3
   machine_type                     = "n1-standard-1"
+  image_version                    = "composer-1.20.12-airflow-2.4.3"
 }
