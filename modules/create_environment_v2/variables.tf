@@ -148,15 +148,6 @@ variable "cloud_composer_network_ipv4_cidr_block" {
   default     = null
 }
 
-variable "web_server_allowed_ip_ranges" {
-  description = "The network-level access control policy for the Airflow web server. If unspecified, no network-level access restrictions will be applied."
-  default     = null
-  type = list(object({
-    value       = string,
-    description = string
-  }))
-}
-
 variable "maintenance_start_time" {
   description = "Time window specified for daily or recurring maintenance operations in RFC3339 format"
   type        = string
