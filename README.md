@@ -29,7 +29,7 @@ Simple usage is as follows:
 ```hcl
 module "composer" {
   source  = "terraform-google-modules/composer/google"
-  version = "~> 3.4"
+  version = "~> 4.0"
 
   project_id        = "<PROJECT ID>"
   region            = "us-central1"
