@@ -42,13 +42,6 @@ variable "subnetwork" {
   description = "The subnetwork to host the composer cluster."
 }
 
-
-variable "cloud_sql_ipv4_cidr" {
-  description = "The CIDR block from which IP range in tenant project will be reserved for Cloud SQL."
-  type        = string
-  default     = null
-}
-
 variable "master_ipv4_cidr" {
   description = "The CIDR block from which IP range in tenant project will be reserved for the master."
   type        = string

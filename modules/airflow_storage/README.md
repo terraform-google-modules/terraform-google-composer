@@ -24,14 +24,14 @@ See the examples for cloudsql support.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | destination\_path | The optional destination path | `string` | `null` | no |
-| environment | n/a | `string` | n/a | yes |
-| location | n/a | `string` | n/a | yes |
-| project\_id | n/a | `string` | n/a | yes |
+| environment | Environment | `string` | n/a | yes |
+| location | Location of the resource | `string` | n/a | yes |
+| project\_id | Project ID | `string` | n/a | yes |
 | source\_path | The source on the local file system | `string` | n/a | yes |
 | type | The type of resource to upload. Either dag, plugin or data | `string` | n/a | yes |
 
 ## Outputs
 
-No output.
+No outputs.
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

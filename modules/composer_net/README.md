@@ -8,7 +8,6 @@ This example illustrates how to use the `composer-net` module. Please see exampl
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | cloud\_composer\_network\_ipv4\_cidr\_block | The CIDR block from which IP range in tenant project will be reserved. | `string` | `null` | no |
-| cloud\_sql\_ipv4\_cidr | The CIDR block from which IP range in tenant project will be reserved for Cloud SQL. | `string` | `null` | no |
 | composer\_env\_name | Name of Cloud Composer Environment | `string` | n/a | yes |
 | gke\_pods\_services\_ip\_ranges | The secondary IP ranges for the GKE Pods and Services IP ranges | `list(string)` | n/a | yes |
 | gke\_subnet\_ip\_range | The GKE subnet IP range | `list(string)` | n/a | yes |
@@ -23,7 +22,7 @@ This example illustrates how to use the `composer-net` module. Please see exampl
 
 | Name | Description |
 |------|-------------|
-| composer\_sa\_email | n/a |
+| composer\_sa\_email | composer service account email |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

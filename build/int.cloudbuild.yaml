@@ -28,52 +28,6 @@ steps:
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do create']
 
-# ----- SUITE simple-composer-env-v1-local
-
-- id: init-simple-composer-env-v1
-  waitFor:
-    - prepare
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV1Module --stage init --verbose']
-- id: apply-simple-composer-env-v1
-  waitFor:
-    - init-simple-composer-env-v1
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV1Module --stage apply --verbose']
-- id: verify-simple-composer-env-v1
-  waitFor:
-    - apply-simple-composer-env-v1
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV1Module --stage verify --verbose']
-- id: destroy-simple-composer-env-v1
-  waitFor:
-    - verify-simple-composer-env-v1
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV1Module --stage destroy --verbose']
-
-  # ----- SUITE simple-composer-env-v2-local
-
-- id: init-simple-composer-env-v2
-  waitFor:
-    - prepare
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage init --verbose']
-- id: apply-simple-composer-env-v2
-  waitFor:
-    - init-simple-composer-env-v2
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage apply --verbose']
-- id: verify-simple-composer-env-v2
-  waitFor:
-    - apply-simple-composer-env-v2
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage verify --verbose']
-- id: destroy-simple-composer-env-v2
-  waitFor:
-    - verify-simple-composer-env-v2
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage destroy --verbose']
-
 # ----- SUITE airflow-connection-local
 
 - id: converge airflow-connection-local
@@ -111,11 +65,34 @@ steps:
 #   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
 #   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy airflow-pool-local']
 
-  # ----- SUITE composer-v2-sharedvpc-prereq-local
+  # ----- SUITE simple-composer-env-v2-local
+
+- id: init-simple-composer-env-v2
+  waitFor:
+    - verify airflow-pool-local
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage init --verbose']
+- id: apply-simple-composer-env-v2
+  waitFor:
+    - init-simple-composer-env-v2
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage apply --verbose']
+- id: verify-simple-composer-env-v2
+  waitFor:
+    - apply-simple-composer-env-v2
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage verify --verbose']
+- id: destroy-simple-composer-env-v2
+  waitFor:
+    - verify-simple-composer-env-v2
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage destroy --verbose']
+
+# ----- SUITE composer-v2-sharedvpc-prereq-local
 
 - id: init-composer-v2-sharedvpc-prereq
   waitFor:
-    - prepare
+    - destroy-simple-composer-env-v2
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2SharedVpcModule --stage init --verbose']
 - id: apply-composer-v2-sharedvpc-prereq
@@ -133,9 +110,32 @@ steps:
     - verify-composer-v2-sharedvpc-prereq
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2SharedVpcModule --stage destroy --verbose']
+
+# ----- SUITE simple-composer-env-v1-local
+
+- id: init-simple-composer-env-v1
+  waitFor:
+    - destroy-composer-v2-sharedvpc-prereq
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV1Module --stage init --verbose']
+- id: apply-simple-composer-env-v1
+  waitFor:
+    - init-simple-composer-env-v1
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV1Module --stage apply --verbose']
+- id: verify-simple-composer-env-v1
+  waitFor:
+    - apply-simple-composer-env-v1
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV1Module --stage verify --verbose']
+- id: destroy-simple-composer-env-v1
+  waitFor:
+    - verify-simple-composer-env-v1
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV1Module --stage destroy --verbose']
 tags:
 - 'ci'
 - 'integration'
 substitutions:
   _DOCKER_IMAGE_DEVELOPER_TOOLS: 'cft/developer-tools'
-  _DOCKER_TAG_VERSION_DEVELOPER_TOOLS: '1.5'
+  _DOCKER_TAG_VERSION_DEVELOPER_TOOLS: '1.17'

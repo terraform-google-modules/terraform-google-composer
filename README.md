@@ -6,6 +6,16 @@ The resources/services/activations/deletions that this module will create/trigge
 
 - Create a GCP Composer Environment
 
+## Compatibility
+
+This module is meant for use with Terraform 1.3+ and tested using Terraform 1.3+. If you find incompatibilities using Terraform >=1.3, please open an issue.
+
+## Version
+
+Current version is 4.0. Upgrade guides:
+
+- [3.X -> 4.0.](/docs/upgrading_to_v4.0.md)
+
 ## Usage
 Cloud Composer currently has two versions: V2 has greater flexibility in the Airflow core services
 (scheduler, webserver, worker) and has a more practical and scalable infrastructure. Therefore, we recommend prioritizing the

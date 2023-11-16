@@ -13,6 +13,7 @@
 # limitations under the License.
 
 output "composer_sa_email" {
-  value = google_service_account.composer_sa.email
+  description = "composer service account email"
+  value       = google_service_account.composer_sa.email
 }
 

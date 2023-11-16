@@ -103,7 +103,7 @@ variable "env_variables" {
 variable "image_version" {
   type        = string
   description = "The version of the aiflow running in the cloud composer environment."
-  default     = "composer-2.0.2-airflow-2.1.4"
+  default     = "composer-2.5.0-airflow-2.6.3"
 }
 
 variable "pypi_packages" {
@@ -146,15 +146,6 @@ variable "cloud_composer_network_ipv4_cidr_block" {
   description = "The CIDR block from which IP range in tenant project will be reserved."
   type        = string
   default     = null
-}
-
-variable "web_server_allowed_ip_ranges" {
-  description = "The network-level access control policy for the Airflow web server. If unspecified, no network-level access restrictions will be applied."
-  default     = null
-  type = list(object({
-    value       = string,
-    description = string
-  }))
 }
 
 variable "maintenance_start_time" {
@@ -229,6 +220,16 @@ variable "worker" {
   description = "Configuration for resources used by Airflow workers."
 }
 
+variable "triggerer" {
+  type = object({
+    cpu       = string
+    memory_gb = number
+    count     = number
+  })
+  default     = null
+  description = " Configuration for resources used by Airflow triggerer"
+}
+
 variable "master_authorized_networks" {
   type = list(object({
     cidr_block   = string
@@ -242,4 +243,43 @@ variable "grant_sa_agent_permission" {
   type        = bool
   default     = true
   description = "Cloud Composer relies on Workload Identity as Google API authentication mechanism for Airflow. "
+}
+
+variable "scheduled_snapshots_config" {
+  type = object({
+    enabled                    = optional(bool, false)
+    snapshot_location          = optional(string)
+    snapshot_creation_schedule = optional(string)
+    time_zone                  = optional(string)
+  })
+  default     = null
+  description = "The recovery configuration settings for the Cloud Composer environment"
+}
+
+variable "maintenance_window" {
+  type = object({
+    start_time = string
+    end_time   = string
+    recurrence = string
+  })
+  default     = null
+  description = "The recovery configuration settings for the Cloud Composer environment"
+}
+
+variable "storage_bucket" {
+  description = "Name of an existing Cloud Storage bucket to be used by the environment"
+  type        = string
+  default     = null
+}
+
+variable "resilience_mode" {
+  description = "Cloud Composer 2.1.15 or newer only. The resilience mode states whether high resilience is enabled for the environment or not. Values for resilience mode are `HIGH_RESILIENCE` for high resilience and `STANDARD_RESILIENCE` for standard resilience"
+  type        = string
+  default     = null
+}
+
+variable "cloud_data_lineage_integration" {
+  description = "Whether or not Dataplex data lineage integration is enabled. Cloud Composer environments in versions composer-2.1.2-airflow-..* and newer)"
+  type        = bool
+  default     = false
 }
