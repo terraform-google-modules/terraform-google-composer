@@ -19,7 +19,7 @@ Current version is 4.0. Upgrade guides:
 ## Usage
 Cloud Composer currently has two versions: V2 has greater flexibility in the Airflow core services
 (scheduler, webserver, worker) and has a more practical and scalable infrastructure. Therefore, we recommend prioritizing the
-use of V2 for new environments.
+use of [V2](/modules/create_environment_v2/) for new environments.
 
 You can find an overview of the product [here](https://cloud.google.com/composer/docs/composer-2/composer-overview)
 and the [list of major differences](https://cloud.google.com/composer/docs/concepts/versioning/composer-versioning-overview). Plans for Cloud Composer V1 end of support is documented [here](https://cloud.google.com/composer/docs/composer-versioning-overview#version-support-for-composer-1).
