@@ -25,6 +25,6 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-composer:airflow_storage/v3.4.0"
+    module_name = "blueprints/terraform/terraform-google-composer:airflow_storage/v4.0.0"
   }
 }

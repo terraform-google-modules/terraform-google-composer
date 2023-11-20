@@ -30,7 +30,7 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-composer/v3.4.0"
+    module_name = "blueprints/terraform/terraform-google-composer/v4.0.0"
   }
 
 }
