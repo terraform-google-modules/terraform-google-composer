@@ -1,15 +1,59 @@
 # Module Cloud Composer Environment ([V2](https://cloud.google.com/composer/docs/composer-2/composer-overview))
 
-This optional module is used to create a Cloud Composer environment.
+This module is used to create a Cloud Composer V2 environment.
+
 
 ```hcl
-module "composer" {
-  source = "terraform-google-modules/composer/google//modules/create_environment_v2"
+module "simple-composer-environment" {
+  source                               = "terraform-google-modules/composer/google//modules/create_environment_v2"
+  version                              = "~> 4.0"
+  project_id                           = var.project_id
+  composer_env_name                    = "test-composer-env"
+  region                               = "us-central1"
+  composer_service_account             = var.composer_service_account
+  network                              = "test-vpc"
+  subnetwork                           = "test-subnet"
+  pod_ip_allocation_range_name         = "test-subnet-pod-ip-name"
+  service_ip_allocation_range_name     = "test-subnet-service-ip-name"
+  grant_sa_agent_permission            = false
+  environment_size                     = "ENVIRONMENT_SIZE_SMALL"
+  enable_private_endpoint              = true
+  use_private_environment              = true
+  cloud_composer_connection_subnetwork = var.subnetwork_self_link
 
-  project = "project-123"
-  name    = "Composer-Prod-Env"
-  region  = "us-central1"
+  scheduler = {
+    cpu        = 0.5
+    memory_gb  = 1.875
+    storage_gb = 1
+    count      = 2
+  }
+  web_server = {
+    cpu        = 0.5
+    memory_gb  = 1.875
+    storage_gb = 1
+  }
+  worker = {
+    cpu        = 0.5
+    memory_gb  = 1.875
+    storage_gb = 1
+    min_count  = 2
+    max_count  = 3
+  }
+
+  scheduled_snapshots_config = {
+    enabled                    = true
+    snapshot_location          = "gs://snapshot-bucket-hdsfq86o"
+    snapshot_creation_schedule = "0 4 * * *"
+    time_zone                  = "UTC+01"
+  }
+
+  maintenance_window = {
+    start_time = "2023-01-01T00:00:00Z"
+    end_time   = "2023-01-01T12:00:00Z"
+    recurrence = "FREQ=WEEKLY;BYDAY=SU,WE,SA"
+  }
 }
+
 ```
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
@@ -18,24 +62,23 @@ module "composer" {
 |------|-------------|------|---------|:--------:|
 | airflow\_config\_overrides | Airflow configuration properties to override. Property keys contain the section and property names, separated by a hyphen, for example "core-dags\_are\_paused\_at\_creation". | `map(string)` | `{}` | no |
 | cloud\_composer\_connection\_subnetwork | When specified, the environment will use Private Service Connect instead of VPC peerings to connect to Cloud SQL in the Tenant Project | `string` | `null` | no |
-| cloud\_composer\_network\_ipv4\_cidr\_block | The CIDR block from which IP range in tenant project will be reserved. | `string` | `null` | no |
+| cloud\_composer\_network\_ipv4\_cidr\_block | The CIDR block from which IP range in tenant project will be reserved. Required if VPC peering is used to connect to CloudSql instead of PSC | `string` | `null` | no |
 | cloud\_data\_lineage\_integration | Whether or not Dataplex data lineage integration is enabled. Cloud Composer environments in versions composer-2.1.2-airflow-..* and newer) | `bool` | `false` | no |
-| cloud\_sql\_ipv4\_cidr | The CIDR block from which IP range in tenant project will be reserved for Cloud SQL. | `string` | `null` | no |
+| cloud\_sql\_ipv4\_cidr | The CIDR block from which IP range in tenant project will be reserved for Cloud SQL private service access | `string` | `null` | no |
 | composer\_env\_name | Name of Cloud Composer Environment | `string` | n/a | yes |
 | composer\_service\_account | Service Account for running Cloud Composer. | `string` | `null` | no |
 | enable\_ip\_masq\_agent | Deploys 'ip-masq-agent' daemon set in the GKE cluster and defines nonMasqueradeCIDRs equals to pod IP range so IP masquerading is used for all destination addresses, except between pods traffic. | `bool` | `false` | no |
-| enable\_private\_endpoint | Configure public access to the cluster endpoint. | `bool` | `false` | no |
+| enable\_private\_endpoint | Configure private access to the cluster endpoint. If true, access to the public endpoint of the GKE cluster is denied | `bool` | `false` | no |
 | env\_variables | Variables of the airflow environment. | `map(string)` | `{}` | no |
-| environment\_size | The environment size controls the performance parameters of the managed Cloud Composer infrastructure that includes the Airflow database. Values for environment size are: ENVIRONMENT\_SIZE\_SMALL, ENVIRONMENT\_SIZE\_MEDIUM, and ENVIRONMENT\_SIZE\_LARGE. | `string` | `"ENVIRONMENT_SIZE_MEDIUM"` | no |
+| environment\_size | The environment size controls the performance parameters of the managed Cloud Composer infrastructure that includes the Airflow database. Values for environment size are: `ENVIRONMENT_SIZE_SMALL`, `ENVIRONMENT_SIZE_MEDIUM`, and `ENVIRONMENT_SIZE_LARGE`. | `string` | `"ENVIRONMENT_SIZE_MEDIUM"` | no |
 | grant\_sa\_agent\_permission | Cloud Composer relies on Workload Identity as Google API authentication mechanism for Airflow. | `bool` | `true` | no |
 | image\_version | The version of the aiflow running in the cloud composer environment. | `string` | `"composer-2.5.0-airflow-2.6.3"` | no |
 | labels | The resource labels (a map of key/value pairs) to be applied to the Cloud Composer. | `map(string)` | `{}` | no |
 | maintenance\_end\_time | Time window specified for recurring maintenance operations in RFC3339 format | `string` | `null` | no |
 | maintenance\_recurrence | Frequency of the recurring maintenance window in RFC5545 format. | `string` | `null` | no |
 | maintenance\_start\_time | Time window specified for daily or recurring maintenance operations in RFC3339 format | `string` | `"05:00"` | no |
-| maintenance\_window | The recovery configuration settings for the Cloud Composer environment | <pre>object({<br>    start_time = string<br>    end_time   = string<br>    recurrence = string<br>  })</pre> | `null` | no |
 | master\_authorized\_networks | List of master authorized networks. If none are provided, disallow external access (except the cluster node IPs, which GKE automatically whitelists). | <pre>list(object({<br>    cidr_block   = string<br>    display_name = string<br>  }))</pre> | `[]` | no |
-| master\_ipv4\_cidr | The CIDR block from which IP range in tenant project will be reserved for the master. | `string` | `null` | no |
+| master\_ipv4\_cidr | The CIDR block from which IP range in tenant project will be reserved for the GKE master. Required when `use_private_environment` and `enable_private_endpoint` is `true` | `string` | `null` | no |
 | network | The VPC network to host the composer cluster. | `string` | n/a | yes |
 | network\_project\_id | The project ID of the shared VPC's host (for shared vpc support) | `string` | `""` | no |
 | pod\_ip\_allocation\_range\_name | The name of the cluster's secondary range used to allocate IP addresses to pods. | `string` | `null` | no |
@@ -60,6 +103,8 @@ module "composer" {
 | Name | Description |
 |------|-------------|
 | airflow\_uri | URI of the Apache Airflow Web UI hosted within the Cloud Composer Environment. |
+| composer\_env | Cloud Composer Environment |
+| composer\_env\_config | Cloud Composer Environment config |
 | composer\_env\_id | ID of Cloud Composer Environment. |
 | composer\_env\_name | Name of the Cloud Composer Environment. |
 | gcs\_bucket | Google Cloud Storage bucket which hosts DAGs for the Cloud Composer Environment. |

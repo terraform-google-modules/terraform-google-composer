@@ -23,6 +23,7 @@ module "simple-composer" {
   composer_service_account         = var.composer_sa
   network                          = google_compute_network.main.name
   subnetwork                       = google_compute_subnetwork.main.name
+  subnetwork_self_link             = google_compute_subnetwork.main.self_link
   pod_ip_allocation_range_name     = google_compute_subnetwork.main.secondary_ip_range[0].range_name
   service_ip_allocation_range_name = google_compute_subnetwork.main.secondary_ip_range[1].range_name
 }

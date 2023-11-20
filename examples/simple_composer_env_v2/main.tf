@@ -36,37 +36,48 @@ resource "google_storage_bucket_iam_member" "object_admin" {
 }
 
 module "simple-composer-environment" {
-  source                           = "../../modules/create_environment_v2"
-  project_id                       = var.project_id
-  composer_env_name                = var.composer_env_name
-  region                           = var.region
-  composer_service_account         = var.composer_service_account
-  network                          = var.network
-  subnetwork                       = var.subnetwork
-  pod_ip_allocation_range_name     = var.pod_ip_allocation_range_name
-  service_ip_allocation_range_name = var.service_ip_allocation_range_name
-  grant_sa_agent_permission        = false
-  environment_size                 = "ENVIRONMENT_SIZE_SMALL"
-  enable_private_endpoint          = true
-  use_private_environment          = true
+  source                               = "../../modules/create_environment_v2"
+  project_id                           = var.project_id
+  composer_env_name                    = var.composer_env_name
+  region                               = var.region
+  composer_service_account             = var.composer_service_account
+  network                              = var.network
+  subnetwork                           = var.subnetwork
+  pod_ip_allocation_range_name         = var.pod_ip_allocation_range_name
+  service_ip_allocation_range_name     = var.service_ip_allocation_range_name
+  grant_sa_agent_permission            = false
+  environment_size                     = "ENVIRONMENT_SIZE_SMALL"
+  enable_private_endpoint              = true
+  use_private_environment              = true
+  cloud_composer_connection_subnetwork = var.subnetwork_self_link
+  cloud_data_lineage_integration       = true
+  resilience_mode                      = "STANDARD_RESILIENCE"
 
   scheduler = {
     cpu        = 0.5
     memory_gb  = 1.875
     storage_gb = 1
     count      = 2
+
   }
   web_server = {
     cpu        = 0.5
     memory_gb  = 1.875
     storage_gb = 1
   }
+
   worker = {
     cpu        = 0.5
     memory_gb  = 1.875
     storage_gb = 1
     min_count  = 2
     max_count  = 3
+  }
+
+  triggerer = {
+    cpu       = 1
+    memory_gb = 1
+    count     = 2
   }
 
   scheduled_snapshots_config = {
@@ -76,11 +87,9 @@ module "simple-composer-environment" {
     time_zone                  = "UTC+01"
   }
 
-  maintenance_window = {
-    start_time = "2023-01-01T00:00:00Z"
-    end_time   = "2023-01-01T12:00:00Z"
-    recurrence = "FREQ=WEEKLY;BYDAY=SU,WE,SA"
-  }
+  maintenance_start_time = "2023-01-01T00:00:00Z"
+  maintenance_end_time   = "2023-01-01T12:00:00Z"
+  maintenance_recurrence = "FREQ=WEEKLY;BYDAY=SU,SA"
 
   depends_on = [
     google_storage_bucket_iam_member.object_admin,

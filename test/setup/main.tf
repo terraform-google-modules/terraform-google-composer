@@ -40,6 +40,8 @@ module "project" {
       roles = ["roles/container.serviceAgent"]
     }
   ]
+  disable_dependent_services  = false
+  disable_services_on_destroy = false
 }
 
 module "service_project" {
@@ -67,4 +69,6 @@ module "service_project" {
       roles = ["roles/container.serviceAgent"]
     }
   ]
+  disable_dependent_services  = false
+  disable_services_on_destroy = false
 }

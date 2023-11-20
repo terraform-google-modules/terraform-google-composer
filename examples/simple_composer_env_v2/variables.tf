@@ -41,7 +41,12 @@ variable "network" {
 }
 
 variable "subnetwork" {
-  description = "Subetwork where Cloud Composer is created."
+  description = "Name of the Subetwork where Cloud Composer is created."
+  type        = string
+}
+
+variable "subnetwork_self_link" {
+  description = "self_link of the Subetwork where Cloud Composer is created."
   type        = string
 }
 
