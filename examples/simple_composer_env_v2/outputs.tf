@@ -38,13 +38,3 @@ output "airflow_uri" {
   description = "URI of the Apache Airflow Web UI hosted within the Cloud Composer Environment."
   value       = module.simple-composer-environment.airflow_uri
 }
-
-output "composer_env" {
-  description = "Cloud Composer Environment."
-  value       = module.simple-composer-environment.composer_env
-}
-
-output "composer_env_config" {
-  description = "Cloud Composer Environment."
-  value       = module.simple-composer-environment.composer_env_config
-}
