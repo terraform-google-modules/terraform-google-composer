@@ -24,8 +24,6 @@ This example also creates a Cloud Storage Bucket for scheduled snapshots and ass
 | Name | Description |
 |------|-------------|
 | airflow\_uri | URI of the Apache Airflow Web UI hosted within the Cloud Composer Environment. |
-| composer\_env | Cloud Composer Environment. |
-| composer\_env\_config | Cloud Composer Environment. |
 | composer\_env\_id | ID of Cloud Composer Environment. |
 | composer\_env\_name | Name of the Cloud Composer Environment. |
 | gcs\_bucket | Google Cloud Storage bucket which hosts DAGs for the Cloud Composer Environment. |
