@@ -22,7 +22,7 @@ Cloud Composer currently has two versions: V2 has greater flexibility in the Air
 use of V2 for new environments.
 
 You can find an overview of the product [here](https://cloud.google.com/composer/docs/composer-2/composer-overview)
-and the [list of major differences](https://cloud.google.com/composer/docs/concepts/versioning/composer-versioning-overview).
+and the [list of major differences](https://cloud.google.com/composer/docs/concepts/versioning/composer-versioning-overview). Plans for Cloud Composer V1 end of support is documented [here](https://cloud.google.com/composer/docs/composer-versioning-overview#version-support-for-composer-1).
 
 Simple usage is as follows:
 
@@ -76,8 +76,8 @@ These sections describe requirements for using this module.
 
 The following dependencies must be available:
 
-- [Terraform][terraform] v0.13+
-- [Terraform Provider for GCP][terraform-provider-gcp] plugin v3.53+
+- [Terraform][terraform] v1.3+
+- [Terraform Provider for GCP][terraform-provider-gcp] plugin v5.3+
 
 ### Service Account
 
