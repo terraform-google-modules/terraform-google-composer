@@ -186,16 +186,6 @@ resource "google_composer_environment" "composer_env" {
       }
     }
 
-    dynamic "maintenance_window" {
-      for_each = var.maintenance_window != null ? [var.maintenance_window] : []
-      content {
-        start_time = maintenance_window.value["start_time"]
-        end_time   = maintenance_window.value["end_time"]
-        recurrence = maintenance_window.value["recurrence"]
-      }
-
-    }
-
   }
 
   depends_on = [google_project_iam_member.composer_agent_service_account]

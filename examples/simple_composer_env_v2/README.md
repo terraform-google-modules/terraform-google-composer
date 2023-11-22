@@ -1,6 +1,8 @@
 # Simple Cloud Composer Environment (V2) Example
 
-This example illustrates how to use the `composer` module.
+This example illustrates how to use the `composer` V2 module to deploy private composer environment with private GKE cluster, CloudSql instance and use private service connect (PSC) endpoint to connect to CloudSql instance. `use_private_environment` and `enable_private_endpoint` needs to be `true` to deploy private GKE cluster and CloudSql instance. `cloud_composer_connection_subnetwork` value will result in PSC endpoint for CloudSql instance.
+
+This example also creates a Cloud Storage Bucket for scheduled snapshots and assign appropriate permission(s) to Composer Service Account on the bucket.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
@@ -14,7 +16,8 @@ This example illustrates how to use the `composer` module.
 | project\_id | Project ID where Cloud Composer Environment is created. | `string` | n/a | yes |
 | region | Region where Cloud Composer Environment is created. | `string` | n/a | yes |
 | service\_ip\_allocation\_range\_name | The name of the services' secondary range used to allocate IP addresses to the cluster. | `string` | n/a | yes |
-| subnetwork | Subetwork where Cloud Composer is created. | `string` | n/a | yes |
+| subnetwork | Name of the Subetwork where Cloud Composer is created. | `string` | n/a | yes |
+| subnetwork\_self\_link | self\_link of the Subetwork where Cloud Composer is created. | `string` | n/a | yes |
 
 ## Outputs
 

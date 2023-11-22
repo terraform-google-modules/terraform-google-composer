@@ -61,7 +61,7 @@ variable "network_project_id" {
 
 variable "subnetwork" {
   type        = string
-  description = "The subnetwork to host the composer cluster."
+  description = "The name of the subnetwork to host the composer cluster."
 }
 
 variable "subnetwork_region" {
@@ -77,14 +77,14 @@ variable "composer_service_account" {
 }
 
 variable "pod_ip_allocation_range_name" {
-  description = "The name of the cluster's secondary range used to allocate IP addresses to pods."
+  description = "The name of the subnet secondary range, used to allocate IP addresses for the pods."
   type        = string
   default     = null
 }
 
 variable "service_ip_allocation_range_name" {
   type        = string
-  description = "The name of the services' secondary range used to allocate IP addresses to the cluster."
+  description = "The name of the subnet secondary range, used to allocate IP addresses for the Services."
   default     = null
 }
 
@@ -113,37 +113,37 @@ variable "pypi_packages" {
 }
 
 variable "use_private_environment" {
-  description = "Enable private environment."
+  description = "Create a private environment."
   type        = bool
   default     = false
 }
 
 variable "cloud_composer_connection_subnetwork" {
-  description = "When specified, the environment will use Private Service Connect instead of VPC peerings to connect to Cloud SQL in the Tenant Project"
+  description = "Subnetwork self-link. When specified, the environment will use Private Service Connect instead of VPC peerings to connect to CloudSQL in the Tenant Project. IP address of psc endpoint is allocated from this subnet"
   type        = string
   default     = null
 }
 
 variable "cloud_sql_ipv4_cidr" {
-  description = "The CIDR block from which IP range in tenant project will be reserved for Cloud SQL."
+  description = "The CIDR block from which IP range in tenant project will be reserved for Cloud SQL private service access. Required if VPC peering is used to connect to CloudSql instead of PSC"
   type        = string
   default     = null
 }
 
 variable "master_ipv4_cidr" {
-  description = "The CIDR block from which IP range in tenant project will be reserved for the master."
+  description = "The CIDR block from which IP range in tenant project will be reserved for the GKE master. Required when `use_private_environment` and `enable_private_endpoint` is `true`"
   type        = string
   default     = null
 }
 
 variable "enable_private_endpoint" {
-  description = "Configure public access to the cluster endpoint."
+  description = "Configure private access to the cluster endpoint. If true, access to the public endpoint of the GKE cluster is denied"
   type        = bool
   default     = false
 }
 
 variable "cloud_composer_network_ipv4_cidr_block" {
-  description = "The CIDR block from which IP range in tenant project will be reserved."
+  description = "The CIDR block from which IP range in tenant project will be reserved. Required if VPC peering is used to connect to CloudSql instead of PSC"
   type        = string
   default     = null
 }
@@ -168,7 +168,7 @@ variable "maintenance_recurrence" {
 
 variable "environment_size" {
   type        = string
-  description = "The environment size controls the performance parameters of the managed Cloud Composer infrastructure that includes the Airflow database. Values for environment size are: ENVIRONMENT_SIZE_SMALL, ENVIRONMENT_SIZE_MEDIUM, and ENVIRONMENT_SIZE_LARGE."
+  description = "The environment size controls the performance parameters of the managed Cloud Composer infrastructure that includes the Airflow database. Values for environment size are: `ENVIRONMENT_SIZE_SMALL`, `ENVIRONMENT_SIZE_MEDIUM`, and `ENVIRONMENT_SIZE_LARGE`."
   default     = "ENVIRONMENT_SIZE_MEDIUM"
 }
 
@@ -251,16 +251,6 @@ variable "scheduled_snapshots_config" {
     snapshot_location          = optional(string)
     snapshot_creation_schedule = optional(string)
     time_zone                  = optional(string)
-  })
-  default     = null
-  description = "The recovery configuration settings for the Cloud Composer environment"
-}
-
-variable "maintenance_window" {
-  type = object({
-    start_time = string
-    end_time   = string
-    recurrence = string
   })
   default     = null
   description = "The recovery configuration settings for the Cloud Composer environment"
