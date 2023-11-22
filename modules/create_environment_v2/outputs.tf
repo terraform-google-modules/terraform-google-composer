@@ -43,8 +43,3 @@ output "composer_env" {
   value       = google_composer_environment.composer_env
   description = "Cloud Composer Environment"
 }
-
-output "composer_env_config" {
-  value       = google_composer_environment.composer_env.config[0]
-  description = "Cloud Composer Environment config"
-}
