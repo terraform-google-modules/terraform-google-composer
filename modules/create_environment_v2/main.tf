@@ -186,12 +186,15 @@ resource "google_composer_environment" "composer_env" {
       }
     }
 
-    web_server_network_access_control {
-      dynamic "allowed_ip_range" {
-        for_each = { for x in var.web_server_network_access_control : x.allowed_ip_range => x }
-        content {
-          value       = allowed_ip_range.value["allowed_ip_range"]
-          description = allowed_ip_range.value["description"]
+    dynamic "web_server_network_access_control" {
+      for_each = var.web_server_network_access_control == null ? [] : ["web_server_network_access_control"]
+      content {
+        dynamic "allowed_ip_range" {
+          for_each = { for x in var.web_server_network_access_control : x.allowed_ip_range => x }
+          content {
+            value       = allowed_ip_range.value["allowed_ip_range"]
+            description = allowed_ip_range.value["description"]
+          }
         }
       }
     }
