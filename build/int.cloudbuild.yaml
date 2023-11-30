@@ -28,48 +28,11 @@ steps:
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do create']
 
-# ----- SUITE airflow-connection-local
-
-- id: converge airflow-connection-local
-  waitFor:
-    - create all
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge airflow-connection-local']
-- id: verify airflow-connection-local
-  waitFor:
-    - converge airflow-connection-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify airflow-connection-local']
-# - id: destroy airflow-connection-local
-#   waitFor:
-#     - verify airflow-connection-local
-#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy airflow-connection-local']
-
-
-# ----- SUITE airflow-pool-local
-
-- id: converge airflow-pool-local
-  waitFor:
-    - create all
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge airflow-pool-local']
-- id: verify airflow-pool-local
-  waitFor:
-    - converge airflow-pool-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify airflow-pool-local']
-# - id: destroy airflow-pool-local
-#   waitFor:
-#     - verify airflow-pool-local
-#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy airflow-pool-local']
-
-  # ----- SUITE simple-composer-env-v2-local
+  # ----- SUITE simple-composer-env-v2
 
 - id: init-simple-composer-env-v2
   waitFor:
-    - verify airflow-pool-local
+    - create all
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage init --verbose']
 - id: apply-simple-composer-env-v2
@@ -87,6 +50,7 @@ steps:
     - verify-simple-composer-env-v2
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage destroy --verbose']
+
 
 # ----- SUITE composer-v2-sharedvpc-prereq-local
 
@@ -115,7 +79,7 @@ steps:
 
 - id: init-simple-composer-env-v1
   waitFor:
-    - destroy-composer-v2-sharedvpc-prereq
+    - destroy-simple-composer-env-v2
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV1Module --stage init --verbose']
 - id: apply-simple-composer-env-v1
@@ -133,6 +97,42 @@ steps:
     - verify-simple-composer-env-v1
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV1Module --stage destroy --verbose']
+# ----- SUITE airflow-connection-local
+
+- id: converge airflow-connection-local
+  waitFor:
+    - destroy-simple-composer-env-v1
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge airflow-connection-local']
+- id: verify airflow-connection-local
+  waitFor:
+    - converge airflow-connection-local
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify airflow-connection-local']
+# - id: destroy airflow-connection-local
+#   waitFor:
+#     - verify airflow-connection-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy airflow-connection-local']
+
+
+# ----- SUITE airflow-pool-local
+
+- id: converge airflow-pool-local
+  waitFor:
+    - destroy-simple-composer-env-v1
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge airflow-pool-local']
+- id: verify airflow-pool-local
+  waitFor:
+    - converge airflow-pool-local
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify airflow-pool-local']
+# - id: destroy airflow-pool-local
+#   waitFor:
+#     - verify airflow-pool-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy airflow-pool-local']
 tags:
 - 'ci'
 - 'integration'
