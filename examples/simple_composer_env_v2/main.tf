@@ -94,4 +94,14 @@ module "simple-composer-environment" {
   depends_on = [
     google_storage_bucket_iam_member.object_admin,
   ]
+  web_server_network_access_control = [
+    {
+      allowed_ip_range = "192.0.2.0/24"
+      description      = "office net 1"
+    },
+    {
+      allowed_ip_range = "192.0.4.0/24"
+      description      = "office net 2"
+    },
+  ]
 }

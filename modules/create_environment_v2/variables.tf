@@ -273,3 +273,12 @@ variable "cloud_data_lineage_integration" {
   type        = bool
   default     = false
 }
+
+variable "web_server_network_access_control" {
+  type = list(object({
+    allowed_ip_range = string
+    description      = string
+  }))
+  default     = null
+  description = "The network-level access control policy for the Airflow web server. If unspecified, no network-level access restrictions are applied"
+}

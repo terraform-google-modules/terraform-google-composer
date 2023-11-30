@@ -92,6 +92,7 @@ module "simple-composer-environment" {
 | triggerer | Configuration for resources used by Airflow triggerer | <pre>object({<br>    cpu       = string<br>    memory_gb = number<br>    count     = number<br>  })</pre> | `null` | no |
 | use\_private\_environment | Create a private environment. | `bool` | `false` | no |
 | web\_server | Configuration for resources used by Airflow web server. | <pre>object({<br>    cpu        = string<br>    memory_gb  = number<br>    storage_gb = number<br>  })</pre> | <pre>{<br>  "cpu": 2,<br>  "memory_gb": 7.5,<br>  "storage_gb": 5<br>}</pre> | no |
+| web\_server\_network\_access\_control | The network-level access control policy for the Airflow web server. If unspecified, no network-level access restrictions are applied | <pre>list(object({<br>    allowed_ip_range = string<br>    description      = string<br>  }))</pre> | `null` | no |
 | worker | Configuration for resources used by Airflow workers. | <pre>object({<br>    cpu        = string<br>    memory_gb  = number<br>    storage_gb = number<br>    min_count  = number<br>    max_count  = number<br>  })</pre> | <pre>{<br>  "cpu": 2,<br>  "max_count": 6,<br>  "memory_gb": 7.5,<br>  "min_count": 2,<br>  "storage_gb": 5<br>}</pre> | no |
 
 ## Outputs
