@@ -32,7 +32,7 @@ steps:
 
 - id: init-simple-composer-env-v2
   waitFor:
-    - create allverify airflow-pool-local
+    - create all
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage init --verbose']
 - id: apply-simple-composer-env-v2
