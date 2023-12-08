@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [4.1.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v4.0.1...v4.1.0) (2023-12-04)
+
+
+### Features
+
+* add web_server_network_access_control ([#102](https://github.com/terraform-google-modules/terraform-google-composer/issues/102)) ([6064816](https://github.com/terraform-google-modules/terraform-google-composer/commit/60648169ee59b28c4c300d82c9b80db602b0670b))
+
 ## [4.0.1](https://github.com/terraform-google-modules/terraform-google-composer/compare/v4.0.0...v4.0.1) (2023-11-22)
 
 
