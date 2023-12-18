@@ -13,7 +13,9 @@
 # limitations under the License.
 
 module "composer_net" {
-  source                                 = "../../modules/composer_net"
+  source  = "terraform-google-modules/composer/google//modules/composer_net"
+  version = "~> 4.0"
+
   service_project_id                     = var.service_project_id
   network_project_id                     = var.project_id
   composer_env_name                      = "san-composer-2"
@@ -29,7 +31,9 @@ module "composer_env" {
   depends_on = [
     module.composer_net
   ]
-  source                                 = "../../modules/create_environment_v2"
+  source  = "terraform-google-modules/composer/google//modules/create_environment_v2"
+  version = "~> 4.0"
+
   project_id                             = var.service_project_id
   network_project_id                     = var.project_id
   composer_env_name                      = "san-composer-2"

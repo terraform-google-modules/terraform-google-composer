@@ -36,7 +36,9 @@ resource "google_storage_bucket_iam_member" "object_admin" {
 }
 
 module "simple-composer-environment" {
-  source                               = "../../modules/create_environment_v2"
+  source  = "terraform-google-modules/composer/google//modules/create_environment_v2"
+  version = "~> 4.0"
+
   project_id                           = var.project_id
   composer_env_name                    = var.composer_env_name
   region                               = var.region
