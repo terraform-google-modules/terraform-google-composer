@@ -15,7 +15,9 @@
  */
 
 module "simple-composer-environment" {
-  source                           = "../../modules/create_environment_v1"
+  source  = "terraform-google-modules/composer/google//modules/create_environment_v1"
+  version = "~> 4.0"
+
   project_id                       = var.project_id
   composer_env_name                = var.composer_env_name
   region                           = var.region
@@ -32,7 +34,9 @@ module "simple-composer-environment" {
 
 # Making the k8s master globally available is only to make the integration testing portable and should be removed
 module "master-authorized-networks" {
-  source      = "../../modules/master_authorized_networks"
+  source  = "terraform-google-modules/composer/google//modules/master_authorized_networks"
+  version = "~> 4.0"
+
   project_id  = var.project_id
   zone        = var.zone
   gke_cluster = module.simple-composer-environment.gke_cluster
@@ -42,7 +46,9 @@ module "master-authorized-networks" {
 }
 
 module "example-1" {
-  source            = "../../modules/airflow_connection"
+  source  = "terraform-google-modules/composer/google//modules/airflow_connection"
+  version = "~> 4.0"
+
   project_id        = var.project_id
   composer_env_name = module.simple-composer-environment.composer_env_name
   region            = var.region
@@ -55,7 +61,9 @@ module "example-1" {
 }
 
 module "example-2" {
-  source            = "../../modules/airflow_connection"
+  source  = "terraform-google-modules/composer/google//modules/airflow_connection"
+  version = "~> 4.0"
+
   project_id        = var.project_id
   composer_env_name = module.simple-composer-environment.composer_env_name
   region            = var.region
@@ -73,7 +81,9 @@ module "example-2" {
 
 # Connections can be defined externally if you wish
 module "example-3" {
-  source            = "../../modules/airflow_connection"
+  source  = "terraform-google-modules/composer/google//modules/airflow_connection"
+  version = "~> 4.0"
+
   project_id        = var.project_id
   composer_env_name = module.simple-composer-environment.composer_env_name
   region            = var.region
