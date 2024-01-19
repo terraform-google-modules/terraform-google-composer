@@ -282,3 +282,9 @@ variable "web_server_network_access_control" {
   default     = null
   description = "The network-level access control policy for the Airflow web server. If unspecified, no network-level access restrictions are applied"
 }
+
+variable "kms_key_name" {
+  description = "Customer-managed Encryption Key fully qualified resource name, i.e. projects/project-id/locations/location/keyRings/keyring/cryptoKeys/key."
+  type        = string
+  default     = null
+}
