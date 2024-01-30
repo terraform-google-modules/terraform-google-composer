@@ -199,6 +199,13 @@ resource "google_composer_environment" "composer_env" {
       }
     }
 
+    dynamic "encryption_config" {
+      for_each = var.kms_key_name != null ? ["encryption_config"] : []
+      content {
+        kms_key_name = var.kms_key_name
+      }
+    }
+
   }
 
   depends_on = [google_project_iam_member.composer_agent_service_account]
