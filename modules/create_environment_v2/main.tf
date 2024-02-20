@@ -206,6 +206,15 @@ resource "google_composer_environment" "composer_env" {
       }
     }
 
+    dynamic "data_retention_config" {
+      for_each = var.task_logs_retention_storage_mode == null ? [] : ["data_retention_config"]
+      content {
+        task_logs_retention_config {
+          storage_mode = var.task_logs_retention_storage_mode
+        }
+      }
+    }
+
   }
 
   depends_on = [google_project_iam_member.composer_agent_service_account]
