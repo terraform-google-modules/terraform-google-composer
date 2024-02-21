@@ -54,7 +54,6 @@ module "simple-composer-environment" {
   cloud_composer_connection_subnetwork = var.subnetwork_self_link
   cloud_data_lineage_integration       = true
   resilience_mode                      = "STANDARD_RESILIENCE"
-  task_logs_retention_storage_mode     = "CLOUD_LOGGING_ONLY"
 
   scheduler = {
     cpu        = 0.5
