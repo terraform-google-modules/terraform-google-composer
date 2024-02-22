@@ -19,7 +19,7 @@ composer.cloud.google.com
 resource "random_string" "composer_cloud_zone" {
   length  = 4
   special = false
-  lower   = true
+  upper   = false
 }
 
 resource "google_dns_managed_zone" "composer_cloud_zone" {
