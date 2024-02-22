@@ -15,6 +15,7 @@ This module is meant for use with Terraform 1.3+ and tested using Terraform 1.3+
 Current version is 4.0. Upgrade guides:
 
 - [3.X -> 4.0.](/docs/upgrading_to_v4.0.md)
+- [4.X -> 5.0.](/docs/upgrading_to_v5.0.md)
 
 ## Usage
 Cloud Composer currently has two versions: V2 has greater flexibility in the Airflow core services

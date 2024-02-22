@@ -288,3 +288,9 @@ variable "kms_key_name" {
   type        = string
   default     = null
 }
+
+variable "task_logs_retention_storage_mode" {
+  description = "The mode of storage for Airflow workers task logs. Values for storage mode are CLOUD_LOGGING_ONLY to only store logs in cloud logging and CLOUD_LOGGING_AND_CLOUD_STORAGE to store logs in cloud logging and cloud storage. Cloud Composer 2.0.23 or newer only"
+  type        = string
+  default     = null
+}

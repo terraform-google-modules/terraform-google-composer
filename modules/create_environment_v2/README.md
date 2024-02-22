@@ -2,11 +2,22 @@
 
 This module is used to create a Cloud Composer V2 environment.
 
+## Compatibility
+
+This module is meant for use with Terraform 1.3+ and tested using Terraform 1.3+. If you find incompatibilities using Terraform >=1.3, please open an issue.
+
+## Version
+
+Current version is 4.0. Upgrade guides:
+
+- [3.X -> 4.0.](/docs/upgrading_to_v4.0.md)
+- [4.X -> 5.0.](/docs/upgrading_to_v5.0.md)
+
 
 ```hcl
 module "simple-composer-environment" {
   source                               = "terraform-google-modules/composer/google//modules/create_environment_v2"
-  version                              = "~> 4.0"
+  version                              = "~> 5.0"
   project_id                           = var.project_id
   composer_env_name                    = "test-composer-env"
   region                               = "us-central1"
@@ -90,6 +101,7 @@ module "simple-composer-environment" {
 | subnetwork | The name of the subnetwork to host the composer cluster. | `string` | n/a | yes |
 | subnetwork\_region | The subnetwork region of the shared VPC's host (for shared vpc support) | `string` | `""` | no |
 | tags | Tags applied to all nodes. Tags are used to identify valid sources or targets for network firewalls. | `set(string)` | `[]` | no |
+| task\_logs\_retention\_storage\_mode | The mode of storage for Airflow workers task logs. Values for storage mode are CLOUD\_LOGGING\_ONLY to only store logs in cloud logging and CLOUD\_LOGGING\_AND\_CLOUD\_STORAGE to store logs in cloud logging and cloud storage. Cloud Composer 2.0.23 or newer only | `string` | `null` | no |
 | triggerer | Configuration for resources used by Airflow triggerer | <pre>object({<br>    cpu       = string<br>    memory_gb = number<br>    count     = number<br>  })</pre> | `null` | no |
 | use\_private\_environment | Create a private environment. | `bool` | `false` | no |
 | web\_server | Configuration for resources used by Airflow web server. | <pre>object({<br>    cpu        = string<br>    memory_gb  = number<br>    storage_gb = number<br>  })</pre> | <pre>{<br>  "cpu": 2,<br>  "memory_gb": 7.5,<br>  "storage_gb": 5<br>}</pre> | no |
