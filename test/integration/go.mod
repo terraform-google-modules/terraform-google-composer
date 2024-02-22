@@ -1,4 +1,4 @@
-module github.com/GoogleCloudPlatform/terraform-google-cloud-armor/test/integration
+module github.com/terraform-google-modules/terraform-google-composer/test/integration
 
 go 1.21
 
