@@ -82,7 +82,7 @@ steps:
 
 - id: converge airflow-connection-local
   waitFor:
-    - destroy-simple-composer-env-v2
+    - destroy-composer-v2-sharedvpc-prereq
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge airflow-connection-local']
 - id: verify airflow-connection-local
@@ -101,7 +101,7 @@ steps:
 
 - id: converge airflow-pool-local
   waitFor:
-    - destroy-simple-composer-env-v2
+    - destroy-composer-v2-sharedvpc-prereq
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge airflow-pool-local']
 - id: verify airflow-pool-local
