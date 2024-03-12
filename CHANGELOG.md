@@ -8,6 +8,18 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [5.0.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v4.1.0...v5.0.0) (2024-03-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **TPG>=5.14:** add data_retention_config block ([#121](https://github.com/terraform-google-modules/terraform-google-composer/issues/121))
+
+### Features
+
+* add cmek support in composer_env_v2 ([#113](https://github.com/terraform-google-modules/terraform-google-composer/issues/113)) ([0fe2605](https://github.com/terraform-google-modules/terraform-google-composer/commit/0fe2605df22e658212e5a3b9048939ecf2837bcc))
+* **TPG>=5.14:** add data_retention_config block ([#121](https://github.com/terraform-google-modules/terraform-google-composer/issues/121)) ([ca0dfcc](https://github.com/terraform-google-modules/terraform-google-composer/commit/ca0dfcca64f3e3103a7ece9f2f3bffa43e2bfa95))
+
 ## [4.1.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v4.0.1...v4.1.0) (2023-12-04)
 
 
