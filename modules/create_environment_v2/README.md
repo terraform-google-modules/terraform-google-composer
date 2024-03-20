@@ -31,6 +31,7 @@ module "simple-composer-environment" {
   enable_private_endpoint              = true
   use_private_environment              = true
   cloud_composer_connection_subnetwork = var.subnetwork_self_link
+  enable_privately_used_public_ips     = var.enable_privately_used_public_ips
 
   scheduler = {
     cpu        = 0.5
@@ -76,6 +77,7 @@ module "simple-composer-environment" {
 | composer\_service\_account | Service Account for running Cloud Composer. | `string` | `null` | no |
 | enable\_ip\_masq\_agent | Deploys 'ip-masq-agent' daemon set in the GKE cluster and defines nonMasqueradeCIDRs equals to pod IP range so IP masquerading is used for all destination addresses, except between pods traffic. | `bool` | `false` | no |
 | enable\_private\_endpoint | Configure private access to the cluster endpoint. If true, access to the public endpoint of the GKE cluster is denied | `bool` | `false` | no |
+| enable\_privately\_used\_public\_ips | When enabled, IPs from public (non-RFC1918) ranges can be used for ip\_allocation\_policy.cluster\_ipv4\_cidr\_block and ip\_allocation\_policy.service\_ipv4\_cidr\_block. | `bool` | `false` | no |
 | env\_variables | Variables of the airflow environment. | `map(string)` | `{}` | no |
 | environment\_size | The environment size controls the performance parameters of the managed Cloud Composer infrastructure that includes the Airflow database. Values for environment size are: `ENVIRONMENT_SIZE_SMALL`, `ENVIRONMENT_SIZE_MEDIUM`, and `ENVIRONMENT_SIZE_LARGE`. | `string` | `"ENVIRONMENT_SIZE_MEDIUM"` | no |
 | grant\_sa\_agent\_permission | Cloud Composer relies on Workload Identity as Google API authentication mechanism for Airflow. | `bool` | `true` | no |

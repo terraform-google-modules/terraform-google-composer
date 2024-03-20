@@ -86,6 +86,7 @@ resource "google_composer_environment" "composer_env" {
       for_each = var.use_private_environment ? [
         {
           enable_private_endpoint                = var.enable_private_endpoint
+          enable_privately_used_public_ips       = var.enable_privately_used_public_ips
           master_ipv4_cidr_block                 = var.master_ipv4_cidr
           cloud_sql_ipv4_cidr_block              = var.cloud_sql_ipv4_cidr
           cloud_composer_network_ipv4_cidr_block = var.cloud_composer_network_ipv4_cidr_block
@@ -93,6 +94,7 @@ resource "google_composer_environment" "composer_env" {
       }] : []
       content {
         enable_private_endpoint                = private_environment_config.value["enable_private_endpoint"]
+        enable_privately_used_public_ips       = private_environment_config.value["enable_privately_used_public_ips"]
         master_ipv4_cidr_block                 = private_environment_config.value["master_ipv4_cidr_block"]
         cloud_sql_ipv4_cidr_block              = private_environment_config.value["cloud_sql_ipv4_cidr_block"]
         cloud_composer_network_ipv4_cidr_block = private_environment_config.value["cloud_composer_network_ipv4_cidr_block"]

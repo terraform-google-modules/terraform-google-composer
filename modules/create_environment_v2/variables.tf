@@ -142,6 +142,12 @@ variable "enable_private_endpoint" {
   default     = false
 }
 
+variable "enable_privately_used_public_ips" {
+  description = "When enabled, IPs from public (non-RFC1918) ranges can be used for ip_allocation_policy.cluster_ipv4_cidr_block and ip_allocation_policy.service_ipv4_cidr_block."
+  type        = bool
+  default     = false
+}
+
 variable "cloud_composer_network_ipv4_cidr_block" {
   description = "The CIDR block from which IP range in tenant project will be reserved. Required if VPC peering is used to connect to CloudSql instead of PSC"
   type        = string
