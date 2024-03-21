@@ -71,3 +71,9 @@ variable "composer_env_name" {
   description = "Name of Cloud Composer Environment"
   type        = string
 }
+
+variable "dns_zone_name" {
+  description = "Composer DNS private zone name"
+  type        = string
+  default     = "composer-google-cloud-dns"
+}

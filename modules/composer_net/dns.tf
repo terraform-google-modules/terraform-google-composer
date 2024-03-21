@@ -17,7 +17,7 @@ composer.cloud.google.com
 ***************************************/
 
 resource "google_dns_managed_zone" "composer_cloud_zone" {
-  name        = "composer-google-cloud-dns"
+  name        = var.dns_zone_name
   project     = var.network_project_id
   dns_name    = "composer.cloud.google.com."
   description = "composer.cloud.google.com zone"
