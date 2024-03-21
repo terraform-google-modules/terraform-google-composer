@@ -143,7 +143,7 @@ variable "enable_private_endpoint" {
 }
 
 variable "enable_privately_used_public_ips" {
-  description = "When enabled, IPs from public (non-RFC1918) ranges can be used for ip_allocation_policy.cluster_ipv4_cidr_block and ip_allocation_policy.service_ipv4_cidr_block."
+  description = "When enabled, IPs from public (non-RFC1918) ranges can be used for pod_ip_allocation_range_name and service_ip_allocation_range_name."
   type        = bool
   default     = false
 }
