@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [5.1.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v5.0.0...v5.1.0) (2024-04-12)
+
+
+### Features
+
+* adds var.enable_privately_used_public_ips to create_environment_v2 ([#129](https://github.com/terraform-google-modules/terraform-google-composer/issues/129)) ([47884d5](https://github.com/terraform-google-modules/terraform-google-composer/commit/47884d5c99496450e3544b1fab256ce5adffba57))
+
 ## [5.0.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v4.1.0...v5.0.0) (2024-03-07)
 
 
