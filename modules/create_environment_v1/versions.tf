@@ -30,11 +30,11 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-composer:create_environment_v1/v5.1.0"
+    module_name = "blueprints/terraform/terraform-google-composer:create_environment_v1/v5.2.0"
   }
 
   provider_meta "google-beta" {
-    module_name = "blueprints/terraform/terraform-google-composer:create_environment_v1/v5.1.0"
+    module_name = "blueprints/terraform/terraform-google-composer:create_environment_v1/v5.2.0"
   }
 
 }
