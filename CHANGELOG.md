@@ -8,6 +8,32 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [5.2.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v5.1.0...v5.2.0) (2024-10-08)
+
+
+### Features
+
+* **deps:** Update Terraform Google Provider to v6 (major) ([#145](https://github.com/terraform-google-modules/terraform-google-composer/issues/145)) ([f44a42a](https://github.com/terraform-google-modules/terraform-google-composer/commit/f44a42a3ea1c494efb854fe9c1fd2d6f24fb007a))
+
+## [5.1.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v5.0.0...v5.1.0) (2024-04-12)
+
+
+### Features
+
+* adds var.enable_privately_used_public_ips to create_environment_v2 ([#129](https://github.com/terraform-google-modules/terraform-google-composer/issues/129)) ([47884d5](https://github.com/terraform-google-modules/terraform-google-composer/commit/47884d5c99496450e3544b1fab256ce5adffba57))
+
+## [5.0.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v4.1.0...v5.0.0) (2024-03-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **TPG>=5.14:** add data_retention_config block ([#121](https://github.com/terraform-google-modules/terraform-google-composer/issues/121))
+
+### Features
+
+* add cmek support in composer_env_v2 ([#113](https://github.com/terraform-google-modules/terraform-google-composer/issues/113)) ([0fe2605](https://github.com/terraform-google-modules/terraform-google-composer/commit/0fe2605df22e658212e5a3b9048939ecf2837bcc))
+* **TPG>=5.14:** add data_retention_config block ([#121](https://github.com/terraform-google-modules/terraform-google-composer/issues/121)) ([ca0dfcc](https://github.com/terraform-google-modules/terraform-google-composer/commit/ca0dfcca64f3e3103a7ece9f2f3bffa43e2bfa95))
+
 ## [4.1.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v4.0.1...v4.1.0) (2023-12-04)
 
 

@@ -18,6 +18,6 @@ terraform {
   required_version = ">= 0.13"
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-composer:master_authorized_networks/v4.1.0"
+    module_name = "blueprints/terraform/terraform-google-composer:master_authorized_networks/v5.2.0"
   }
 }

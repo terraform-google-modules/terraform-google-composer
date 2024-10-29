@@ -20,17 +20,17 @@ terraform {
 
     google = {
       source  = "hashicorp/google"
-      version = ">= 3.53, < 6"
+      version = ">= 3.53, < 7"
     }
 
     google-beta = {
       source  = "hashicorp/google-beta"
-      version = ">= 3.53, < 6"
+      version = ">= 3.53, < 7"
     }
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-composer/v4.1.0"
+    module_name = "blueprints/terraform/terraform-google-composer/v5.2.0"
   }
 
 }
