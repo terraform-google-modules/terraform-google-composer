@@ -9,6 +9,7 @@ This example illustrates how to use the `composer-net` module. Please see exampl
 |------|-------------|------|---------|:--------:|
 | cloud\_composer\_network\_ipv4\_cidr\_block | The CIDR block from which IP range in tenant project will be reserved. | `string` | `null` | no |
 | composer\_env\_name | Name of Cloud Composer Environment | `string` | n/a | yes |
+| dns\_zone\_name | Composer DNS private zone name | `string` | `"composer-google-cloud-dns"` | no |
 | gke\_pods\_services\_ip\_ranges | The secondary IP ranges for the GKE Pods and Services IP ranges | `list(string)` | n/a | yes |
 | gke\_subnet\_ip\_range | The GKE subnet IP range | `list(string)` | n/a | yes |
 | master\_ipv4\_cidr | The CIDR block from which IP range in tenant project will be reserved for the master. | `string` | `null` | no |
