@@ -103,7 +103,7 @@ variable "env_variables" {
 variable "image_version" {
   type        = string
   description = "The version of the aiflow running in the cloud composer environment."
-  default     = "composer-3-airflow-2.10.2"
+  default     = "composer-2.10.2-airflow-2.10.2"
 }
 
 variable "pypi_packages" {
