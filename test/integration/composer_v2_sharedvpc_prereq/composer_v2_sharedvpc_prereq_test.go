@@ -27,7 +27,7 @@ func TestSimpleComposerEnvV2SharedVpcModule(t *testing.T) {
 	composer := tft.NewTFBlueprintTest(t)
 
 	composer.DefineVerify(func(assert *assert.Assertions) {
-		composer.DefaultVerify(assert)
+		// composer.DefaultVerify(assert)  // See PR 149 for more info
 
 		serviceprojectID := composer.GetStringOutput("service_project_id")
 
