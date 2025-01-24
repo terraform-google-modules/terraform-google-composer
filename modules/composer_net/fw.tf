@@ -89,7 +89,7 @@ resource "google_compute_firewall" "allow-gkeworkers-egress-master-ip" {
   }
 
   direction               = "EGRESS"
-  destination_ranges      = [var.master_ipv4_cidr]
+  destination_ranges      = var.master_ipv4_cidr != null ? [var.master_ipv4_cidr] : []
   target_service_accounts = [google_service_account.composer_sa.email]
   log_config {
     metadata = "INCLUDE_ALL_METADATA"
@@ -172,7 +172,7 @@ resource "google_compute_firewall" "allow-gkeworkers-composer-network-ip" {
   }
   target_service_accounts = [google_service_account.composer_sa.email]
   direction               = "EGRESS"
-  destination_ranges      = [var.cloud_composer_network_ipv4_cidr_block]
+  destination_ranges      = var.cloud_composer_network_ipv4_cidr_block != null ? [var.cloud_composer_network_ipv4_cidr_block] : []
 
   log_config {
     metadata = "INCLUDE_ALL_METADATA"
