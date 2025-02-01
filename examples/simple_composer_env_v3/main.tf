@@ -56,27 +56,27 @@ module "simple-composer-environment" {
 
   scheduler = {
     cpu        = 0.5
-    memory_gb  = 1.875
+    memory_gb  = 1
     storage_gb = 1
     count      = 2
   }
 
   dag_processor = {
     cpu        = 0.5
-    memory_gb  = 1.875
+    memory_gb  = 1
     storage_gb = 1
     count      = 2
   }
 
   web_server = {
     cpu        = 0.5
-    memory_gb  = 1.875
+    memory_gb  = 1
     storage_gb = 1
   }
 
   worker = {
     cpu        = 0.5
-    memory_gb  = 1.875
+    memory_gb  = 1
     storage_gb = 1
     min_count  = 2
     max_count  = 3
