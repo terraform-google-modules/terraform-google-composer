@@ -63,12 +63,12 @@ steps:
   waitFor:
     - init-all
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage apply --verbose']
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV3Module --stage apply --verbose']
 - id: verify-simple-composer-env-v3
   waitFor:
     - apply-simple-composer-env-v3
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage verify --verbose']
+  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV3Module --stage verify --verbose']
 
 
 - id: destroy-all
