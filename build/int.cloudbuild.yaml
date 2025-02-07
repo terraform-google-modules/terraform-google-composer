@@ -43,11 +43,6 @@ steps:
     - apply-simple-composer-env-v2
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage verify --verbose']
-- id: destroy-simple-composer-env-v2
-  waitFor:
-    - verify-simple-composer-env-v2
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage destroy --verbose']
 
 # ----- SUITE composer-v2-sharedvpc-prereq-local
 
@@ -62,11 +57,6 @@ steps:
     - apply-composer-v2-sharedvpc-prereq
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2SharedVpcModule --stage verify --verbose']
-- id: destroy-composer-v2-sharedvpc-prereq
-  waitFor:
-    - verify-composer-v2-sharedvpc-prereq
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2SharedVpcModule --stage destroy --verbose']
 
   # ----- SUITE simple-composer-env-v3
 
@@ -80,11 +70,15 @@ steps:
     - apply-simple-composer-env-v3
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage verify --verbose']
-- id: destroy-simple-composer-env-v3
+
+
+- id: destroy-all
   waitFor:
+    - verify-simple-composer-env-v2
+    - verify-composer-v2-sharedvpc-prereq
     - verify-simple-composer-env-v3
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2Module --stage destroy --verbose']
+  args: ['/bin/bash', '-c', 'cft test run all --stage destroy --verbose']
 
 tags:
 - 'ci'
