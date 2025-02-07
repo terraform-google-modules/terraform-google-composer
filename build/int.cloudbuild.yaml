@@ -49,7 +49,6 @@ steps:
 - id: apply-composer-v2-sharedvpc-prereq
   waitFor:
     - init-all
-    - destroy-simple-composer-env-v2
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'cft test run TestSimpleComposerEnvV2SharedVpcModule --stage apply --verbose']
 - id: verify-composer-v2-sharedvpc-prereq
