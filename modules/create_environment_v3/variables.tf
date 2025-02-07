@@ -97,7 +97,7 @@ variable "env_variables" {
 variable "image_version" {
   type        = string
   description = "The version of the aiflow running in the cloud composer environment."
-  default     = "composer-3-airflow-2.10.2-build.5"
+  default     = "composer-3-airflow-2.10.2-build.7"
 }
 
 variable "web_server_plugins_mode" {
@@ -115,6 +115,12 @@ variable "pypi_packages" {
 variable "use_private_environment" {
   description = "Create a private environment. If true, a private Composer environment will be created."
   type        = bool
+  default     = false
+}
+
+variable "enable_private_builds_only" {
+  type        = bool
+  description = "If true, builds performed during operations that install Python packages have only private connectivity to Google services. If false, the builds also have access to the internet."
   default     = false
 }
 

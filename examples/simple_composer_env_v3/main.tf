@@ -51,42 +51,9 @@ module "simple-composer-environment" {
   environment_size          = "ENVIRONMENT_SIZE_SMALL"
 
   use_private_environment        = true
+  enable_private_builds_only     = true
   cloud_data_lineage_integration = true
   resilience_mode                = "STANDARD_RESILIENCE"
-
-  scheduler = {
-    cpu        = 0.5
-    memory_gb  = 1
-    storage_gb = 1
-    count      = 2
-  }
-
-  dag_processor = {
-    cpu        = 0.5
-    memory_gb  = 1
-    storage_gb = 1
-    count      = 2
-  }
-
-  web_server = {
-    cpu        = 0.5
-    memory_gb  = 1
-    storage_gb = 1
-  }
-
-  worker = {
-    cpu        = 0.5
-    memory_gb  = 1
-    storage_gb = 1
-    min_count  = 2
-    max_count  = 3
-  }
-
-  triggerer = {
-    cpu       = 1
-    memory_gb = 1
-    count     = 2
-  }
 
   scheduled_snapshots_config = {
     enabled                    = true
@@ -96,7 +63,7 @@ module "simple-composer-environment" {
   }
 
   maintenance_start_time = "2025-02-01T00:00:00Z"
-  maintenance_end_time   = "2025-03-01T12:00:00Z"
+  maintenance_end_time   = "2025-05-01T12:00:00Z"
   maintenance_recurrence = "FREQ=WEEKLY;BYDAY=SU,SA"
 
   depends_on = [

@@ -70,10 +70,11 @@ module "simple-composer-environment" {
 | composer\_service\_account | Service Account for running Cloud Composer. | `string` | `null` | no |
 | create\_network\_attachment | Either create a new network attachment or use existing one. If true, provide the subnet details. | `bool` | `true` | no |
 | dag\_processor | Configuration for resources used by Airflow workers. | <pre>object({<br>    cpu        = string<br>    memory_gb  = number<br>    storage_gb = number<br>    count      = number<br>  })</pre> | <pre>{<br>  "count": 2,<br>  "cpu": 2,<br>  "memory_gb": 7.5,<br>  "storage_gb": 5<br>}</pre> | no |
+| enable\_private\_builds\_only | If true, builds performed during operations that install Python packages have only private connectivity to Google services. If false, the builds also have access to the internet. | `bool` | `false` | no |
 | env\_variables | Variables of the airflow environment. | `map(string)` | `{}` | no |
 | environment\_size | The environment size controls the performance parameters of the managed Cloud Composer infrastructure that includes the Airflow database. Values for environment size are: `ENVIRONMENT_SIZE_SMALL`, `ENVIRONMENT_SIZE_MEDIUM`, and `ENVIRONMENT_SIZE_LARGE`. | `string` | `"ENVIRONMENT_SIZE_MEDIUM"` | no |
 | grant\_sa\_agent\_permission | Cloud Composer relies on Workload Identity as Google API authentication mechanism for Airflow. | `bool` | `true` | no |
-| image\_version | The version of the aiflow running in the cloud composer environment. | `string` | `"composer-3-airflow-2.10.2-build.5"` | no |
+| image\_version | The version of the aiflow running in the cloud composer environment. | `string` | `"composer-3-airflow-2.10.2-build.7"` | no |
 | kms\_key\_name | Customer-managed Encryption Key fully qualified resource name, i.e. projects/project-id/locations/location/keyRings/keyring/cryptoKeys/key. | `string` | `null` | no |
 | labels | The resource labels (a map of key/value pairs) to be applied to the Cloud Composer. | `map(string)` | `{}` | no |
 | maintenance\_end\_time | Time window specified for recurring maintenance operations in RFC3339 format | `string` | `null` | no |

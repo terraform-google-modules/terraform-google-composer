@@ -38,6 +38,7 @@ resource "google_composer_environment" "composer_env" {
   config {
 
     enable_private_environment = var.use_private_environment # reusing the existing variable name from previous versions
+    enable_private_builds_only = var.enable_private_builds_only
 
     environment_size = var.environment_size
     resilience_mode  = var.resilience_mode
