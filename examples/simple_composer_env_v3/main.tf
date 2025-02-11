@@ -32,7 +32,7 @@ resource "google_storage_bucket" "my_bucket" {
 resource "google_storage_bucket_iam_member" "object_admin" {
   bucket = google_storage_bucket.my_bucket.name
   role   = "roles/storage.objectAdmin"
-  member = "serviceAccount:${var.composer_service_account}"
+  member = "serviceAccount:${var.composer_sa}"
 }
 
 module "simple-composer-environment" {
