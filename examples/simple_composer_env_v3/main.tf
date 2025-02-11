@@ -43,8 +43,8 @@ module "simple-composer-environment" {
   composer_env_name         = var.composer_env_name
   region                    = var.region
   composer_service_account  = var.composer_sa
-  network                   = google_compute_network.main.id
-  subnetwork                = google_compute_subnetwork.main.id
+  network                   = google_compute_network.main.name
+  subnetwork                = google_compute_subnetwork.main.name
   create_network_attachment = true
 
   grant_sa_agent_permission = false
