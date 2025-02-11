@@ -10,11 +10,9 @@ This example also creates a Cloud Storage Bucket for scheduled snapshots and ass
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | composer\_env\_name | Name of Cloud Composer Environment. | `string` | `"ci-composer"` | no |
-| composer\_service\_account | Service Account to be used for running Cloud Composer Environment. | `string` | n/a | yes |
-| network | Network where Cloud Composer is created. | `string` | n/a | yes |
+| composer\_sa | Service Account to be used for running Cloud Composer Environment. | `string` | n/a | yes |
 | project\_id | Project ID where Cloud Composer Environment is created. | `string` | n/a | yes |
-| region | Region where Cloud Composer Environment is created. | `string` | n/a | yes |
-| subnetwork | Name of the Subetwork where Cloud Composer is created. | `string` | n/a | yes |
+| region | Region where Cloud Composer Environment is created. | `string` | `"us-central1"` | no |
 
 ## Outputs
 

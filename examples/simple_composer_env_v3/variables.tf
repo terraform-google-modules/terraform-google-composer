@@ -28,19 +28,10 @@ variable "composer_env_name" {
 variable "region" {
   description = "Region where Cloud Composer Environment is created."
   type        = string
+  default     = "us-central1"
 }
 
-variable "composer_service_account" {
+variable "composer_sa" {
   description = "Service Account to be used for running Cloud Composer Environment."
-  type        = string
-}
-
-variable "network" {
-  description = "Network where Cloud Composer is created."
-  type        = string
-}
-
-variable "subnetwork" {
-  description = "Name of the Subetwork where Cloud Composer is created."
   type        = string
 }
