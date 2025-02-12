@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [6.1.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v6.0.0...v6.1.0) (2025-02-11)
+
+
+### Features
+
+* Add Composer v3 sub-module ([#155](https://github.com/terraform-google-modules/terraform-google-composer/issues/155)) ([444aa02](https://github.com/terraform-google-modules/terraform-google-composer/commit/444aa0234e2115950acdec3aea43dfa1bf2614f2))
+
 ## [6.0.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v5.2.0...v6.0.0) (2025-01-23)
 
 
