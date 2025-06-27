@@ -77,3 +77,9 @@ variable "dns_zone_name" {
   type        = string
   default     = "composer-google-cloud-dns"
 }
+
+variable "composer_sa_name" {
+  description = "Service Account name to be used for running Cloud Composer Environment."
+  type        = string
+  default     = "composer-sa"
+}

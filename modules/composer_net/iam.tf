@@ -38,8 +38,8 @@ Assign the Composer Worker (composer.worker) role.
 Assign the Service Account User (iam.serviceAccountUser) role
 ***/
 resource "google_service_account" "composer_sa" {
-  account_id   = "composer-sa"
-  display_name = "composer-sa"
+  account_id   = var.composer_sa_name
+  display_name = var.composer_sa_name
   project      = var.service_project_id
 }
 
