@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-variable "project_id" {
+variable "project" {
   type        = string
-  description = "Project ID where Cloud Composer Environment is created."
+  description = "Project name where Cloud Composer Environment is created."
 }
 
 variable "region" {
@@ -37,6 +37,12 @@ variable "pool_name" {
 variable "slot_count" {
   type        = number
   description = "The number of slots in this pool"
+}
+
+variable "include_deferred" {
+  type        = bool
+  default     = false
+  description = "Whether the pool should include deferred tasks in its calculation of occupied slots"
 }
 
 variable "description" {
