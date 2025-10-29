@@ -32,7 +32,8 @@ module "project" {
     "dns.googleapis.com",
     "compute.googleapis.com",
     "iam.googleapis.com",
-    "container.googleapis.com"
+    "container.googleapis.com",
+    "cloudbuild.googleapis.com",
   ]
   activate_api_identities = [
     {
