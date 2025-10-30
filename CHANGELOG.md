@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [6.3.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v6.2.0...v6.3.0) (2025-10-30)
+
+
+### Features
+
+* **deps:** Update Terraform Google Provider to v7 (major) ([#174](https://github.com/terraform-google-modules/terraform-google-composer/issues/174)) ([9c534b0](https://github.com/terraform-google-modules/terraform-google-composer/commit/9c534b0a685a66225ec111424061f12bef5704e2))
+
 ## [6.2.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v6.1.0...v6.2.0) (2025-07-07)
 
 
