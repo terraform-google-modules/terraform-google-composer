@@ -62,7 +62,8 @@ module "service_project" {
     "composer.googleapis.com",
     "compute.googleapis.com",
     "iam.googleapis.com",
-    "container.googleapis.com"
+    "container.googleapis.com",
+    "cloudbuild.googleapis.com",
   ]
   activate_api_identities = [
     {
