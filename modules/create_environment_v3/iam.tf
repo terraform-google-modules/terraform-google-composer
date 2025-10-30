@@ -1,5 +1,5 @@
 /**
- * Copyright 2021 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,27 +14,13 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">= 0.13"
-  required_providers {
+data "google_project" "project" {
+  project_id = var.project_id
+}
 
-    google = {
-      source  = "hashicorp/google"
-      version = ">= 3.53, < 8"
-    }
-
-    google-beta = {
-      source  = "hashicorp/google-beta"
-      version = ">= 3.53, < 8"
-    }
-  }
-
-  provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-composer:create_environment_v1/v6.2.0"
-  }
-
-  provider_meta "google-beta" {
-    module_name = "blueprints/terraform/terraform-google-composer:create_environment_v1/v6.2.0"
-  }
-
+resource "google_project_iam_member" "composer_agent_service_account" {
+  count   = var.grant_sa_agent_permission ? 1 : 0
+  project = data.google_project.project.project_id
+  role    = "roles/composer.ServiceAgentV2Ext"
+  member  = format("serviceAccount:%s", local.cloud_composer_sa)
 }

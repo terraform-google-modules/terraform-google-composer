@@ -8,6 +8,38 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [6.2.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v6.1.0...v6.2.0) (2025-07-07)
+
+
+### Features
+
+* customize composer sa name in sub-module composer_net ([#167](https://github.com/terraform-google-modules/terraform-google-composer/issues/167)) ([597f1a4](https://github.com/terraform-google-modules/terraform-google-composer/commit/597f1a44ce0a4469211c5b4e074c28aae58c53bc))
+* customize dns name in sub-module composer_net ([#170](https://github.com/terraform-google-modules/terraform-google-composer/issues/170)) ([d19afed](https://github.com/terraform-google-modules/terraform-google-composer/commit/d19afed2e6d9e3e325d4fa793467baa503f78beb))
+
+## [6.1.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v6.0.0...v6.1.0) (2025-02-11)
+
+
+### Features
+
+* Add Composer v3 sub-module ([#155](https://github.com/terraform-google-modules/terraform-google-composer/issues/155)) ([444aa02](https://github.com/terraform-google-modules/terraform-google-composer/commit/444aa0234e2115950acdec3aea43dfa1bf2614f2))
+
+## [6.0.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v5.2.0...v6.0.0) (2025-01-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* default composer image version
+
+### Features
+
+* add dns private zone variable ([#147](https://github.com/terraform-google-modules/terraform-google-composer/issues/147)) ([61f1f40](https://github.com/terraform-google-modules/terraform-google-composer/commit/61f1f40e5ae3deb85ea8147cbfb965564fca6aeb))
+
+
+### Bug Fixes
+
+* (composer_net) warning because of null ip range in fw rules ([#148](https://github.com/terraform-google-modules/terraform-google-composer/issues/148)) ([3a12028](https://github.com/terraform-google-modules/terraform-google-composer/commit/3a1202878cdbb0c0ed7c1ea6d122cc8b51e8bc5c))
+* default composer image version ([320813a](https://github.com/terraform-google-modules/terraform-google-composer/commit/320813a7fecc205b93982dc07a18c0d09d108473))
+
 ## [5.2.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v5.1.0...v5.2.0) (2024-10-08)
 
 

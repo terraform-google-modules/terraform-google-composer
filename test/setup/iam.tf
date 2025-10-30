@@ -21,7 +21,8 @@ locals {
     "roles/compute.instanceAdmin.v1",
     "roles/iam.serviceAccountUser",
     "roles/composer.worker",
-    "roles/resourcemanager.projectIamAdmin"
+    "roles/resourcemanager.projectIamAdmin",
+    "roles/cloudbuild.builds.builder",
   ]
 }
 

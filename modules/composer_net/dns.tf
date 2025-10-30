@@ -19,8 +19,8 @@ composer.cloud.google.com
 resource "google_dns_managed_zone" "composer_cloud_zone" {
   name        = var.dns_zone_name
   project     = var.network_project_id
-  dns_name    = "composer.cloud.google.com."
-  description = "composer.cloud.google.com zone"
+  dns_name    = var.dns_name
+  description = "${var.dns_name} zone"
 
   visibility = "private"
 
@@ -32,7 +32,7 @@ resource "google_dns_managed_zone" "composer_cloud_zone" {
 }
 
 resource "google_dns_record_set" "composer_cloud_zone-dev-A-record" {
-  name    = "composer.cloud.google.com."
+  name    = var.dns_name
   project = var.network_project_id
   type    = "A"
   ttl     = 300
@@ -43,12 +43,12 @@ resource "google_dns_record_set" "composer_cloud_zone-dev-A-record" {
 }
 
 resource "google_dns_record_set" "composer_cloud_zone-CNAME" {
-  name    = "*.composer.cloud.google.com."
+  name    = "*.${var.dns_name}"
   project = var.network_project_id
   type    = "CNAME"
   ttl     = 300
 
   managed_zone = google_dns_managed_zone.composer_cloud_zone.name
 
-  rrdatas = ["composer.cloud.google.com."]
+  rrdatas = [var.dns_name]
 }
