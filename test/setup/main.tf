@@ -16,7 +16,7 @@
 
 module "project" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 17.0"
+  version = "~> 18.0"
 
   name              = "ci-composer"
   random_project_id = "true"
@@ -62,7 +62,8 @@ module "service_project" {
     "composer.googleapis.com",
     "compute.googleapis.com",
     "iam.googleapis.com",
-    "container.googleapis.com"
+    "container.googleapis.com",
+    "cloudbuild.googleapis.com",
   ]
   activate_api_identities = [
     {
