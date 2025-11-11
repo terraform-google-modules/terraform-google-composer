@@ -48,7 +48,7 @@ resource "google_composer_environment" "composer_env" {
       tags                        = var.tags
       network                     = var.create_network_attachment ? "projects/${local.network_project_id}/global/networks/${var.network}" : null
       subnetwork                  = var.create_network_attachment ? "projects/${local.network_project_id}/regions/${local.subnetwork_region}/subnetworks/${var.subnetwork}" : null
-      composer_network_attachment = var.create_network_attachment ? null : "projects/{var.project_id}/regions/${var.region}/networkAttachments/${var.composer_network_attachment_name}"
+      composer_network_attachment = var.create_network_attachment ? null : "projects/${var.project_id}/regions/${var.region}/networkAttachments/${var.composer_network_attachment_name}"
     }
 
     dynamic "software_config" {
