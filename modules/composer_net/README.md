@@ -12,6 +12,8 @@ This example illustrates how to use the `composer-net` module. Please see exampl
 | composer\_sa\_name | Service Account name to be used for running Cloud Composer Environment. | `string` | `"composer-sa"` | no |
 | dns\_name | The DNS name of the managed zone | `string` | `"composer.cloud.google.com."` | no |
 | dns\_zone\_name | Composer DNS private zone name | `string` | `"composer-google-cloud-dns"` | no |
+| enable\_firewall\_logging | Enable logging for firewall rules | `bool` | `true` | no |
+| firewall\_logging\_metadata | The logging metadata to include in firewall logs. Options: INCLUDE\_ALL\_METADATA or EXCLUDE\_ALL\_METADATA | `string` | `"INCLUDE_ALL_METADATA"` | no |
 | gke\_pods\_services\_ip\_ranges | The secondary IP ranges for the GKE Pods and Services IP ranges | `list(string)` | n/a | yes |
 | gke\_subnet\_ip\_range | The GKE subnet IP range | `list(string)` | n/a | yes |
 | master\_ipv4\_cidr | The CIDR block from which IP range in tenant project will be reserved for the master. | `string` | `null` | no |
