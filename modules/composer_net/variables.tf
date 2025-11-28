@@ -89,3 +89,20 @@ variable "composer_sa_name" {
   type        = string
   default     = "composer-sa"
 }
+
+variable "enable_firewall_logging" {
+  description = "Enable logging for firewall rules"
+  type        = bool
+  default     = true
+}
+
+variable "firewall_logging_metadata" {
+  description = "The logging metadata to include in firewall logs. Options: INCLUDE_ALL_METADATA or EXCLUDE_ALL_METADATA"
+  type        = string
+  default     = "INCLUDE_ALL_METADATA"
+
+  validation {
+    condition     = contains(["INCLUDE_ALL_METADATA", "EXCLUDE_ALL_METADATA"], var.firewall_logging_metadata)
+    error_message = "firewall_logging_metadata must be either 'INCLUDE_ALL_METADATA' or 'EXCLUDE_ALL_METADATA'."
+  }
+}
