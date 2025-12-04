@@ -39,7 +39,11 @@ module "project" {
     {
       api   = "container.googleapis.com"
       roles = ["roles/container.serviceAgent"]
-    }
+    },
+    {
+      api   = "cloudbuild.googleapis.com"
+      roles = ["roles/cloudbuild.builds.builder"]
+    },
   ]
   disable_dependent_services  = false
   disable_services_on_destroy = false
