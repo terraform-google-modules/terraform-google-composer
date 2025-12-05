@@ -45,8 +45,11 @@ resource "google_compute_firewall" "allow-composer-dns-egress" {
   direction               = "EGRESS"
   destination_ranges      = ["0.0.0.0/0"]
   target_service_accounts = [google_service_account.composer_sa.email]
-  log_config {
-    metadata = "INCLUDE_ALL_METADATA"
+  dynamic "log_config" {
+    for_each = var.enable_firewall_logging ? [1] : []
+    content {
+      metadata = var.firewall_logging_metadata
+    }
   }
 }
 /***
@@ -69,8 +72,11 @@ resource "google_compute_firewall" "allow-gke-egress-secondary-ranges" {
   destination_ranges = concat(var.gke_subnet_ip_range, var.gke_pods_services_ip_ranges)
   # destination_ranges = ["10.1.0.0/16","10.4.0.0/16", "10.10.10.0/24","10.10.14.0/24", "10.100.232.0/27"]
   target_service_accounts = [google_service_account.composer_sa.email]
-  log_config {
-    metadata = "INCLUDE_ALL_METADATA"
+  dynamic "log_config" {
+    for_each = var.enable_firewall_logging ? [1] : []
+    content {
+      metadata = var.firewall_logging_metadata
+    }
   }
 }
 
@@ -91,8 +97,11 @@ resource "google_compute_firewall" "allow-gkeworkers-egress-master-ip" {
   direction               = "EGRESS"
   destination_ranges      = var.master_ipv4_cidr != null ? [var.master_ipv4_cidr] : []
   target_service_accounts = [google_service_account.composer_sa.email]
-  log_config {
-    metadata = "INCLUDE_ALL_METADATA"
+  dynamic "log_config" {
+    for_each = var.enable_firewall_logging ? [1] : []
+    content {
+      metadata = var.firewall_logging_metadata
+    }
   }
 }
 
@@ -112,8 +121,11 @@ resource "google_compute_firewall" "allow-gkeworkers-restricted-vip" {
   direction               = "EGRESS"
   destination_ranges      = local.restricted_vip
 
-  log_config {
-    metadata = "INCLUDE_ALL_METADATA"
+  dynamic "log_config" {
+    for_each = var.enable_firewall_logging ? [1] : []
+    content {
+      metadata = var.firewall_logging_metadata
+    }
   }
 }
 /***
@@ -133,8 +145,11 @@ resource "google_compute_firewall" "allow-healthcheck-ingress-composer-gke" {
   target_service_accounts = [google_service_account.composer_sa.email]
   direction               = "INGRESS"
   source_ranges           = local.load_balancer_ips
-  log_config {
-    metadata = "INCLUDE_ALL_METADATA"
+  dynamic "log_config" {
+    for_each = var.enable_firewall_logging ? [1] : []
+    content {
+      metadata = var.firewall_logging_metadata
+    }
   }
 }
 /***
@@ -153,8 +168,11 @@ resource "google_compute_firewall" "allow-healthcheck-egress-composer-gke" {
   direction               = "EGRESS"
   destination_ranges      = local.load_balancer_ips
 
-  log_config {
-    metadata = "INCLUDE_ALL_METADATA"
+  dynamic "log_config" {
+    for_each = var.enable_firewall_logging ? [1] : []
+    content {
+      metadata = var.firewall_logging_metadata
+    }
   }
 }
 
@@ -174,7 +192,10 @@ resource "google_compute_firewall" "allow-gkeworkers-composer-network-ip" {
   direction               = "EGRESS"
   destination_ranges      = var.cloud_composer_network_ipv4_cidr_block != null ? [var.cloud_composer_network_ipv4_cidr_block] : []
 
-  log_config {
-    metadata = "INCLUDE_ALL_METADATA"
+  dynamic "log_config" {
+    for_each = var.enable_firewall_logging ? [1] : []
+    content {
+      metadata = var.firewall_logging_metadata
+    }
   }
 }
