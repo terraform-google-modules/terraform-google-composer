@@ -16,7 +16,7 @@
 
 module "simple-composer-environment" {
   source  = "terraform-google-modules/composer/google//modules/create_environment_v1"
-  version = "~> 5.0"
+  version = "~> 6.0"
 
   project_id                       = var.project_id
   composer_env_name                = var.composer_env_name
@@ -35,7 +35,7 @@ module "simple-composer-environment" {
 # Making the k8s master globally available is only to make the integration testing portable and should be removed
 module "master-authorized-networks" {
   source  = "terraform-google-modules/composer/google//modules/master_authorized_networks"
-  version = "~> 5.0"
+  version = "~> 6.0"
 
   project_id  = var.project_id
   zone        = var.zone
@@ -47,7 +47,7 @@ module "master-authorized-networks" {
 
 module "example-1" {
   source  = "terraform-google-modules/composer/google//modules/airflow_connection"
-  version = "~> 5.0"
+  version = "~> 6.0"
 
   project_id        = var.project_id
   composer_env_name = module.simple-composer-environment.composer_env_name
@@ -62,7 +62,7 @@ module "example-1" {
 
 module "example-2" {
   source  = "terraform-google-modules/composer/google//modules/airflow_connection"
-  version = "~> 5.0"
+  version = "~> 6.0"
 
   project_id        = var.project_id
   composer_env_name = module.simple-composer-environment.composer_env_name
@@ -82,7 +82,7 @@ module "example-2" {
 # Connections can be defined externally if you wish
 module "example-3" {
   source  = "terraform-google-modules/composer/google//modules/airflow_connection"
-  version = "~> 5.0"
+  version = "~> 6.0"
 
   project_id        = var.project_id
   composer_env_name = module.simple-composer-environment.composer_env_name
