@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [6.4.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v6.3.0...v6.4.0) (2025-12-11)
+
+
+### Features
+
+* add optional firewall logging configuration ([#187](https://github.com/terraform-google-modules/terraform-google-composer/issues/187)) ([0bcb083](https://github.com/terraform-google-modules/terraform-google-composer/commit/0bcb083d0ea234a749560b407a3e9294ec9d7b3f))
+
 ## [6.3.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v6.2.0...v6.3.0) (2025-10-30)
 
 

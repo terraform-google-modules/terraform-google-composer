@@ -29,6 +29,6 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-composer:composer_net/v6.3.0"
+    module_name = "blueprints/terraform/terraform-google-composer:composer_net/v6.4.0"
   }
 }
