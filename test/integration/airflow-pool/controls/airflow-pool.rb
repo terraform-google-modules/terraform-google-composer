@@ -47,9 +47,7 @@ control "Cloud Composer Environment" do
         end
     end
 
-    # TODO: Use 'pools -- list' instead of 'pool' so it will work with Airflow v2.
-    # The command is being wrongly reported as incompatible (See Google support case 29006802)
-    describe command("gcloud composer environments run #{attribute("composer_env_name")} --location=us-central1 --project=#{attribute("project_id")} pool") do
+    describe command("gcloud composer environments run #{attribute("composer_env_name")} --location=us-central1 --project=#{attribute("project_id")} pools -- list") do
         its(:exit_status) { should eq 0 }
 
         let!(:data) do
