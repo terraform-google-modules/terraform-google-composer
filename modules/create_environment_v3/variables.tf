@@ -277,3 +277,11 @@ variable "task_logs_retention_storage_mode" {
   type        = string
   default     = null
 }
+variable "airflow_metadata_retention_config" {
+  type = object({
+    retention_mode = optional(string, "RETENTION_MODE_ENABLED")
+    retention_days = optional(number, 30)
+  })
+  default     = null
+  description = "The retention policy for the Airflow metadata database. retention_mode can be RETENTION_MODE_ENABLED or RETENTION_MODE_DISABLED. retention_days sets how many days metadata is retained when retention is enabled. Cloud Composer 2.0.31 or newer only"
+}
