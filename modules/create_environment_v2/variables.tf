@@ -124,6 +124,12 @@ variable "cloud_composer_connection_subnetwork" {
   default     = null
 }
 
+variable "connection_type" {
+  description = "Mode of VPC access to Google Services in the Composer environment. Accepted values are VPC_PEERING or PRIVATE_SERVICE_CONNECT. Defaults to VPC_PEERING when not set."
+  type        = string
+  default     = null
+}
+
 variable "cloud_sql_ipv4_cidr" {
   description = "The CIDR block from which IP range in tenant project will be reserved for Cloud SQL private service access. Required if VPC peering is used to connect to CloudSql instead of PSC"
   type        = string

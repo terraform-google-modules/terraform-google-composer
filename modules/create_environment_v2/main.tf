@@ -15,9 +15,11 @@
  */
 
 locals {
-  network_project_id = var.network_project_id != "" ? var.network_project_id : var.project_id
-  subnetwork_region  = var.subnetwork_region != "" ? var.subnetwork_region : var.region
-  cloud_composer_sa  = format("service-%s@cloudcomposer-accounts.iam.gserviceaccount.com", data.google_project.project.number)
+  network_project_id   = var.network_project_id != "" ? var.network_project_id : var.project_id
+  subnetwork_region    = var.subnetwork_region != "" ? var.subnetwork_region : var.region
+  cloud_composer_sa    = format("service-%s@cloudcomposer-accounts.iam.gserviceaccount.com", data.google_project.project.number)
+  network_self_link    = startswith(var.network, "projects/") ? var.network : "projects/${local.network_project_id}/global/networks/${var.network}"
+  subnetwork_self_link = startswith(var.subnetwork, "projects/") ? var.subnetwork : "projects/${local.network_project_id}/regions/${local.subnetwork_region}/subnetworks/${var.subnetwork}"
 
   master_authorized_networks_config = length(var.master_authorized_networks) == 0 ? [] : [{
     cidr_blocks : var.master_authorized_networks
@@ -45,8 +47,8 @@ resource "google_composer_environment" "composer_env" {
     resilience_mode  = var.resilience_mode
 
     node_config {
-      network              = "projects/${local.network_project_id}/global/networks/${var.network}"
-      subnetwork           = "projects/${local.network_project_id}/regions/${local.subnetwork_region}/subnetworks/${var.subnetwork}"
+      network    = local.network_self_link
+      subnetwork = local.subnetwork_self_link
       service_account      = var.composer_service_account
       tags                 = var.tags
       enable_ip_masq_agent = var.enable_ip_masq_agent
@@ -91,6 +93,7 @@ resource "google_composer_environment" "composer_env" {
           cloud_sql_ipv4_cidr_block              = var.cloud_sql_ipv4_cidr
           cloud_composer_network_ipv4_cidr_block = var.cloud_composer_network_ipv4_cidr_block
           cloud_composer_connection_subnetwork   = var.cloud_composer_connection_subnetwork
+          connection_type                        = var.connection_type
       }] : []
       content {
         enable_private_endpoint                = private_environment_config.value["enable_private_endpoint"]
@@ -99,6 +102,7 @@ resource "google_composer_environment" "composer_env" {
         cloud_sql_ipv4_cidr_block              = private_environment_config.value["cloud_sql_ipv4_cidr_block"]
         cloud_composer_network_ipv4_cidr_block = private_environment_config.value["cloud_composer_network_ipv4_cidr_block"]
         cloud_composer_connection_subnetwork   = private_environment_config.value["cloud_composer_connection_subnetwork"]
+        connection_type                        = private_environment_config.value["connection_type"]
       }
     }
 
