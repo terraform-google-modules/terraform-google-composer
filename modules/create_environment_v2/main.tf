@@ -29,10 +29,11 @@ locals {
 resource "google_composer_environment" "composer_env" {
   provider = google-beta
 
-  project = var.project_id
-  name    = var.composer_env_name
-  region  = var.region
-  labels  = var.labels
+  project         = var.project_id
+  name            = var.composer_env_name
+  region          = var.region
+  labels          = var.labels
+  deletion_policy = var.deletion_policy
 
   dynamic "storage_config" {
     for_each = var.storage_bucket != null ? ["storage_config"] : []
@@ -43,8 +44,9 @@ resource "google_composer_environment" "composer_env" {
 
   config {
 
-    environment_size = var.environment_size
-    resilience_mode  = var.resilience_mode
+    environment_size             = var.environment_size
+    resilience_mode              = var.resilience_mode
+    enable_private_builds_only   = var.enable_private_builds_only
 
     node_config {
       network    = local.network_self_link
@@ -58,6 +60,7 @@ resource "google_composer_environment" "composer_env" {
         content {
           cluster_secondary_range_name  = var.pod_ip_allocation_range_name
           services_secondary_range_name = var.service_ip_allocation_range_name
+          use_ip_aliases                = var.use_ip_aliases
         }
       }
     }

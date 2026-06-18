@@ -24,6 +24,24 @@ variable "composer_env_name" {
   type        = string
 }
 
+variable "deletion_policy" {
+  description = "Optional. The deletion policy for the Cloud Composer environment. Accepted values are DELETE or ABANDON."
+  type        = string
+  default     = null
+}
+
+variable "enable_private_builds_only" {
+  description = "Optional. If true, builds performed during operations that install Python packages have only private connectivity to Google services."
+  type        = bool
+  default     = null
+}
+
+variable "use_ip_aliases" {
+  description = "Optional. Whether to enable Alias IPs in the GKE cluster. Required when pod_ip_allocation_range_name or service_ip_allocation_range_name are set."
+  type        = bool
+  default     = null
+}
+
 variable "region" {
   description = "Region where the Cloud Composer Environment is created."
   type        = string
