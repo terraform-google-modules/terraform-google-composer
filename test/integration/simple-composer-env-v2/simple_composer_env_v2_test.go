@@ -36,6 +36,7 @@ func TestSimpleComposerEnvV2Module(t *testing.T) {
 		assert.Equal(composer.GetStringOutput("airflow_uri"), op.Get("config.airflowUri").String(), "AirflowUri is valid")
 		assert.Equal(composer.GetStringOutput("gke_cluster"), op.Get("config.gkeCluster").String(), "GKE Cluster is valid")
 		assert.Equal(composer.GetStringOutput("gcs_bucket"), op.Get("config.dagGcsPrefix").String(), "GCS-Dag is valid")
+		assert.False(op.Get("config.softwareConfig.cloudDataLineageIntegration.enabled").Bool(), "Cloud Data Lineage Integration is disabled")
 	})
 	composer.Test()
 }
