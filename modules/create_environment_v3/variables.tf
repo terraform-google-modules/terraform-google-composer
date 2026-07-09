@@ -252,9 +252,9 @@ variable "resilience_mode" {
 }
 
 variable "cloud_data_lineage_integration" {
-  description = "Whether or not Dataplex data lineage integration is enabled. Cloud Composer environments in versions composer-2.1.2-airflow-..* and newer)"
+  description = "Whether or not Dataplex data lineage integration is enabled. Set to true or false to explicitly manage it; leave null to not manage the setting. Cloud Composer environments in versions composer-2.1.2-airflow-..* and newer)"
   type        = bool
-  default     = false
+  default     = null
 }
 
 variable "web_server_network_access_control" {

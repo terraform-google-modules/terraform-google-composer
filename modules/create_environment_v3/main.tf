@@ -67,7 +67,7 @@ resource "google_composer_environment" "composer_env" {
         image_version            = software_config.value["image_version"]
         web_server_plugins_mode  = software_config.value["web_server_plugins_mode"]
         dynamic "cloud_data_lineage_integration" {
-          for_each = var.cloud_data_lineage_integration ? ["cloud_data_lineage_integration"] : []
+          for_each = var.cloud_data_lineage_integration != null ? ["cloud_data_lineage_integration"] : []
           content {
             enabled = var.cloud_data_lineage_integration
           }
