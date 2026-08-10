@@ -8,6 +8,17 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [7.0.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v6.4.0...v7.0.0) (2026-08-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* update gcloud version to v4 ([#204](https://github.com/terraform-google-modules/terraform-google-composer/issues/204))
+
+### Bug Fixes
+
+* update gcloud version to v4 ([#204](https://github.com/terraform-google-modules/terraform-google-composer/issues/204)) ([512154f](https://github.com/terraform-google-modules/terraform-google-composer/commit/512154fc554d68608af1823b761905ec727b0a71))
+
 ## [6.4.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v6.3.0...v6.4.0) (2025-12-11)
 
 
