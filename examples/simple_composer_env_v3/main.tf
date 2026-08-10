@@ -80,4 +80,6 @@ module "simple-composer-environment" {
       description      = "office net 2"
     },
   ]
+
+  image_version = "composer-3-airflow-3"
 }

@@ -22,7 +22,7 @@ locals {
 
 module "gcloud" {
   source           = "terraform-google-modules/gcloud/google"
-  version          = "~> 3.1"
+  version          = "~> 4.0"
   platform         = "linux"
   create_cmd_body  = local.create_cmd_body
   destroy_cmd_body = local.destroy_cmd_body
