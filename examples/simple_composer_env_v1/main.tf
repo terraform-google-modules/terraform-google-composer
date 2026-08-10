@@ -16,7 +16,7 @@
 
 module "simple-composer-environment" {
   source  = "terraform-google-modules/composer/google//modules/create_environment_v1"
-  version = "~> 5.0"
+  version = "~> 6.0"
 
   project_id                       = var.project_id
   composer_env_name                = var.composer_env_name
