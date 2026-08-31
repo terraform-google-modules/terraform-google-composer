@@ -82,4 +82,9 @@ module "simple-composer-environment" {
   ]
 
   image_version = "composer-3-airflow-3"
+
+  airflow_metadata_retention_config = {
+    retention_mode = "RETENTION_MODE_ENABLED"
+    retention_days = 90
+  }
 }
