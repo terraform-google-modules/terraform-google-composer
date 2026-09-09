@@ -35,6 +35,8 @@ func TestSimpleComposerEnvV3Module(t *testing.T) {
 		assert.Equal(fmt.Sprintf("projects/%s/locations/us-central1/environments/%s", projectID, composer.GetStringOutput("composer_env_name")), op.Get("name").String(), "Composer name is valid")
 		assert.Equal(composer.GetStringOutput("airflow_uri"), op.Get("config.airflowUri").String(), "AirflowUri is valid")
 		assert.Equal(composer.GetStringOutput("gcs_bucket"), op.Get("config.dagGcsPrefix").String(), "GCS-Dag is valid")
+		assert.Equal("RETENTION_MODE_ENABLED", op.Get("config.dataRetentionConfig.airflowMetadataRetentionConfig.retentionMode").String(), "Airflow metadata retention mode is valid")
+		assert.Equal("90", op.Get("config.dataRetentionConfig.airflowMetadataRetentionConfig.retentionDays").String(), "Airflow metadata retention days are valid")
 	})
 	composer.Test()
 }
