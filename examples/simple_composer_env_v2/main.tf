@@ -52,7 +52,7 @@ module "simple-composer-environment" {
   enable_private_endpoint              = true
   use_private_environment              = true
   cloud_composer_connection_subnetwork = var.subnetwork_self_link
-  cloud_data_lineage_integration       = true
+  cloud_data_lineage_integration       = false
   resilience_mode                      = "STANDARD_RESILIENCE"
 
   scheduler = {
