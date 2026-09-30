@@ -18,6 +18,8 @@ locals {
   network_project_id = var.network_project_id != "" ? var.network_project_id : var.project_id
   subnetwork_region  = var.subnetwork_region != "" ? var.subnetwork_region : var.region
   cloud_composer_sa  = format("service-%s@cloudcomposer-accounts.iam.gserviceaccount.com", data.google_project.project.number)
+
+  data_retention_config_enabled = var.task_logs_retention_storage_mode != null || var.airflow_metadata_retention_config != null
 }
 
 resource "google_composer_environment" "composer_env" {
@@ -178,10 +180,21 @@ resource "google_composer_environment" "composer_env" {
     }
 
     dynamic "data_retention_config" {
-      for_each = var.task_logs_retention_storage_mode == null ? [] : ["data_retention_config"]
+      for_each = local.data_retention_config_enabled ? ["data_retention_config"] : []
       content {
-        task_logs_retention_config {
-          storage_mode = var.task_logs_retention_storage_mode
+        dynamic "task_logs_retention_config" {
+          for_each = var.task_logs_retention_storage_mode == null ? [] : ["task_logs_retention_config"]
+          content {
+            storage_mode = var.task_logs_retention_storage_mode
+          }
+        }
+
+        dynamic "airflow_metadata_retention_config" {
+          for_each = var.airflow_metadata_retention_config == null ? [] : ["airflow_metadata_retention_config"]
+          content {
+            retention_mode = var.airflow_metadata_retention_config.retention_mode
+            retention_days = var.airflow_metadata_retention_config.retention_days
+          }
         }
       }
     }

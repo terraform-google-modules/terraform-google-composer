@@ -64,6 +64,7 @@ module "simple-composer-environment" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | airflow\_config\_overrides | Airflow configuration properties to override. Property keys contain the section and property names, separated by a hyphen, for example "core-dags\_are\_paused\_at\_creation". | `map(string)` | `{}` | no |
+| airflow\_metadata\_retention\_config | The retention policy for the Airflow metadata database. retention\_mode is RETENTION\_MODE\_ENABLED or RETENTION\_MODE\_DISABLED. retention\_days is how many days data must be retained (30-730). Requires Terraform Google Provider 6.15 or newer. | <pre>object({<br>    retention_mode = string<br>    retention_days = optional(number)<br>  })</pre> | `null` | no |
 | cloud\_data\_lineage\_integration | Whether or not Dataplex data lineage integration is enabled. Cloud Composer environments in versions composer-2.1.2-airflow-..* and newer) | `bool` | `false` | no |
 | composer\_env\_name | Name of Cloud Composer Environment | `string` | n/a | yes |
 | composer\_network\_attachment\_name | Name for PSC (Private Service Connect) Network entry point. | `string` | `null` | no |
