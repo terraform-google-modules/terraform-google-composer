@@ -68,7 +68,7 @@ module "simple-composer-environment" {
 | composer\_env\_name | Name of Cloud Composer Environment | `string` | n/a | yes |
 | composer\_network\_attachment\_name | Name for PSC (Private Service Connect) Network entry point. | `string` | `null` | no |
 | composer\_service\_account | Service Account for running Cloud Composer. | `string` | `null` | no |
-| create\_network\_attachment | Either create a new network attachment or use existing one. If true, provide the subnet details. | `bool` | `true` | no |
+| create\_network\_attachment | Either create a new network attachment or use existing one. If true, provide the subnet details; if false, provide composer\_network\_attachment\_name. | `bool` | `true` | no |
 | dag\_processor | Configuration for resources used by Airflow workers. | <pre>object({<br>    cpu        = string<br>    memory_gb  = number<br>    storage_gb = number<br>    count      = number<br>  })</pre> | <pre>{<br>  "count": 2,<br>  "cpu": 2,<br>  "memory_gb": 7.5,<br>  "storage_gb": 5<br>}</pre> | no |
 | enable\_private\_builds\_only | If true, builds performed during operations that install Python packages have only private connectivity to Google services. If false, the builds also have access to the internet. | `bool` | `false` | no |
 | env\_variables | Variables of the airflow environment. | `map(string)` | `{}` | no |
@@ -80,7 +80,7 @@ module "simple-composer-environment" {
 | maintenance\_end\_time | Time window specified for recurring maintenance operations in RFC3339 format | `string` | `null` | no |
 | maintenance\_recurrence | Frequency of the recurring maintenance window in RFC5545 format. | `string` | `null` | no |
 | maintenance\_start\_time | Time window specified for daily or recurring maintenance operations in RFC3339 format | `string` | `"05:00"` | no |
-| network | The VPC network to host the composer cluster. | `string` | n/a | yes |
+| network | The VPC network to host the composer cluster. Leave null (with subnetwork) to create an environment that is not connected to a VPC network. | `string` | `null` | no |
 | network\_project\_id | The project ID of the shared VPC's host (for shared vpc support) | `string` | `""` | no |
 | project\_id | Project ID where Cloud Composer Environment is created. | `string` | n/a | yes |
 | pypi\_packages | Custom Python Package Index (PyPI) packages to be installed in the environment. Keys refer to the lowercase package name (e.g. "numpy"). | `map(string)` | `{}` | no |
@@ -89,7 +89,7 @@ module "simple-composer-environment" {
 | scheduled\_snapshots\_config | The recovery configuration settings for the Cloud Composer environment | <pre>object({<br>    enabled                    = optional(bool, false)<br>    snapshot_location          = optional(string)<br>    snapshot_creation_schedule = optional(string)<br>    time_zone                  = optional(string)<br>  })</pre> | `null` | no |
 | scheduler | Configuration for resources used by Airflow schedulers. | <pre>object({<br>    cpu        = string<br>    memory_gb  = number<br>    storage_gb = number<br>    count      = number<br>  })</pre> | <pre>{<br>  "count": 2,<br>  "cpu": 1,<br>  "memory_gb": 4,<br>  "storage_gb": 5<br>}</pre> | no |
 | storage\_bucket | Name of an existing Cloud Storage bucket to be used by the environment | `string` | `null` | no |
-| subnetwork | The name of the subnetwork to host the composer cluster. | `string` | n/a | yes |
+| subnetwork | The name of the subnetwork to host the composer cluster. Leave null (with network) to create an environment that is not connected to a VPC network. | `string` | `null` | no |
 | subnetwork\_region | The subnetwork region of the shared VPC's host (for shared vpc support) | `string` | `""` | no |
 | tags | Tags applied to all nodes. Tags are used to identify valid sources or targets for network firewalls. | `set(string)` | `[]` | no |
 | task\_logs\_retention\_storage\_mode | The mode of storage for Airflow workers task logs. Values for storage mode are CLOUD\_LOGGING\_ONLY to only store logs in cloud logging and CLOUD\_LOGGING\_AND\_CLOUD\_STORAGE to store logs in cloud logging and cloud storage. Cloud Composer 2.0.23 or newer only | `string` | `null` | no |
