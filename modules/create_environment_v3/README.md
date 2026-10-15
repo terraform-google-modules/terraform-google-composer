@@ -64,7 +64,7 @@ module "simple-composer-environment" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | airflow\_config\_overrides | Airflow configuration properties to override. Property keys contain the section and property names, separated by a hyphen, for example "core-dags\_are\_paused\_at\_creation". | `map(string)` | `{}` | no |
-| cloud\_data\_lineage\_integration | Whether or not Dataplex data lineage integration is enabled. Cloud Composer environments in versions composer-2.1.2-airflow-..* and newer) | `bool` | `false` | no |
+| cloud\_data\_lineage\_integration | Whether or not Dataplex data lineage integration is enabled. Set to true or false to explicitly manage it; leave null to not manage the setting. Cloud Composer environments in versions composer-2.1.2-airflow-..* and newer) | `bool` | `null` | no |
 | composer\_env\_name | Name of Cloud Composer Environment | `string` | n/a | yes |
 | composer\_network\_attachment\_name | Name for PSC (Private Service Connect) Network entry point. | `string` | `null` | no |
 | composer\_service\_account | Service Account for running Cloud Composer. | `string` | `null` | no |

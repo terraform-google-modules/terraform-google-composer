@@ -71,7 +71,7 @@ module "simple-composer-environment" {
 | airflow\_config\_overrides | Airflow configuration properties to override. Property keys contain the section and property names, separated by a hyphen, for example "core-dags\_are\_paused\_at\_creation". | `map(string)` | `{}` | no |
 | cloud\_composer\_connection\_subnetwork | Subnetwork self-link. When specified, the environment will use Private Service Connect instead of VPC peerings to connect to CloudSQL in the Tenant Project. IP address of psc endpoint is allocated from this subnet | `string` | `null` | no |
 | cloud\_composer\_network\_ipv4\_cidr\_block | The CIDR block from which IP range in tenant project will be reserved. Required if VPC peering is used to connect to CloudSql instead of PSC | `string` | `null` | no |
-| cloud\_data\_lineage\_integration | Whether or not Dataplex data lineage integration is enabled. Cloud Composer environments in versions composer-2.1.2-airflow-..* and newer) | `bool` | `false` | no |
+| cloud\_data\_lineage\_integration | Whether or not Dataplex data lineage integration is enabled. Set to true or false to explicitly manage it; leave null to not manage the setting. Cloud Composer environments in versions composer-2.1.2-airflow-..* and newer) | `bool` | `null` | no |
 | cloud\_sql\_ipv4\_cidr | The CIDR block from which IP range in tenant project will be reserved for Cloud SQL private service access. Required if VPC peering is used to connect to CloudSql instead of PSC | `string` | `null` | no |
 | composer\_env\_name | Name of Cloud Composer Environment | `string` | n/a | yes |
 | composer\_service\_account | Service Account for running Cloud Composer. | `string` | `null` | no |
