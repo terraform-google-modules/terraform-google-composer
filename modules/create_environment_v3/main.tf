@@ -46,9 +46,9 @@ resource "google_composer_environment" "composer_env" {
     node_config {
       service_account             = var.composer_service_account
       tags                        = var.tags
-      network                     = var.create_network_attachment ? "projects/${local.network_project_id}/global/networks/${var.network}" : null
-      subnetwork                  = var.create_network_attachment ? "projects/${local.network_project_id}/regions/${local.subnetwork_region}/subnetworks/${var.subnetwork}" : null
-      composer_network_attachment = var.create_network_attachment ? null : "projects/{var.project_id}/regions/${var.region}/networkAttachments/${var.composer_network_attachment_name}"
+      network                     = var.create_network_attachment && var.network != null ? "projects/${local.network_project_id}/global/networks/${var.network}" : null
+      subnetwork                  = var.create_network_attachment && var.subnetwork != null ? "projects/${local.network_project_id}/regions/${local.subnetwork_region}/subnetworks/${var.subnetwork}" : null
+      composer_network_attachment = !var.create_network_attachment && var.composer_network_attachment_name != null ? "projects/${var.project_id}/regions/${var.region}/networkAttachments/${var.composer_network_attachment_name}" : null
     }
 
     dynamic "software_config" {
