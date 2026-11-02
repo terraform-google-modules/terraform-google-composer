@@ -193,7 +193,7 @@ resource "google_composer_environment" "composer_env" {
           for_each = var.airflow_metadata_retention_config == null ? [] : ["airflow_metadata_retention_config"]
           content {
             retention_mode = var.airflow_metadata_retention_config.retention_mode
-            retention_days = var.airflow_metadata_retention_config.retention_days
+            retention_days = var.airflow_metadata_retention_config.retention_mode == "RETENTION_MODE_ENABLED" ? var.airflow_metadata_retention_config.retention_days : null
           }
         }
       }

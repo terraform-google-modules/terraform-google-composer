@@ -297,8 +297,17 @@ variable "airflow_metadata_retention_config" {
   validation {
     condition = var.airflow_metadata_retention_config == null || var.airflow_metadata_retention_config.retention_days == null || (
       var.airflow_metadata_retention_config.retention_days >= 30 &&
-      var.airflow_metadata_retention_config.retention_days <= 730
+      var.airflow_metadata_retention_config.retention_days <= 730 &&
+      floor(var.airflow_metadata_retention_config.retention_days) == var.airflow_metadata_retention_config.retention_days
     )
-    error_message = "airflow_metadata_retention_config.retention_days must be between 30 and 730."
+    error_message = "airflow_metadata_retention_config.retention_days must be a whole number between 30 and 730."
+  }
+
+  validation {
+    condition = var.airflow_metadata_retention_config == null || (
+      var.airflow_metadata_retention_config.retention_mode != "RETENTION_MODE_DISABLED" ||
+      var.airflow_metadata_retention_config.retention_days == null
+    )
+    error_message = "airflow_metadata_retention_config.retention_days must not be set when retention_mode is RETENTION_MODE_DISABLED."
   }
 }
