@@ -37,7 +37,7 @@ resource "google_storage_bucket_iam_member" "object_admin" {
 
 module "simple-composer-environment" {
   source  = "terraform-google-modules/composer/google//modules/create_environment_v3"
-  version = "~> 6.0"
+  version = "~> 7.0"
 
   project_id                = var.project_id
   composer_env_name         = var.composer_env_name
@@ -82,4 +82,9 @@ module "simple-composer-environment" {
   ]
 
   image_version = "composer-3-airflow-3"
+
+  airflow_metadata_retention_config = {
+    retention_mode = "RETENTION_MODE_ENABLED"
+    retention_days = 90
+  }
 }
