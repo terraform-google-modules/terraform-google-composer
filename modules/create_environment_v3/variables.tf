@@ -279,3 +279,37 @@ variable "task_logs_retention_storage_mode" {
   type        = string
   default     = null
 }
+
+variable "airflow_metadata_retention_config" {
+  description = "The retention policy for the Airflow metadata database. retention_mode is RETENTION_MODE_ENABLED or RETENTION_MODE_DISABLED. retention_days is how many days data must be retained (30-730). Requires Terraform Google Provider 6.15 or newer."
+  type = object({
+    retention_mode = string
+    retention_days = optional(number)
+  })
+  default = null
+
+  validation {
+    condition = var.airflow_metadata_retention_config == null || contains(
+      ["RETENTION_MODE_ENABLED", "RETENTION_MODE_DISABLED"],
+      var.airflow_metadata_retention_config.retention_mode
+    )
+    error_message = "airflow_metadata_retention_config.retention_mode must be RETENTION_MODE_ENABLED or RETENTION_MODE_DISABLED."
+  }
+
+  validation {
+    condition = var.airflow_metadata_retention_config == null || var.airflow_metadata_retention_config.retention_days == null || (
+      var.airflow_metadata_retention_config.retention_days >= 30 &&
+      var.airflow_metadata_retention_config.retention_days <= 730 &&
+      floor(var.airflow_metadata_retention_config.retention_days) == var.airflow_metadata_retention_config.retention_days
+    )
+    error_message = "airflow_metadata_retention_config.retention_days must be a whole number between 30 and 730."
+  }
+
+  validation {
+    condition = var.airflow_metadata_retention_config == null || (
+      var.airflow_metadata_retention_config.retention_mode != "RETENTION_MODE_DISABLED" ||
+      var.airflow_metadata_retention_config.retention_days == null
+    )
+    error_message = "airflow_metadata_retention_config.retention_days must not be set when retention_mode is RETENTION_MODE_DISABLED."
+  }
+}

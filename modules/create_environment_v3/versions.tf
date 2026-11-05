@@ -20,21 +20,21 @@ terraform {
 
     google = {
       source  = "hashicorp/google"
-      version = ">= 6.0, < 8"
+      version = ">= 6.15, < 8"
     }
 
     google-beta = {
       source  = "hashicorp/google-beta"
-      version = ">= 6.0, < 8"
+      version = ">= 6.15, < 8"
     }
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-composer:create_environment_v3/v7.0.0"
+    module_name = "blueprints/terraform/terraform-google-composer:create_environment_v3/v7.1.0"
   }
 
   provider_meta "google-beta" {
-    module_name = "blueprints/terraform/terraform-google-composer:create_environment_v3/v7.0.0"
+    module_name = "blueprints/terraform/terraform-google-composer:create_environment_v3/v7.1.0"
   }
 
 }
