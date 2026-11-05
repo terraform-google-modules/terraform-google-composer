@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [7.1.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v7.0.0...v7.1.0) (2026-11-03)
+
+
+### Features
+
+* add Airflow metadata retention config for Composer v3 ([#207](https://github.com/terraform-google-modules/terraform-google-composer/issues/207)) ([41c20a8](https://github.com/terraform-google-modules/terraform-google-composer/commit/41c20a89108b3bd374a8bb7eebb313f495e47713))
+
 ## [7.0.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v6.4.0...v7.0.0) (2026-08-10)
 
 
