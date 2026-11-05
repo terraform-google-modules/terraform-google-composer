@@ -44,7 +44,8 @@ variable "tags" {
 
 variable "network" {
   type        = string
-  description = "The VPC network to host the composer cluster."
+  description = "The VPC network to host the composer cluster. Leave null (with subnetwork) to create an environment that is not connected to a VPC network."
+  default     = null
 }
 
 variable "network_project_id" {
@@ -55,7 +56,8 @@ variable "network_project_id" {
 
 variable "subnetwork" {
   type        = string
-  description = "The name of the subnetwork to host the composer cluster."
+  description = "The name of the subnetwork to host the composer cluster. Leave null (with network) to create an environment that is not connected to a VPC network."
+  default     = null
 }
 
 variable "subnetwork_region" {
@@ -66,7 +68,7 @@ variable "subnetwork_region" {
 
 variable "create_network_attachment" {
   type        = bool
-  description = "Either create a new network attachment or use existing one. If true, provide the subnet details."
+  description = "Either create a new network attachment or use existing one. If true, provide the subnet details; if false, provide composer_network_attachment_name."
   default     = true
 }
 
