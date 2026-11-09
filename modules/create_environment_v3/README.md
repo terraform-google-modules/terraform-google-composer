@@ -69,7 +69,7 @@ module "simple-composer-environment" {
 | composer\_env\_name | Name of Cloud Composer Environment | `string` | n/a | yes |
 | composer\_network\_attachment\_name | Name for PSC (Private Service Connect) Network entry point. | `string` | `null` | no |
 | composer\_service\_account | Service Account for running Cloud Composer. | `string` | `null` | no |
-| create\_network\_attachment | Either create a new network attachment or use existing one. If true, provide the subnet details; if false, provide composer\_network\_attachment\_name. | `bool` | `true` | no |
+| create\_network\_attachment | Either create a new network attachment, use an existing one, or omit VPC connectivity. If true, provide network and subnetwork (or leave both null for no VPC connection); if false, provide composer\_network\_attachment\_name. | `bool` | `true` | no |
 | dag\_processor | Configuration for resources used by Airflow workers. | <pre>object({<br>    cpu        = string<br>    memory_gb  = number<br>    storage_gb = number<br>    count      = number<br>  })</pre> | <pre>{<br>  "count": 2,<br>  "cpu": 2,<br>  "memory_gb": 7.5,<br>  "storage_gb": 5<br>}</pre> | no |
 | enable\_private\_builds\_only | If true, builds performed during operations that install Python packages have only private connectivity to Google services. If false, the builds also have access to the internet. | `bool` | `false` | no |
 | env\_variables | Variables of the airflow environment. | `map(string)` | `{}` | no |

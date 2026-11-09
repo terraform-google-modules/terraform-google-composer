@@ -79,8 +79,9 @@ variable "subnetwork_region" {
 
 variable "create_network_attachment" {
   type        = bool
-  description = "Either create a new network attachment or use existing one. If true, provide the subnet details; if false, provide composer_network_attachment_name."
+  description = "Either create a new network attachment, use an existing one, or omit VPC connectivity. If true, provide network and subnetwork (or leave both null for no VPC connection); if false, provide composer_network_attachment_name."
   default     = true
+  nullable    = false
 }
 
 variable "composer_network_attachment_name" {
