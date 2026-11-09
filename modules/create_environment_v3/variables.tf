@@ -46,6 +46,12 @@ variable "network" {
   type        = string
   description = "The VPC network to host the composer cluster. Leave null (with subnetwork) to create an environment that is not connected to a VPC network."
   default     = null
+
+  validation {
+    # Ternary, not ||: Terraform < 1.12 evaluates both sides of ||, and trimspace(null) errors.
+    condition     = var.network == null ? true : (trimspace(var.network) != "" && !can(regex("/", var.network)))
+    error_message = "network must be a non-empty VPC network name (not a self-link or empty string), or null."
+  }
 }
 
 variable "network_project_id" {
