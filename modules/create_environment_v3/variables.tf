@@ -64,6 +64,11 @@ variable "subnetwork" {
   type        = string
   description = "The name of the subnetwork to host the composer cluster. Leave null (with network) to create an environment that is not connected to a VPC network."
   default     = null
+
+  validation {
+    condition     = var.subnetwork == null ? true : (trimspace(var.subnetwork) != "" && !can(regex("/", var.subnetwork)))
+    error_message = "subnetwork must be a non-empty subnetwork name (not a self-link or empty string), or null."
+  }
 }
 
 variable "subnetwork_region" {
