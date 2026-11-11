@@ -44,7 +44,14 @@ variable "tags" {
 
 variable "network" {
   type        = string
-  description = "The VPC network to host the composer cluster."
+  description = "The VPC network to host the composer cluster. Leave null (with subnetwork) to create an environment that is not connected to a VPC network."
+  default     = null
+
+  validation {
+    # Ternary, not ||: Terraform < 1.12 evaluates both sides of ||, and trimspace(null) errors.
+    condition     = var.network == null ? true : (trimspace(var.network) != "" && !can(regex("/", var.network)))
+    error_message = "network must be a non-empty VPC network name (not a self-link or empty string), or null."
+  }
 }
 
 variable "network_project_id" {
@@ -55,7 +62,13 @@ variable "network_project_id" {
 
 variable "subnetwork" {
   type        = string
-  description = "The name of the subnetwork to host the composer cluster."
+  description = "The name of the subnetwork to host the composer cluster. Leave null (with network) to create an environment that is not connected to a VPC network."
+  default     = null
+
+  validation {
+    condition     = var.subnetwork == null ? true : (trimspace(var.subnetwork) != "" && !can(regex("/", var.subnetwork)))
+    error_message = "subnetwork must be a non-empty subnetwork name (not a self-link or empty string), or null."
+  }
 }
 
 variable "subnetwork_region" {
@@ -66,8 +79,9 @@ variable "subnetwork_region" {
 
 variable "create_network_attachment" {
   type        = bool
-  description = "Either create a new network attachment or use existing one. If true, provide the subnet details."
+  description = "Either create a new network attachment, use an existing one, or omit VPC connectivity. If true, provide network and subnetwork (or leave both null for no VPC connection); if false, provide composer_network_attachment_name."
   default     = true
+  nullable    = false
 }
 
 variable "composer_network_attachment_name" {
