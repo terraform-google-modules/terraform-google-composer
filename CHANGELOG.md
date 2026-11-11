@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [7.2.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v7.1.0...v7.2.0) (2026-11-11)
+
+
+### Features
+
+* **deps:** Update Terraform Google Provider to v8 ([#208](https://github.com/terraform-google-modules/terraform-google-composer/issues/208)) ([7c75541](https://github.com/terraform-google-modules/terraform-google-composer/commit/7c7554110287deae94eeedac153bfdb1a5e2351f))
+
 ## [7.1.0](https://github.com/terraform-google-modules/terraform-google-composer/compare/v7.0.0...v7.1.0) (2026-11-03)
 
 
