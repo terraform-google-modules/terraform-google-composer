@@ -287,7 +287,7 @@ variable "airflow_metadata_retention_config" {
   default = null
 
   validation {
-    condition = var.airflow_metadata_retention_config == null || contains(
+    condition = var.airflow_metadata_retention_config == null ? true : contains(
       ["RETENTION_MODE_ENABLED", "RETENTION_MODE_DISABLED"],
       var.airflow_metadata_retention_config.retention_mode
     )
@@ -295,7 +295,7 @@ variable "airflow_metadata_retention_config" {
   }
 
   validation {
-    condition = var.airflow_metadata_retention_config == null || var.airflow_metadata_retention_config.retention_days == null || (
+    condition = var.airflow_metadata_retention_config == null ? true : var.airflow_metadata_retention_config.retention_days == null ? true : (
       var.airflow_metadata_retention_config.retention_days >= 30 &&
       var.airflow_metadata_retention_config.retention_days <= 730 &&
       floor(var.airflow_metadata_retention_config.retention_days) == var.airflow_metadata_retention_config.retention_days
@@ -304,7 +304,7 @@ variable "airflow_metadata_retention_config" {
   }
 
   validation {
-    condition = var.airflow_metadata_retention_config == null || (
+    condition = var.airflow_metadata_retention_config == null ? true : (
       var.airflow_metadata_retention_config.retention_mode != "RETENTION_MODE_DISABLED" ||
       var.airflow_metadata_retention_config.retention_days == null
     )
